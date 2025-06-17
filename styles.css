@@ -805,6 +805,7 @@
     --border-radius: 8px;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -2035,7 +2036,15 @@ ul {
  
 .game-description p{
     margin-bottom: 20px;
-    line-height: 1.7;
+    line-height: 2.1;
+}
+
+.game-description li{
+    margin-bottom: 10px;
+}
+
+.game-description ul{
+    margin-bottom: 20px;
 }
 
 .game-description {
@@ -2488,4 +2497,99 @@ ul {
 
 .download-security i {
     color: #4CAF50;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.download-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* min-height: 50vh; */
+}
+
+.countdown-box {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.countdown-box h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.countdown {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 1rem 0;
+}
+
+.download-link-box {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    display: none; /* Initially hidden */
+}
+
+.download-link-box h1 {
+    font-size: 18px;
+    
+}
+
+.download-btn {
+    font-size: 13px;
+    padding: 12px 30px;
+    margin-bottom: 0.5rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.social-media2 {
+    margin-top: 2rem;
+}
+
+.social-media2 p {
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.social-icons2 {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-icons2 a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons2 a:hover {
+    color: var(--primary-color);
 }
