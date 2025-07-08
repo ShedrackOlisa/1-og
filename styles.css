@@ -2593,3 +2593,92 @@ ul {
 .social-icons2 a:hover {
     color: var(--primary-color);
 }
+
+
+
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .video-container img {
+    width: 100%;
+    display: block;
+  }
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: white;
+    background: rgba(255, 0, 0, 0.7);
+    width: 80px; /* Fixed width */
+    height: 80px; /* Fixed height */
+    border-radius: 50%; /* Makes it a circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.3s ease; /* Optional: Adds a hover effect */
+  }
+  .play-button:hover {
+    background: rgba(255, 0, 0, 0.9); /* Optional: Darker red on hover */
+  }
+
+
+
+
+  /* Container for centering */
+ .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  /* Button styling */
+  .image-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden !important;
+    position: relative;
+    animation: riseAndScale 4s infinite ease-in-out;
+  }
+
+  .image-button img {
+    display: block;
+    width: 100%;
+    max-width: 300px; /* Adjust as needed */
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+
+  /* Animation */
+  @keyframes riseAndScale {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-5px) scale(1.1);
+    }
+  }
+
+  /* Media queries for smaller screens */
+  @media (max-width: 768px) {
+    .image-button img {
+      max-width: 150px; /* Smaller image on mobile */
+    }
+  }
+
+  @media (max-width: 480px) {
+    .image-button img {
+      max-width: 100%; /* Even smaller image on very small screens */
+    }
+  }
