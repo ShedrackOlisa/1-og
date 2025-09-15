@@ -2682,3 +2682,119 @@ ul {
       max-width: 100%; /* Even smaller image on very small screens */
     }
   }
+
+
+
+
+          /* Floating CTA styles */
+:root{
+  --cta-bg: #3b82f6;      /* main pill color (blue) */
+  --cta-accent: #10b981;  /* small accent / glow (green) */
+  --cta-size: 64px;       /* height (and width for circle) */
+  --cta-radius: 34px;     /* pill corner radius */
+  --cta-shadow: 0 8px 20px rgba(16,24,40,0.35);
+  --cta-text: #ffffff;
+}
+
+/* Base reset for anchor button */
+.floating-cta{
+  position: fixed;
+  right: 20px;               /* distance from right edge */
+  bottom: 20px;              /* distance from bottom edge */
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--cta-text);
+  background: linear-gradient(180deg, var(--cta-bg), color-mix(in srgb, var(--cta-bg) 80%, black 10%));
+  height: var(--cta-size);
+  min-width: calc(var(--cta-size) * 1.25); /* pill wider than tall */
+  padding: 0 14px;
+  border-radius: var(--cta-radius);
+  box-shadow: var(--cta-shadow);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  -webkit-tap-highlight-color: transparent;
+  backdrop-filter: blur(4px);
+  align-self: end;
+  will-change: transform;
+}
+
+/* inner shape keeps icon centered and circular */
+.floating-cta .cta-shape{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--cta-size) - 18px);
+  width: calc(var(--cta-size) - 18px);
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+}
+
+/* SVG icon sizing */
+.floating-cta svg{
+  width: 22px;
+  height: 22px;
+  display: block;
+  color: var(--cta-text);
+}
+
+/* Hover / active / focus effects */
+.floating-cta:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(16,24,40,0.45);
+  filter: saturate(1.05);
+}
+.floating-cta:active{
+  transform: translateY(-2px) scale(.995);
+}
+.floating-cta:focus{
+  outline: none;
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta-accent) 18%, transparent);
+}
+
+/* small pulsing accent behind the button */
+.floating-cta::after{
+  content: "";
+  position: absolute;
+  inset: auto;
+  right: 12px;
+  bottom: 12px;
+  width: calc(var(--cta-size) * 0.9);
+  height: calc(var(--cta-size) * 0.9);
+  border-radius: 999px;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--cta-accent) 60%, transparent) 0%, transparent 40%);
+  opacity: 0.25;
+  filter: blur(6px);
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+  transform: scale(.9);
+}
+
+/* optional "allowed" state (green accent) */
+.floating-cta.allowed{
+  --cta-bg: #06b75a;
+}
+.floating-cta.allowed::after{
+  opacity: .45;
+  transform: scale(1.05);
+}
+
+/* Responsive tweak on very small screens */
+@media (max-width:420px){
+  :root{ --cta-size: 54px; --cta-radius: 28px; }
+  .floating-cta{ right: 12px; bottom: 12px; min-width: calc(var(--cta-size) * 1.1); padding: 0 10px; }
+  .floating-cta::after{ right: 8px; bottom: 8px; }
+}
+
+/* If you want the pill narrower (icon only), add this helper class:
+   <a class="floating-cta icon-only"> ... </a> */
+.floating-cta.icon-only{
+  padding: 0;
+  width: var(--cta-size);
+  min-width: var(--cta-size);
+  border-radius: 999px;
+}
+
+
+
