@@ -2700,7 +2700,7 @@ ul {
 .floating-cta{
   position: fixed;
   right: 20px;               /* distance from right edge */
-  bottom: 20px;              /* distance from bottom edge */
+  bottom: 100px;              /* distance from bottom edge */
   z-index: 9999;
   display: inline-flex;
   align-items: center;
@@ -2785,6 +2785,11 @@ ul {
   :root{ --cta-size: 54px; --cta-radius: 28px; }
   .floating-cta{ right: 12px; bottom: 12px; min-width: calc(var(--cta-size) * 1.1); padding: 0 10px; }
   .floating-cta::after{ right: 8px; bottom: 8px; }
+
+  .floating-cta{
+              /* distance from right edge */
+  bottom: 100px; 
+  }  
 }
 
 /* If you want the pill narrower (icon only), add this helper class:
