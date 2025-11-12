@@ -281,7 +281,48 @@
                 </div>
             </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+  // Select all buttons with this class (so it works across multiple pages if needed)
+  const downloadButtons = document.querySelectorAll('a.btn-download[href="https://olitechgames.com/download/gta-5-psp-dl"]');
 
+  // ✅ Add up to 20 random download URLs
+  const downloadUrls = [
+    "https://phonespecpro.com/samsung-galaxy-s25-ultra-specifications",
+    "https://phonespecpro.com/oneplus-13r-specifications",
+    "https://phonespecpro.com/vivo-x300-pro-specifications",
+    "https://phonespecpro.com/nothing-phone-3a-specifications",
+    "https://phonespecpro.com/sony-xperia-5-vii-specifications",
+    "https://phonespecpro.com/huawei-p70-pro-specifications"
+    ];
+
+  const mainUrl = "https://olitechgames.com/download/gta-5-psp-dl";
+  const storageKey = "visitedPesDownload";
+  const oneHour = 60 * 60 * 1000; // 1 hour
+  const visitData = JSON.parse(localStorage.getItem(storageKey));
+  const now = Date.now();
+
+  downloadButtons.forEach(button => {
+    if (visitData && now - visitData.timestamp < oneHour) {
+      // Within 1 hour → main site
+      button.setAttribute("href", mainUrl);
+    } else {
+      // Pick a random download link
+      const randomUrl = downloadUrls[Math.floor(Math.random() * downloadUrls.length)];
+      button.setAttribute("href", randomUrl);
+
+      // When clicked → switch to main site
+      button.addEventListener("click", function() {
+        localStorage.setItem(storageKey, JSON.stringify({ timestamp: now }));
+        setTimeout(() => {
+          button.setAttribute("href", mainUrl);
+        }, 500);
+      });
+    }
+  });
+});
+
+</script>
 
             <!-- Related ROMs Section -->
             <div class="related-roms">
