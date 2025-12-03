@@ -193,49 +193,7 @@
                     </div>
                 </div>
             </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-  // Select all buttons with this class (so it works across multiple pages if needed)
-  const downloadButtons = document.querySelectorAll('a.btn-download[href="https://olitechgames.com/download/gta-4-ppsspp-dl"]');
 
-  // ✅ Add up to 20 random download URLs
-  const downloadUrls = [
-    "https://mathsinsure.com/",
-    "https://mathsinsure.com/2025-business-insurance-market-trends-what-every-company-should-know",
-    "https://mathsinsure.com/ai-telematics-changing-auto-insurance-quotes",
-    "https://mathsinsure.com/deductible-strategies-impact-coverage-cost",
-    "https://mathsinsure.com/top-life-insurance-product-innovations-2025",
-    "https://mathsinsure.com/health-savings-accounts-hsas-and-their-growing-role-in-2025",
-    "https://mathsinsure.com/"
-    ];
-
-  const mainUrl = "https://olitechgames.com/download/gta-4-ppsspp-dl";
-  const storageKey = "visitedPesDownload";
-  const oneHour = 60 * 60 * 1000; // 1 hour
-  const visitData = JSON.parse(localStorage.getItem(storageKey));
-  const now = Date.now();
-
-  downloadButtons.forEach(button => {
-    if (visitData && now - visitData.timestamp < oneHour) {
-      // Within 1 hour → main site
-      button.setAttribute("href", mainUrl);
-    } else {
-      // Pick a random download link
-      const randomUrl = downloadUrls[Math.floor(Math.random() * downloadUrls.length)];
-      button.setAttribute("href", randomUrl);
-
-      // When clicked → switch to main site
-      button.addEventListener("click", function() {
-        localStorage.setItem(storageKey, JSON.stringify({ timestamp: now }));
-        setTimeout(() => {
-          button.setAttribute("href", mainUrl);
-        }, 500);
-      });
-    }
-  });
-});
-
-</script>
 
 
             <!-- Related ROMs Section -->
