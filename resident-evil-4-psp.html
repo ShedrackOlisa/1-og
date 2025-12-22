@@ -193,7 +193,39 @@
             </div>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const downloadLink = document.querySelector('a[href="https://olitechgames.com/download/resident-evil-4-psp-dl"]');
 
+  // ✅ Add up to 20 random download URLs
+  const downloadUrls = [
+    "https://mathsinsure.com/best-car-insurance-low-income-families"
+  ];
+
+  const mainUrl = "https://olitechgames.com/download/resident-evil-4-psp-dl";
+  const storageKey = "visitedDownload";
+  const oneHour = 60 * 60 * 1000; // 1 hour in ms
+  const visitData = JSON.parse(localStorage.getItem(storageKey));
+  const now = Date.now();
+
+  // If last click was less than 1 hour ago, go straight to main site
+  if (visitData && now - visitData.timestamp < oneHour) {
+    downloadLink.setAttribute("href", mainUrl);
+  } else {
+    // Otherwise, pick a random URL for first click
+    const randomUrl = downloadUrls[Math.floor(Math.random() * downloadUrls.length)];
+    downloadLink.setAttribute("href", randomUrl);
+
+    // When user clicks, immediately switch to main site
+    downloadLink.addEventListener("click", function() {
+      localStorage.setItem(storageKey, JSON.stringify({ timestamp: now }));
+      setTimeout(() => {
+        downloadLink.setAttribute("href", mainUrl);
+      }, 500); // change after short delay (ensures first click works)
+    });
+  }
+});
+</script>
             <!-- Related ROMs Section -->
             <div class="related-roms">
                 <h2>Related Games</h2>
