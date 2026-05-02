@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <link rel="alternate" type="application/rss+xml" title="OlitechGames — News & Reviews" href="https://olitechgames.com/feed.xml" />
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <title>OlitechGames Reviews Hub | Expert Game Reviews 2026</title>
+  <meta name="description" content="In-depth reviews of the biggest games in 2026: GTA 6 (9.5/10), EA FC 26 (8.0/10), Call of Duty Black Ops 7 (8.5/10), best gaming phones, PS5 Pro (8.0/10), and top open-world alternatives.">
+  <meta name="author" content="Oli Sa">
+  <link rel="canonical" href="https://olitechgames.com/reviews.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://olitechgames.com/reviews.html">
+  <meta property="og:title" content="OlitechGames Reviews Hub | Expert Game Reviews 2026">
+  <meta property="og:description" content="In-depth reviews of the biggest games in 2026: GTA 6, EA FC 26, Call of Duty, best gaming phones, PS5 Pro, and top open-world alternatives.">
+  <meta property="og:image" content="https://olitechgames.com/src/reviews-hub.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="OlitechGames">
+
+  <link rel="icon" type="image/x-icon" href="https://olitechgames.com/favicon.ico">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "OlitechGames Reviews Hub",
+    "description": "Expert game reviews for the biggest titles of 2026",
+    "url": "https://olitechgames.com/reviews.html",
+    "author": { "@type": "Person", "name": "Oli Sa", "url": "https://olitechgames.com/author/oli-sa" },
+    "publisher": { "@type": "Organization", "name": "OlitechGames", "logo": { "@type": "ImageObject", "url": "https://olitechgames.com/logo.webp" } },
+    "datePublished": "2026-04-30T00:00:00+00:00"
+  }
+  </script>
+
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --surface-light: #f1f5f9;
+      --primary: #e85d04;
+      --primary-dark: #dc2f02;
+      --primary-soft: #ffedd5;
+      --text-dark: #0f172a;
+      --text-muted: #334155;
+      --border-light: #e2e8f0;
+      --shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.05);
+      --shadow-md: 0 20px 25px -12px rgba(0,0,0,0.08);
+      --radius-card: 28px;
+      --font-sans: 'Inter', sans-serif;
+      --font-heading: 'Orbitron', monospace;
+    }
+
+    body { background-color: var(--bg-body); color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    .article-container { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .site-header {
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+    .header-wrapper { display: flex; align-items: center; justify-content: space-between; }
+    .logo a {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e85d04, #b91c1c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .logo span { color: #e85d04; background: none; }
+    .main-nav ul { display: flex; gap: 2rem; list-style: none; }
+    .main-nav a { font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
+    .main-nav a:hover, .main-nav a.active { color: var(--primary); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text-dark);
+      position: absolute;
+      left: 9px;
+      transition: all 0.25s ease;
+    }
+    .hamburger span:nth-child(1) { top: 14px; }
+    .hamburger span:nth-child(2) { top: 21px; }
+    .hamburger span:nth-child(3) { top: 28px; }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s;
+    }
+    .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+    .mobile-menu-panel {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 280px;
+      height: 100%;
+      background: white;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+      padding: 2rem 1.8rem;
+      transition: right 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
+      z-index: 2001;
+    }
+    .mobile-menu-overlay.active .mobile-menu-panel { right: 0; }
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .close-menu-btn { background: none; border: none; font-size: 2rem; cursor: pointer; color: #475569; }
+    .close-menu-btn:hover { color: var(--primary); }
+    .mobile-nav-list { list-style: none; }
+    .mobile-nav-list li { margin-bottom: 1.2rem; }
+    .mobile-nav-list a { font-size: 1.2rem; font-weight: 500; color: var(--text-dark); display: block; }
+    .mobile-nav-list a:hover { color: var(--primary); }
+
+    /* Reviews Hub Styles */
+    .reviews-hub-hero {
+      background: linear-gradient(135deg, #fff5eb, #ffe8d9);
+      padding: 3rem 0;
+      margin-bottom: 2rem;
+      border-radius: 0 0 40px 40px;
+    }
+    .reviews-hub-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    @media (min-width: 600px) { .reviews-hub-hero h1 { font-size: 3rem; } }
+    .reviews-hub-hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 768px) { .reviews-grid { grid-template-columns: 1fr; } }
+
+    .review-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .review-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+    .review-card-image { width: 100%; height: 180px; object-fit: cover; }
+    .review-card-content { padding: 1.5rem; }
+    .review-category {
+      display: inline-block;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+    .review-score-badge {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-left: 0.5rem;
+    }
+    .review-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; line-height: 1.3; }
+    .review-card h3 a:hover { color: var(--primary); }
+    .review-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+    }
+    .review-excerpt { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.5; }
+    .read-more { color: var(--primary); font-weight: 600; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .read-more:hover { gap: 0.5rem; }
+
+    .sidebar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .sidebar-widget {
+      background: var(--bg-card);
+      border-radius: 24px;
+      border: 1px solid var(--border-light);
+      padding: 1.5rem;
+    }
+    .sidebar-widget h3 { font-size: 1.2rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); display: inline-block; }
+    .top-rated-list { list-style: none; }
+    .top-rated-list li { padding: 0.8rem 0; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
+    .top-rated-list li:last-child { border-bottom: none; }
+    .top-rated-score { font-weight: 700; color: var(--primary); }
+
+    .site-footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border-light);
+      margin-top: 4rem;
+      padding: 3rem 0 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e85d04, #b91c1c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    .footer-about-text { color: var(--text-muted); margin: 0.5rem 0 1rem; font-size: 0.9rem; }
+    .social-links { display: flex; gap: 1rem; }
+    .social-links a { color: var(--text-muted); font-size: 1.3rem; transition: color 0.2s; }
+    .social-links a:hover { color: var(--primary); }
+    .footer-links h4 { font-size: 1.1rem; margin-bottom: 1rem; }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--primary); }
+    .copyright { text-align: center; border-top: 1px solid var(--border-light); padding-top: 2rem; font-size: 0.8rem; color: var(--text-muted); }
+
+    @media (max-width: 700px) {
+      .main-nav { display: none; }
+      .hamburger { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-wrapper">
+    <div class="logo"><a href="https://olitechgames.com/">OLITECH<span>GAMES</span></a></div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="https://olitechgames.com/">Home</a></li>
+        <li><a href="https://olitechgames.com/android-games.html">Apk Games</a></li>
+        <li><a href="https://olitechgames.com/psp-games.html">PPSSPP</a></li>
+        <li><a href="https://olitechgames.com/reviews.html" class="active">Reviews</a></li>
+        <li><a href="https://olitechgames.com/news.html">News</a></li>
+        <li><a href="https://olitechgames.com/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-header">
+      <div class="logo"><a href="#">OLITECH<span>GAMES</span></a></div>
+      <button class="close-menu-btn" id="closeMenuBtn">✕</button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="https://olitechgames.com/">Home</a></li>
+      <li><a href="https://olitechgames.com/android-games.html">Apk Games</a></li>
+      <li><a href="https://olitechgames.com/psp-games.html">PPSSPP Games</a></li>
+      <li><a href="https://olitechgames.com/reviews.html">Reviews</a></li>
+      <li><a href="https://olitechgames.com/news.html">News</a></li>
+      <li><a href="https://olitechgames.com/contact.html">Contact</a></li>
+      <li><a href="https://olitechgames.com/privacy-and-policy.html">Privacy Policy</a></li>
+    </ul>
+  </div>
+</div>
+
+<main>
+  <div class="reviews-hub-hero">
+    <div class="container">
+      <h1>OlitechGames Reviews Hub</h1>
+      <p>Expert, in-depth reviews of the biggest games and hardware of 2026. No fluff, just honest opinions.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="reviews-grid">
+      <!-- Review 1: GTA 6 -->
+      <div class="review-card">
+        <img src="https://olitechgames.com/src/gta-6-review.webp" alt="GTA 6" class="review-card-image">
+        <div class="review-card-content">
+          <span class="review-category">Open World</span><span class="review-score-badge">9.5/10</span>
+          <h3><a href="https://olitechgames.com/gta-6-review">GTA 6 Review (Early Access): Graphics, Gameplay & Release Expectations in 2026</a></h3>
+          <div class="review-meta"><span><i class="fas fa-calendar-alt"></i> April 29, 2026</span><span><i class="fas fa-user"></i> Oli Sa</span></div>
+          <p class="review-excerpt">Rockstar's magnum opus delivers jaw-dropping graphics powered by RAGE 9, a revamped wanted system with dynamic search zones, and smarter AI. The real question: is it worth the wait? Our early access verdict.</p>
+          <a href="https://olitechgames.com/gta-6-review" class="read-more">Read Full Review <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Review 2: EA SPORTS FC 26 -->
+      <div class="review-card">
+        <img src="https://olitechgames.com/src/ea-sports-fc-26-review.webp" alt="EA FC 26" class="review-card-image">
+        <div class="review-card-content">
+          <span class="review-category">Sports</span><span class="review-score-badge">8.0/10</span>
+          <h3><a href="https://olitechgames.com/ea-sports-fc-26-review">EA SPORTS FC 26 Review: Best Football Game Yet or Just Another Update?</a></h3>
+          <div class="review-meta"><span><i class="fas fa-calendar-alt"></i> April 29, 2026</span><span><i class="fas fa-user"></i> Oli Sa</span></div>
+          <p class="review-excerpt">Authentic vs Competitive gameplay split, deep Career Mode upgrades with Manager Live, but controversial Season Pass monetization sparks debate. Is it worth $70? Our full breakdown.</p>
+          <a href="https://olitechgames.com/ea-sports-fc-26-review" class="read-more">Read Full Review <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Review 3: Call of Duty 2026 -->
+      <div class="review-card">
+        <img src="https://olitechgames.com/src/cod-2026-review.webp" alt="Call of Duty 2026" class="review-card-image">
+        <div class="review-card-content">
+          <span class="review-category">FPS</span><span class="review-score-badge">8.5/10</span>
+          <h3><a href="https://olitechgames.com/call-of-duty-2026-review">Call of Duty 2026 Review: Campaign, Multiplayer & Warzone Changes Explained</a></h3>
+          <div class="review-meta"><span><i class="fas fa-calendar-alt"></i> April 29, 2026</span><span><i class="fas fa-user"></i> Oli Sa</span></div>
+          <p class="review-excerpt">Black Ops 7 delivers a direct sequel campaign, fan-favorite maps (Meltdown, Fringe, Slums), Totenreich Zombies, and Warzone's new Black Ops Royale mode. The most complete Call of Duty in years.</p>
+          <a href="https://olitechgames.com/call-of-duty-2026-review" class="read-more">Read Full Review <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Review 4: Best Gaming Phones 2026 -->
+      <div class="review-card">
+        <img src="https://olitechgames.com/src/gaming-phones-2026.webp" alt="Best Gaming Phones 2026" class="review-card-image">
+        <div class="review-card-content">
+          <span class="review-category">Hardware</span><span class="review-score-badge">Best Pick</span>
+          <h3><a href="https://olitechgames.com/best-gaming-phones-2026">Best Gaming Phones 2026 Reviewed: Top Android Devices for High FPS Gaming</a></h3>
+          <div class="review-meta"><span><i class="fas fa-calendar-alt"></i> April 29, 2026</span><span><i class="fas fa-user"></i> Oli Sa</span></div>
+          <p class="review-excerpt">RedMagic 11 Pro with active cooling takes the crown. Samsung S26 Ultra vs OnePlus 15 vs ASUS ROG Phone 9. Which phone delivers sustained 120fps without thermal throttling? Full comparison inside.</p>
+          <a href="https://olitechgames.com/best-gaming-phones-2026" class="read-more">Read Full Review <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Review 5: PS5 Pro -->
+      <div class="review-card">
+        <img src="https://olitechgames.com/src/ps5-pro-review.webp" alt="PS5 Pro" class="review-card-image">
+        <div class="review-card-content">
+          <span class="review-category">Console</span><span class="review-score-badge">8.0/10</span>
+          <h3><a href="https://olitechgames.com/ps5-pro-review">PlayStation 5 Pro Review: Is the Upgrade Worth It for Gamers in 2026?</a></h3>
+          <div class="review-meta"><span><i class="fas fa-calendar-alt"></i> April 29, 2026</span><span><i class="fas fa-user"></i> Oli Sa</span></div>
+          <p class="review-excerpt">With PSSR 2 delivering 4K/60fps without compromises, a massive 2TB SSD, and upcoming titles like GTA 6, is the $900 price tag justified? Our honest verdict on Sony's premium console.</p>
+          <a href="https://olitechgames.com/ps5-pro-review" class="read-more">Read Full Review <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Review 6: Open World Games Like GTA 6 -->
+      <div class="review-card">
+        <img src="https://olitechgames.com/src/open-world-like-gta-6.webp" alt="Open World Games" class="review-card-image">
+        <div class="review-card-content">
+          <span class="review-category">Top 10 List</span><span class="review-score-badge">Editors' Choice</span>
+          <h3><a href="https://olitechgames.com/open-world-games-like-gta-6">Top 10 Open World Games Like GTA 6 (2026 Edition) – Full Review & Gameplay</a></h3>
+          <div class="review-meta"><span><i class="fas fa-calendar-alt"></i> April 29, 2026</span><span><i class="fas fa-user"></i> Oli Sa</span></div>
+          <p class="review-excerpt">Waiting for GTA 6? Mafia: The Old Country, The Day Before, Six Days in Fallujah, Atomic Heart 2, Helldivers III, and more — 10 open-world alternatives to keep you busy until November.</p>
+          <a href="https://olitechgames.com/open-world-games-like-gta-6" class="read-more">Read Full Review <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar Section -->
+    <div class="sidebar">
+      <div class="sidebar-widget">
+        <h3><i class="fas fa-trophy"></i> Top Rated 2026</h3>
+        <ul class="top-rated-list">
+          <li><span>GTA 6 (Early Access)</span><span class="top-rated-score">9.5/10</span></li>
+          <li><span>Call of Duty: Black Ops 7</span><span class="top-rated-score">8.5/10</span></li>
+          <li><span>EA SPORTS FC 26</span><span class="top-rated-score">8.0/10</span></li>
+          <li><span>PlayStation 5 Pro</span><span class="top-rated-score">8.0/10</span></li>
+          <li><span>RedMagic 11 Pro</span><span class="top-rated-score">Best Pick</span></li>
+        </ul>
+      </div>
+      <div class="sidebar-widget">
+        <h3><i class="fas fa-chart-line"></i> Most Anticipated</h3>
+        <ul class="top-rated-list">
+          <li><span>GTA 6 (November 19, 2026)</span></li>
+          <li><span>Mafia: The Old Country</span></li>
+          <li><span>Helldivers III</span></li>
+        </ul>
+      </div>
+      <div class="sidebar-widget">
+        <h3><i class="fas fa-envelope"></i> Review Alerts</h3>
+        <p>Get notified when new reviews drop.</p>
+        <div style="margin-top: 0.8rem;">
+          <input type="email" placeholder="Your email address" style="width: 100%; padding: 0.7rem; border: 1px solid var(--border-light); border-radius: 40px; margin-bottom: 0.5rem;">
+          <button style="background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 40px; width: 100%; cursor: pointer;">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">OLITECH<span style="color:#e85d04;">GAMES</span></div>
+        <p class="footer-about-text">Your trusted source for honest game reviews, breaking news, and industry insights.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/profile.php?id=61550752782084" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="https://whatsapp.com/channel/0029Va9fPU89Bb5rps8okZ1A" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://t.me/ziphynetcom/" target="_blank"><i class="fab fa-telegram"></i></a>
+          <a href="https://www.youtube.com/@ziphynet" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="https://olitechgames.com/android-games.html">Apk Games</a></li>
+          <li><a href="https://olitechgames.com/psp-games.html">PPSSPP Games</a></li>
+          <li><a href="https://olitechgames.com/reviews.html">Game Reviews</a></li>
+          <li><a href="https://olitechgames.com/news.html">Gaming News</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="https://olitechgames.com/contact.html">Contact Us</a></li>
+          <li><a href="https://olitechgames.com/privacy-and-policy.html">Privacy Policy</a></li>
+          <li><a href="https://olitechgames.com/author/oli-sa">About Oli Sa</a></li>
+        </ul>
+      </div>
+      <!-- <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://olitechgames.com/sitemap.xml">Sitemap</a></li>
+          <li><a href="https://olitechgames.com/feed.xml">RSS Feed</a></li>
+        </ul>
+      </div> -->
+    </div>
+    <div class="copyright">
+      <p>© 2026 OlitechGames — All trademarks belong to their respective owners.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile Menu
+  (function() {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    const closeBtn = document.getElementById('closeMenuBtn');
+    function openMenu() { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeMenu() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
+    if (hamburger) hamburger.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeMenu(); });
+  })();
+</script>
+</body>
+</html>
