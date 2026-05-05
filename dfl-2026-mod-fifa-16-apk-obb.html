@@ -688,30 +688,60 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeMenu(); });
   })();
 
-  // Countdown Download Logic  const startBtn = document.getElementById('startDownloadTrigger');
+  // Countdown Download Logic (FIXED)
+  const startBtn = document.getElementById('startDownloadTrigger');
   const countdownArea = document.getElementById('countdownArea');
   let activeTimeout = null;
 
   function startSequence() {
-    if (startBtn) startBtn.disabled = true;
+    if (!startBtn || !countdownArea) return;
+    
+    startBtn.disabled = true;
     countdownArea.style.display = 'block';
+    
     function updateUI(message, progressText = null) {
       countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-cog fa-spin"></i> ${message}</div>${progressText ? `<div class="timer-digits">${progressText}</div>` : ''}</div>`;
     }
-    function packaging() { updateUI('📦 Packaging DFL 2026 Mod files... (secure server)'); activeTimeout = setTimeout(ready, 10000); }
-    function ready() { updateUI('✅ Files are ready — preparing secure download gateway'); activeTimeout = setTimeout(countdown, 10000); }
-    function countdown() { let counter = 10; function tick() { updateUI(`⏳ Your download link will appear in:`, `${counter} seconds`); if (counter === 0) { showFinalLinks(); } else { counter--; activeTimeout = setTimeout(tick, 1000); } } tick(); }
+    
+    function packaging() { 
+      updateUI('📦 Packaging DFL 2026 Mod files... (secure server)'); 
+      activeTimeout = setTimeout(ready, 10000); 
+    }
+    
+    function ready() { 
+      updateUI('✅ Files are ready — preparing secure download gateway'); 
+      activeTimeout = setTimeout(countdown, 10000); 
+    }
+    
+    function countdown() { 
+      let counter = 10; 
+      function tick() { 
+        updateUI(`⏳ Your download link will appear in:`, `${counter} seconds`); 
+        if (counter === 0) { 
+          showFinalLinks(); 
+        } else { 
+          counter--; 
+          activeTimeout = setTimeout(tick, 1000); 
+        } 
+      } 
+      tick(); 
+    }
+    
     function showFinalLinks() {
       countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-check-circle" style="color:#10b981;"></i> Download ready — fully tested</div>
       <div class="final-buttons">
-        <a href="https://ziphynet.com/dfl-2026-mod-fifa-16-apk-obb-data" class="final-btn" target="_blank"><i class="fab fa-android"></i> Download DFL 2026 Mod v3.0 (2.1 GB)</a>
+        <a href="https://ziphynet.com/dfl-2026-mod-fifa-16-apk-obb-data" class="final-btn" target="_blank" rel="nofollow"><i class="fab fa-android"></i> Download DFL 2026 Mod v3.0 (2.1 GB)</a>
       </div>
       <div class="security-badge" style="margin-top:1rem;"><i class="fas fa-shield-alt"></i> Bundesliga Focus • Career Mode • Offline Play • v3.0 Latest</div></div>`;
       if (startBtn) startBtn.disabled = false;
     }
+    
     packaging();
   }
-  if (startBtn) startBtn.addEventListener('click', startSequence);
+  
+  if (startBtn) {
+    startBtn.addEventListener('click', startSequence);
+  }
 </script>
 <script src="https://smallbruisedfollowing.com/8e/35/ca/8e35ca976372a6a79a33e6fe462c1550.js"></script>
 </body>
