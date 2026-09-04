@@ -53,286 +53,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/olitech.css">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg-body: #f8fafc;
-      --bg-card: #ffffff;
-      --surface-light: #f1f5f9;
-      --primary: #e85d04;
-      --primary-dark: #dc2f02;
-      --primary-soft: #ffedd5;
-      --text-dark: #0f172a;
-      --text-muted: #334155;
-      --border-light: #e2e8f0;
-      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
-      --radius-card: 28px;
-      --font-sans: 'Inter', sans-serif;
-      --font-heading: 'Orbitron', monospace;
-    }
-
-    body { background-color: var(--bg-body); color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
-    .article-container { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
-
-    .site-header {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 1rem 0;
-    }
-    .header-wrapper { display: flex; align-items: center; justify-content: space-between; }
-    .logo a {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .logo span { color: #e85d04; background: none; }
-    .main-nav ul { display: flex; gap: 2rem; list-style: none; }
-    .main-nav a { font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
-    .main-nav a:hover, .main-nav a.active { color: var(--primary); }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      width: 44px;
-      height: 44px;
-      cursor: pointer;
-      position: relative;
-      z-index: 1001;
-    }
-    .hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--text-dark);
-      position: absolute;
-      left: 9px;
-      transition: all 0.25s ease;
-    }
-    .hamburger span:nth-child(1) { top: 14px; }
-    .hamburger span:nth-child(2) { top: 21px; }
-    .hamburger span:nth-child(3) { top: 28px; }
-
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s;
-    }
-    .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
-    .mobile-menu-panel {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 280px;
-      height: 100%;
-      background: white;
-      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
-      padding: 2rem 1.8rem;
-      transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      z-index: 2001;
-    }
-    .mobile-menu-overlay.active .mobile-menu-panel { right: 0; }
-    .mobile-menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border-light);
-    }
-    .close-menu-btn { background: none; border: none; font-size: 2rem; cursor: pointer; color: #475569; }
-    .close-menu-btn:hover { color: var(--primary); }
-    .mobile-nav-list { list-style: none; }
-    .mobile-nav-list li { margin-bottom: 1.2rem; }
-    .mobile-nav-list a { font-size: 1.2rem; font-weight: 500; color: var(--text-dark); display: block; }
-    .mobile-nav-list a:hover { color: var(--primary); }
-
-    .game-hero { margin: 2rem 0 1rem; }
-    .game-badge {
-      display: inline-block;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .game-hero h1 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      line-height: 1.2;
-      margin: 1rem 0 0.5rem;
-    }
-    @media (min-width: 600px) { .game-hero h1 { font-size: 2.5rem; } }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .featured-image {
-      border-radius: 28px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow-md);
-    }
-    .featured-image img { width: 100%; height: auto; display: block; }
-
-    .article-content { font-size: 1.05rem; }
-    .article-content h2 {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      margin: 2.5rem 0 1rem;
-      border-left: 4px solid var(--primary);
-      padding-left: 1rem;
-    }
-    .article-content p { margin-bottom: 1.5rem; }
-    .article-content strong { color: var(--primary-dark); }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 1rem;
-      background: var(--surface-light);
-      border-radius: 28px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .download-module {
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--border-light);
-      padding: 2rem;
-      margin: 3rem 0;
-      text-align: center;
-    }
-    .trigger-download-btn {
-      background: linear-gradient(105deg, var(--primary), var(--primary-dark));
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 60px;
-      cursor: pointer;
-    }
-    .countdown-stage {
-      background: #fef9e8;
-      border-radius: 32px;
-      padding: 1.5rem;
-      margin-top: 1rem;
-    }
-    .status-message { font-weight: 600; margin-bottom: 1rem; }
-    .timer-digits { font-size: 2.2rem; font-family: monospace; font-weight: 800; color: var(--primary-dark); }
-    .final-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-    .final-btn {
-      background: var(--primary);
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
-
-    .related-section { margin: 4rem 0; }
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .related-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-      transition: 0.2s;
-    }
-    .related-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .related-card img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; display: block; }
-    .related-card h4 { padding: 0.8rem 1rem 0.2rem; font-size: 0.9rem; }
-    .related-card .meta { padding: 0 1rem 1rem; color: var(--primary); font-size: 0.75rem; }
-
-    .site-footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border-light);
-      margin-top: 4rem;
-      padding: 3rem 0 2rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer-logo {
-      font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-    .footer-about-text { color: var(--text-muted); margin: 0.5rem 0 1rem; font-size: 0.9rem; }
-    .social-links { display: flex; gap: 1rem; }
-    .social-links a { color: var(--text-muted); font-size: 1.3rem; transition: color 0.2s; }
-    .social-links a:hover { color: var(--primary); }
-    .footer-links h4 { font-size: 1.1rem; margin-bottom: 1rem; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 0.5rem; }
-    .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
-    .footer-links a:hover { color: var(--primary); }
-    .copyright { text-align: center; border-top: 1px solid var(--border-light); padding-top: 2rem; font-size: 0.8rem; color: var(--text-muted); }
-
-    @media (max-width: 700px) {
-      .main-nav { display: none; }
-      .hamburger { display: block; }
-    }
-    .personal-note {
-      background: linear-gradient(135deg, #fff5eb, #ffe8d9);
-      border-radius: 24px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      border-left: 4px solid var(--primary);
-    }
-    button { background: none; border: none; }
-  </style>
-  
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
      crossorigin="anonymous"></script>  
 </head>
 <body>
-
 
 <header class="site-header">
   <div class="container header-wrapper">
@@ -373,11 +101,23 @@
   <div class="game-hero">
     <div class="game-badge"><i class="fas fa-dragon"></i> Fighting • Anime • PPSSPP Mod</div>
     <h1>Dragon Ball Z Shin Budokai 7 PPSSPP ISO Zip File Download</h1>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
+     crossorigin="anonymous"></script>
+<!-- OLITECH -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1091464318795402"
+     data-ad-slot="4213656254"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     
     
     <div class="article-meta">
       <span><i class="fas fa-calendar-alt"></i> Updated: April 2026</span>
-      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:#e85d04;">Oli Sa</a></span>
+      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:var(--red);">Oli Sa</a></span>
     </div>
   </div>
   <div class="featured-image">
@@ -387,7 +127,7 @@
   <div class="article-content">
     <div class="personal-note">
       <i class="fas fa-comment-dots" style="color: var(--primary); font-size: 1.3rem; margin-right: 0.5rem;"></i> 
-      <strong>Let me tell you something.</strong> I grew up on Dragon Ball Z. Waking up early before school to catch Goku vs Frieza on Toonami, arguing with friends about who would win between Gohan and Cell, practicing Kamehameha poses in the backyard — the whole thing. So when I found Shin Budokai 7, this fan-made mod for the PSP, it felt like finding a lost episode. 40+ characters from OG Dragon Ball all the way to Super, transformations that feel explosive, and beam clashes that actually make you lean into your phone. This is the DBZ fighting game I've always wanted on mobile.
+      <strong>Let me tell you something.</strong> I grew up on Dragon Ball Z. Waking up early before school to catch Goku vs Frieza on Toonami, arguing with friends about who would win between Gohan and Cell, practicing Kamehameha poses in the backyard, the whole thing. So when I found Shin Budokai 7, this fan-made mod for the PSP, it felt like finding a lost episode. 40+ characters from OG Dragon Ball all the way to Super, transformations that feel explosive, and beam clashes that actually make you lean into your phone. This is the DBZ fighting game I've always wanted on mobile.
     </div>
 
     <p>Look, I've played every Dragon Ball game on Android. Dokkan Battle? Fun but it's a bubble-popping game. Legends? The controls are decent but the gacha system will drain your wallet. Xenoverse? Not on mobile. But Shin Budokai 7? This is a full-fledged fighting game built on the excellent Shin Budokai engine, then expanded by fans who clearly love the series as much as I do. You get Ultra Instinct Goku, Fused Zamasu, Jiren, and even Arale from Dr. Slump as a joke character. The roster is huge.</p>
@@ -404,17 +144,14 @@
     <h2>Combat That Feels Like the Anime</h2>
     <p>The combat system in Shin Budokai 7 is pure joy. You can teleport behind opponents for punishing counters, clash energy waves in quick-time showdowns that actually require timing, and trigger dramatic finishes that recreate iconic anime scenes. Remember when Goku first went Super Saiyan against Frieza? There's a dramatic finish for that. Remember when Gohan killed Cell? Yep, that's in there too. The first time I triggered one, I literally yelled "Yes!" and scared my cat.</p>
 
-
     
-    <p>What sets this apart from other DBZ fighters is the aerial freedom. You're not stuck on the ground like in some older games. You can chase opponents through the air, smash them into mountains, charge your Super Kamehameha mid-flight, and then unleash it while the camera zooms out to show the entire battlefield. The compressed ISO keeps transformations smooth — watching Goku's hair shift from black to SSJ3 while his aura incinerates the virtual environment never gets old. The cel-shaded graphics hold up beautifully on PPSSPP, especially with upscaling turned on.</p>
+    <p>What sets this apart from other DBZ fighters is the aerial freedom. You're not stuck on the ground like in some older games. You can chase opponents through the air, smash them into mountains, charge your Super Kamehameha mid-flight, and then unleash it while the camera zooms out to show the entire battlefield. The compressed ISO keeps transformations smooth, watching Goku's hair shift from black to SSJ3 while his aura incinerates the virtual environment never gets old. The cel-shaded graphics hold up beautifully on PPSSPP, especially with upscaling turned on.</p>
 
     <h2>40+ Characters and Every Transformation You Want</h2>
-    <p>The roster is stacked. We're talking Goku (base, SSJ, SSJ2, SSJ3, SSG, SSB, UI), Vegeta (all his forms plus Majin Vegeta), Gohan (kid, teen, Ultimate, Beast), Future Trunks (with SSJ Rage), Piccolo, Krillin, Tien, Yamcha (yes, Yamcha — and he's actually usable), all the villains: Frieza (all forms), Cell (perfect form, super perfect), Buu (fat, super, kid), Beerus, Hit, Jiren, Broly (both Z and Super versions), Zamasu, and even some deep cuts like Tapion and Pikkon. Every character has their signature moves. Does Yamcha have the Wolf Fang Fist? Of course. Does Tien have the Tri-Beam that costs health to use? You bet. The attention to detail is insane for a fan mod.</p>
+    <p>The roster is stacked. We're talking Goku (base, SSJ, SSJ2, SSJ3, SSG, SSB, UI), Vegeta (all his forms plus Majin Vegeta), Gohan (kid, teen, Ultimate, Beast), Future Trunks (with SSJ Rage), Piccolo, Krillin, Tien, Yamcha (yes, Yamcha, and he's actually usable), all the villains: Frieza (all forms), Cell (perfect form, super perfect), Buu (fat, super, kid), Beerus, Hit, Jiren, Broly (both Z and Super versions), Zamasu, and even some deep cuts like Tapion and Pikkon. Every character has their signature moves. Does Yamcha have the Wolf Fang Fist? Of course. Does Tien have the Tri-Beam that costs health to use? You bet. The attention to detail is insane for a fan mod.</p>
 
     <h2>Story Mode and What-If Scenarios</h2>
-    <p>The story mode remixes the series' greatest arcs with fun what-if twists. You can defend Namek from Frieza's army as an unlikely hero, survive the Cell Games with a twist ending, or battle through the Tournament of Power with alternate team compositions. There's also a "Dragon Road" mode where you fight through a series of increasingly difficult battles to unlock special characters and costumes. The dialogue is written by fans, so expect some inside jokes and memes, but it's all in good fun. I spent an entire weekend just unlocking everything — totally worth it.</p>
-
-
+    <p>The story mode remixes the series' greatest arcs with fun what-if twists. You can defend Namek from Frieza's army as an unlikely hero, survive the Cell Games with a twist ending, or battle through the Tournament of Power with alternate team compositions. There's also a "Dragon Road" mode where you fight through a series of increasingly difficult battles to unlock special characters and costumes. The dialogue is written by fans, so expect some inside jokes and memes, but it's all in good fun. I spent an entire weekend just unlocking everything, totally worth it.</p>
 
     
 
@@ -422,14 +159,13 @@
     <p>After testing on multiple devices, here's what works best. Open PPSSPP, go to Settings:</p>
     <p><strong>Graphics:</strong> Set Rendering Resolution to 2x or 3x PSP. Enable "Buffered Rendering" and "Hardware Transform". For the best cel-shaded look, set "Postprocessing Shader" to "Natural Colors".<br>
     <strong>Performance:</strong> If your phone is mid-range, enable "Frame Skipping" at 1. Disable "Rendering Resolution" upscaling for smoother gameplay.<br>
-    <strong>Controls:</strong> Map ki blasts to the shoulder buttons for easy access. The game uses a lot of button combinations, so if you're using touch controls, practice the super move inputs in training mode first. A controller is highly recommended — the game was designed for physical buttons.</p>
-
+    <strong>Controls:</strong> Map ki blasts to the shoulder buttons for easy access. The game uses a lot of button combinations, so if you're using touch controls, practice the super move inputs in training mode first. A controller is highly recommended, the game was designed for physical buttons.</p>
 
     
     <div class="personal-note">
       <i class="fas fa-lightbulb" style="color: var(--primary);"></i> 
       <strong>Pro Tips from someone who's played too much:</strong> 
-      <br>• Master the vanish counter — time your block perfectly right before an attack lands, and you'll teleport behind your opponent. It's the key to high-level play.
+      <br>• Master the vanish counter, time your block perfectly right before an attack lands, and you'll teleport behind your opponent. It's the key to high-level play.
       <br>• Save your super meter for beam clashes. Winning a clash not only deals massive damage but also gives you a temporary power boost.
       <br>• Each character has a secret "ultimate" move that's not in the move list. Experiment with different button combinations during Sparking mode.
       <br>• If the game lags during transformations, turn off "Rendering Resolution" upscaling. The transformation effects are demanding on older phones.
@@ -444,25 +180,27 @@
     <strong>Step 5:</strong> Tap the game to launch it.<br>
     <strong>Step 6:</strong> Go to Settings > Controls to remap buttons to your preference. I recommend using a controller for the best experience.</p>
 
-    <h2>Multiplayer — Beam Clushes with Friends</h2>
+    <h2>Multiplayer: Beam Clushes with Friends</h2>
     <p>The ad-hoc multiplayer mode works great on PPSSPP. You and a friend can fight locally over Wi-Fi, and let me tell you, beam clashes become intense. Nothing beats the feeling of matching your friend's Kamehameha with a Galick Gun, both of you mashing the button to win, and your character screaming "I'LL SEND YOU TO THE NEXT DIMENSION!" as the screen shakes. It's peak Dragon Ball. The loser buys ramen. That's the rule. We've been playing for months, and the trash talk in our group chat is legendary. "Yamcha would never lose to Krillin" has started more arguments than I care to admit.</p>
 
-
     
-    <p>For those who just want to perfect their combos, there's a training mode with frame data and hitbox visualizers — a feature you rarely see in fan mods. The modding community really went above and beyond.</p>
+    <p>For those who just want to perfect their combos, there's a training mode with frame data and hitbox visualizers, a feature you rarely see in fan mods. The modding community really went above and beyond.</p>
     
     <p>Honestly, if you're a Dragon Ball fan, this is essential. It captures the speed, the spectacle, and the spirit of the anime better than most official games. And at 250MB? It's a no-brainer. Just download it, boot it up, pick Goku, and go Super Saiyan for the first time. You'll smile. I guarantee it.</p>
-
 
   
   
 <!-- DOWNLOAD MODULE -->
-    <div class="download-module" id="downloadModule">
+    <div class="download-module" id="downloadModule" data-game="" data-packaging="10" data-ready="10" data-countdown="10">
       <i class="fas fa-download" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 1rem;"></i>
       <h3>Download Dragon Ball Z Shin Budokai 7 PPSSPP</h3>
-      <p style="color: var(--text-muted);">Click below to get the ISO — fully tested and working on the latest PPSSPP version.</p>
+      <p style="color: var(--text-muted);">Click below to get the ISO, fully tested and working on the latest PPSSPP version.</p>
       <button id="startDownloadTrigger" class="trigger-download-btn"><i class="fas fa-lock"></i> GENERATE DOWNLOAD LINK</button>
-      <div id="countdownArea" style="display: none; margin-top: 1.5rem;"></div>
+      <div id="countdownArea" hidden></div>
+      <div class="download-ready" hidden>
+        <div class="final-buttons"><a href="https://tinyurl.com/29refesn" class="final-btn" target="_blank"><i class="fab fa-android"></i> Download Shin Budokai 7 ISO (250 MB)</a></div>
+        <div class="security-badge"><i class="fas fa-shield-alt"></i> 40+ characters • Transformations • Beam clashes • Works with PPSSPP</div>
+      </div>
     </div>
   </div>
 
@@ -482,122 +220,6 @@
   </aside>
 </main>
 
-<style>
-  /* Floating CTA styles */
-:root{
-  --cta-bg: #3b82f6;      /* main pill color (blue) */
-  --cta-accent: #10b981;  /* small accent / glow (green) */
-  --cta-size: 64px;       /* height (and width for circle) */
-  --cta-radius: 34px;     /* pill corner radius */
-  --cta-shadow: 0 8px 20px rgba(16,24,40,0.35);
-  --cta-text: #ffffff;
-}
-
-/* Base reset for anchor button */
-.floating-cta{
-  position: fixed;
-  right: 20px;               /* distance from right edge */
-  bottom: 100px;              /* distance from bottom edge */
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: var(--cta-text);
-  background: linear-gradient(180deg, var(--cta-bg), color-mix(in srgb, var(--cta-bg) 80%, black 10%));
-  height: var(--cta-size);
-  min-width: calc(var(--cta-size) * 1.25); /* pill wider than tall */
-  padding: 0 14px;
-  border-radius: var(--cta-radius);
-  box-shadow: var(--cta-shadow);
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  -webkit-tap-highlight-color: transparent;
-  backdrop-filter: blur(4px);
-  align-self: end;
-  will-change: transform;
-}
-
-/* inner shape keeps icon centered and circular */
-.floating-cta .cta-shape{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(var(--cta-size) - 18px);
-  width: calc(var(--cta-size) - 18px);
-  background: rgba(255,255,255,0.06);
-  border-radius: 999px;
-}
-
-/* SVG icon sizing */
-.floating-cta svg{
-  width: 22px;
-  height: 22px;
-  display: block;
-  color: var(--cta-text);
-}
-
-/* Hover / active / focus effects */
-.floating-cta:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(16,24,40,0.45);
-  filter: saturate(1.05);
-}
-.floating-cta:active{
-  transform: translateY(-2px) scale(.995);
-}
-.floating-cta:focus{
-  outline: none;
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta-accent) 18%, transparent);
-}
-
-/* small pulsing accent behind the button */
-.floating-cta::after{
-  content: "";
-  position: absolute;
-  inset: auto;
-  right: 12px;
-  bottom: 12px;
-  width: calc(var(--cta-size) * 0.9);
-  height: calc(var(--cta-size) * 0.9);
-  border-radius: 999px;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--cta-accent) 60%, transparent) 0%, transparent 40%);
-  opacity: 0.25;
-  filter: blur(6px);
-  pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-  transform: scale(.9);
-}
-
-/* optional "allowed" state (green accent) */
-.floating-cta.allowed{
-  --cta-bg: #06b75a;
-}
-.floating-cta.allowed::after{
-  opacity: .45;
-  transform: scale(1.05);
-}
-
-/* Responsive tweak on very small screens */
-@media (max-width:420px){
-  :root{ --cta-size: 54px; --cta-radius: 28px; }
-  .floating-cta{ right: 12px; bottom: 12px; min-width: calc(var(--cta-size) * 1.1); padding: 0 10px; }
-  .floating-cta::after{ right: 8px; bottom: 8px; }
-
-  .floating-cta{
-              /* distance from right edge */
-  bottom: 100px; 
-  }  
-}
-
-/* If you want the pill narrower (icon only), add this helper class:
-   <a class="floating-cta icon-only"> ... </a> */
-.floating-cta.icon-only{
-  padding: 0;
-  width: var(--cta-size);
-  min-width: var(--cta-size);
-  border-radius: 999px;
-}
-</style>
 <a href="https://smallbruisedfollowing.com/v6xx22uh?key=8c55c793cd96fdec6fb66acba2b00205"
    target="_blank"
    class="floating-cta"
@@ -616,7 +238,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">OLITECH<span style="color:#e85d04;">GAMES</span></div>
+        <div class="footer-logo">OLITECH<span style="color:var(--red);">GAMES</span></div>
         <p class="footer-about-text">Honest game reviews, PPSSPP ISOs, and downloads. No fluff, just games worth playing.</p>
         <div class="social-links">
           <a href="https://www.facebook.com/profile.php?id=61550752782084" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -651,51 +273,12 @@
       </div> -->
     </div>
     <div class="copyright">
-      <p>© 2026 OlitechGames — All trademarks belong to their respective owners. Game for emulation only.</p>
+      <p>© 2026 OlitechGames. All trademarks belong to their respective owners. Game for emulation only.</p>
     </div>
   </div>
 </footer>
 
-<script>
-  // Mobile Menu
-  (function() {
-    const hamburger = document.getElementById('hamburgerBtn');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const closeBtn = document.getElementById('closeMenuBtn');
-    function openMenu() { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeMenu() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
-    if (hamburger) hamburger.addEventListener('click', openMenu);
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeMenu(); });
-  })();
-
-  // Countdown Download Logic
-  const startBtn = document.getElementById('startDownloadTrigger');
-  const countdownArea = document.getElementById('countdownArea');
-  let activeTimeout = null;
-
-  function startSequence() {
-    if (startBtn) startBtn.disabled = true;
-    countdownArea.style.display = 'block';
-    function updateUI(message, progressText = null) {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-cog fa-spin"></i> ${message}</div>${progressText ? `<div class="timer-digits">${progressText}</div>` : ''}</div>`;
-    }
-    function packaging() { updateUI('📦 Packaging Shin Budokai 7 ISO... (secure server)'); activeTimeout = setTimeout(ready, 10000); }
-    function ready() { updateUI('✅ File is ready — preparing secure download gateway'); activeTimeout = setTimeout(countdown, 10000); }
-    function countdown() { let counter = 10; function tick() { updateUI(`⏳ Your download link will appear in:`, `${counter} seconds`); if (counter === 0) { showFinalLinks(); } else { counter--; activeTimeout = setTimeout(tick, 1000); } } tick(); }
-    function showFinalLinks() {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-check-circle" style="color:#10b981;"></i> Download ready — fully tested</div>
-      <div class="final-buttons">
-        <a href="https://tinyurl.com/29refesn" class="final-btn" target="_blank"><i class="fab fa-android"></i> Download Shin Budokai 7 ISO (250 MB)</a>
-      </div>
-      <div class="security-badge" style="margin-top:1rem;"><i class="fas fa-shield-alt"></i> 40+ characters • Transformations • Beam clashes • Works with PPSSPP</div></div>`;
-      if (startBtn) startBtn.disabled = false;
-    }
-    packaging();
-  }
-  if (startBtn) startBtn.addEventListener('click', startSequence);
-</script>
 <script src="https://smallbruisedfollowing.com/8e/35/ca/8e35ca976372a6a79a33e6fe462c1550.js"></script>
+  <script src="assets/olitech.js" defer></script>
 </body>
 </html>

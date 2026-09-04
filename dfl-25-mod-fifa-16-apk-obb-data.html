@@ -56,286 +56,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/olitech.css">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg-body: #f8fafc;
-      --bg-card: #ffffff;
-      --surface-light: #f1f5f9;
-      --primary: #e85d04;
-      --primary-dark: #dc2f02;
-      --primary-soft: #ffedd5;
-      --text-dark: #0f172a;
-      --text-muted: #334155;
-      --border-light: #e2e8f0;
-      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
-      --radius-card: 28px;
-      --font-sans: 'Inter', sans-serif;
-      --font-heading: 'Orbitron', monospace;
-    }
-
-    body { background-color: var(--bg-body); color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
-    .article-container { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
-
-    .site-header {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 1rem 0;
-    }
-    .header-wrapper { display: flex; align-items: center; justify-content: space-between; }
-    .logo a {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .logo span { color: #e85d04; background: none; }
-    .main-nav ul { display: flex; gap: 2rem; list-style: none; }
-    .main-nav a { font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
-    .main-nav a:hover, .main-nav a.active { color: var(--primary); }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      width: 44px;
-      height: 44px;
-      cursor: pointer;
-      position: relative;
-      z-index: 1001;
-    }
-    .hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--text-dark);
-      position: absolute;
-      left: 9px;
-      transition: all 0.25s ease;
-    }
-    .hamburger span:nth-child(1) { top: 14px; }
-    .hamburger span:nth-child(2) { top: 21px; }
-    .hamburger span:nth-child(3) { top: 28px; }
-
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s;
-    }
-    .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
-    .mobile-menu-panel {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 280px;
-      height: 100%;
-      background: white;
-      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
-      padding: 2rem 1.8rem;
-      transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      z-index: 2001;
-    }
-    .mobile-menu-overlay.active .mobile-menu-panel { right: 0; }
-    .mobile-menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border-light);
-    }
-    .close-menu-btn { background: none; border: none; font-size: 2rem; cursor: pointer; color: #475569; }
-    .close-menu-btn:hover { color: var(--primary); }
-    .mobile-nav-list { list-style: none; }
-    .mobile-nav-list li { margin-bottom: 1.2rem; }
-    .mobile-nav-list a { font-size: 1.2rem; font-weight: 500; color: var(--text-dark); display: block; }
-    .mobile-nav-list a:hover { color: var(--primary); }
-
-    .game-hero { margin: 2rem 0 1rem; }
-    .game-badge {
-      display: inline-block;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .game-hero h1 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      line-height: 1.2;
-      margin: 1rem 0 0.5rem;
-    }
-    @media (min-width: 600px) { .game-hero h1 { font-size: 2.5rem; } }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .featured-image {
-      border-radius: 28px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow-md);
-    }
-    .featured-image img { width: 100%; height: auto; display: block; }
-
-    .article-content { font-size: 1.05rem; }
-    .article-content h2 {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      margin: 2.5rem 0 1rem;
-      border-left: 4px solid var(--primary);
-      padding-left: 1rem;
-    }
-    .article-content p { margin-bottom: 1.5rem; }
-    .article-content strong { color: var(--primary-dark); }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 1rem;
-      background: var(--surface-light);
-      border-radius: 28px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .download-module {
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--border-light);
-      padding: 2rem;
-      margin: 3rem 0;
-      text-align: center;
-    }
-    .trigger-download-btn {
-      background: linear-gradient(105deg, var(--primary), var(--primary-dark));
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 60px;
-      cursor: pointer;
-    }
-    .countdown-stage {
-      background: #fef9e8;
-      border-radius: 32px;
-      padding: 1.5rem;
-      margin-top: 1rem;
-    }
-    .status-message { font-weight: 600; margin-bottom: 1rem; }
-    .timer-digits { font-size: 2.2rem; font-family: monospace; font-weight: 800; color: var(--primary-dark); }
-    .final-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-    .final-btn {
-      background: var(--primary);
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
-
-    .related-section { margin: 4rem 0; }
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .related-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-      transition: 0.2s;
-    }
-    .related-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .related-card img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; display: block; }
-    .related-card h4 { padding: 0.8rem 1rem 0.2rem; font-size: 0.9rem; }
-    .related-card .meta { padding: 0 1rem 1rem; color: var(--primary); font-size: 0.75rem; }
-
-    .site-footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border-light);
-      margin-top: 4rem;
-      padding: 3rem 0 2rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer-logo {
-      font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-    .footer-about-text { color: var(--text-muted); margin: 0.5rem 0 1rem; font-size: 0.9rem; }
-    .social-links { display: flex; gap: 1rem; }
-    .social-links a { color: var(--text-muted); font-size: 1.3rem; transition: color 0.2s; }
-    .social-links a:hover { color: var(--primary); }
-    .footer-links h4 { font-size: 1.1rem; margin-bottom: 1rem; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 0.5rem; }
-    .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
-    .footer-links a:hover { color: var(--primary); }
-    .copyright { text-align: center; border-top: 1px solid var(--border-light); padding-top: 2rem; font-size: 0.8rem; color: var(--text-muted); }
-
-    @media (max-width: 700px) {
-      .main-nav { display: none; }
-      .hamburger { display: block; }
-    }
-    .personal-note {
-      background: linear-gradient(135deg, #fff5eb, #ffe8d9);
-      border-radius: 24px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      border-left: 4px solid var(--primary);
-    }
-    button { background: none; border: none; }
-  </style>
-  
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
      crossorigin="anonymous"></script>  
 </head>
 <body>
-
 
 <header class="site-header">
   <div class="container header-wrapper">
@@ -376,11 +104,23 @@
   <div class="game-hero">
     <div class="game-badge"><i class="fas fa-futbol"></i> Sports • Mod • Oli's Pick</div>
     <h1>DFL 25 Mod FIFA 16 Apk Obb Data Android Download</h1>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
+     crossorigin="anonymous"></script>
+<!-- OLITECH -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1091464318795402"
+     data-ad-slot="4213656254"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     
     
     <div class="article-meta">
       <span><i class="fas fa-calendar-alt"></i> Updated: April 2026</span>
-      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:#e85d04;">Oli Sa</a></span>
+      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:var(--red);">Oli Sa</a></span>
     </div>
   </div>
   <div class="featured-image">
@@ -390,10 +130,10 @@
   <div class="article-content">
     <div class="personal-note">
       <i class="fas fa-comment-dots" style="color: var(--primary); font-size: 1.3rem; margin-right: 0.5rem;"></i> 
-      <strong>Hey everyone, Oli here.</strong> I've been playing FIFA mods for years, and I gotta say — DFL 25 is something special. The DFL team took FIFA 16 (which many of us still consider the best football game ever made) and turned it into a 2025 masterpiece. Let me walk you through why I love this mod and how to get it running on your phone.
+      <strong>Hey everyone, Oli here.</strong> I've been playing FIFA mods for years, and I gotta say, DFL 25 is something special. The DFL team took FIFA 16 (which many of us still consider the best football game ever made) and turned it into a 2025 masterpiece. Let me walk you through why I love this mod and how to get it running on your phone.
     </div>
 
-    <p>Look, I've tried all the big football games on Android. EA FC Mobile? Too many microtransactions. eFootball? Still feels unfinished. But this — DFL 25 Mod for FIFA 16 — it's different. It's made by people who actually love football. They didn't just update the kits and call it a day. They rebuilt the lighting system, added real cloth physics, and made the player faces look so good that sometimes I just zoom in during replays.</p>
+    <p>Look, I've tried all the big football games on Android. EA FC Mobile? Too many microtransactions. eFootball? Still feels unfinished. But this, DFL 25 Mod for FIFA 16, it's different. It's made by people who actually love football. They didn't just update the kits and call it a day. They rebuilt the lighting system, added real cloth physics, and made the player faces look so good that sometimes I just zoom in during replays.</p>
     
     <p>My favorite part? The Champions League integration. When that anthem plays before a big match against Real Madrid or Bayern, and the camera pans across the tunnel... man, I get chills every time. And the gameplay itself? It's still FIFA 16's smooth, responsive engine, but they've tweaked the passing speed, shooting accuracy, and AI positioning to feel like a 2025 title. No more defenders standing around watching the ball roll past them.</p>
     
@@ -407,67 +147,65 @@
     </div>
 
     <h2>What Makes DFL 25 So Special? (My Honest Take)</h2>
-    <p>I remember downloading my first FIFA mod back in 2018 — it was a mess. Buggy menus, half the players had generic faces, crashes every hour. DFL 25 is the complete opposite. The installation is straightforward (I'll walk you through it), the menus are buttery smooth, and the attention to detail is insane. Every Premier League stadium has the correct adboards. The scoreboards are broadcast-quality. Even the referee kits are updated.</p>
-
+    <p>I remember downloading my first FIFA mod back in 2018, it was a mess. Buggy menus, half the players had generic faces, crashes every hour. DFL 25 is the complete opposite. The installation is straightforward (I'll walk you through it), the menus are buttery smooth, and the attention to detail is insane. Every Premier League stadium has the correct adboards. The scoreboards are broadcast-quality. Even the referee kits are updated.</p>
 
     
-    <p>But the gameplay changes are what really sold me. The DFL team tweaked the AI so that defenders actually track runs properly. Goalkeepers make realistic saves — they'll parry shots instead of catching everything. Through balls are effective but not overpowered. And the new animations? I nearly jumped out of my chair the first time I saw Haaland smash a volley into the top corner with his signature finish. It's the little things, you know?</p>
+    <p>But the gameplay changes are what really sold me. The DFL team tweaked the AI so that defenders actually track runs properly. Goalkeepers make realistic saves, they'll parry shots instead of catching everything. Through balls are effective but not overpowered. And the new animations? I nearly jumped out of my chair the first time I saw Haaland smash a volley into the top corner with his signature finish. It's the little things, you know?</p>
 
     <h2>The Champions League Experience (Worth It Alone)</h2>
-    <p>If you're like me and you live for those midweek European nights, you'll love this. DFL 25 has the full Champions League package — official anthem, custom scoreboards, match balls, and even the trophy presentation at the end. I've done two full career modes already: one with Arsenal (took me three seasons to win it) and one with AC Milan (won it in my first year thanks to Leao being an absolute cheat code). The tournament mode lets you skip straight to the knockout stages if you just want the high-pressure matches.</p>
+    <p>If you're like me and you live for those midweek European nights, you'll love this. DFL 25 has the full Champions League package, official anthem, custom scoreboards, match balls, and even the trophy presentation at the end. I've done two full career modes already: one with Arsenal (took me three seasons to win it) and one with AC Milan (won it in my first year thanks to Leao being an absolute cheat code). The tournament mode lets you skip straight to the knockout stages if you just want the high-pressure matches.</p>
     
     <p>The Europa League and Conference League are also included with proper branding. The mod even has the Super Cup and Club World Cup. For a free mod on Android, it's genuinely mind-blowing that they packed this much content in.</p>
 
-
-
-    <h2>Graphics and Presentation — Console Quality on Your Phone</h2>
-    <p>I'll be honest — when I first launched the mod on my OnePlus 9, I didn't believe it was running on a phone. The lighting shaders create realistic shadows on the pitch during afternoon matches. Player sweat is visible during rain games. The kit details are crisp — you can see the sponsor logos, the sleeve badges, even the little fabric patterns. Menu overlays have been completely redesigned with a sleek, dark theme that looks modern and professional.</p>
+    <h2>Graphics and Presentation: Console Quality on Your Phone</h2>
+    <p>I'll be honest, when I first launched the mod on my OnePlus 9, I didn't believe it was running on a phone. The lighting shaders create realistic shadows on the pitch during afternoon matches. Player sweat is visible during rain games. The kit details are crisp, you can see the sponsor logos, the sleeve badges, even the little fabric patterns. Menu overlays have been completely redesigned with a sleek, dark theme that looks modern and professional.</p>
     
-    <p>Performance-wise, it runs surprisingly well. On my device, I lock 60 FPS with occasional dips during set pieces. If you have a mid-range phone, just turn down the shadow quality and you'll be fine. The DFL team optimized the textures to prevent stuttering. Oh, and there's a first-person camera mode now — I tried it once, felt dizzy after five minutes, but my friend swears by it. To each their own!</p>
+    <p>Performance-wise, it runs surprisingly well. On my device, I lock 60 FPS with occasional dips during set pieces. If you have a mid-range phone, just turn down the shadow quality and you'll be fine. The DFL team optimized the textures to prevent stuttering. Oh, and there's a first-person camera mode now. I tried it once, felt dizzy after five minutes, but my friend swears by it. To each their own!</p>
 
     
 
-    <h2>Career Mode — Where I've Spent 100+ Hours</h2>
-    <p>Let me tell you about my current career mode save. I started as a lower-league manager (League Two, picked Bradford City because my grandad used to support them). The mod includes all four English tiers, plus the top divisions from Spain, Germany, Italy, France, and more. The youth academy system has been overhauled — you can actually scout specific regions and find hidden gems. I found a 16-year-old winger from Ghana with 92 potential. Three seasons later, he's worth £60 million and Real Madrid keeps sending offers.</p>
-
+    <h2>Career Mode: Where I've Spent 100+ Hours</h2>
+    <p>Let me tell you about my current career mode save. I started as a lower-league manager (League Two, picked Bradford City because my grandad used to support them). The mod includes all four English tiers, plus the top divisions from Spain, Germany, Italy, France, and more. The youth academy system has been overhauled, you can actually scout specific regions and find hidden gems. I found a 16-year-old winger from Ghana with 92 potential. Three seasons later, he's worth £60 million and Real Madrid keeps sending offers.</p>
 
     
-    <p>The transfer AI is much smarter now. Clubs bid realistically — no more PSG offering £200 million for a 32-year-old center-back. Negotiations feel genuine. And the dynamic potential system means players can exceed their initial ceiling if they perform well. My Bradford save became an obsession. I'm not ashamed to admit I've cancelled plans to finish a transfer window.</p>
+    <p>The transfer AI is much smarter now. Clubs bid realistically, no more PSG offering £200 million for a 32-year-old center-back. Negotiations feel genuine. And the dynamic potential system means players can exceed their initial ceiling if they perform well. My Bradford save became an obsession. I'm not ashamed to admit I've cancelled plans to finish a transfer window.</p>
     
     <h2>How to Install (Step-by-Step, No Confusion)</h2>
     <p>Okay, listen up because this is important. The mod comes as three parts: APK, OBB folder, and a data folder (about 7GB total). Here's exactly what you do:</p>
-    <p><strong>Step 1:</strong> Download all files using the button below. It'll take a while — grab some coffee.<br>
+    <p><strong>Step 1:</strong> Download all files using the button below. It'll take a while, grab some coffee.<br>
     <strong>Step 2:</strong> Enable "Install from unknown sources" in Settings > Security.<br>
-    <strong>Step 3:</strong> Install the APK. DO NOT OPEN THE GAME YET. I'm serious — if you open it before moving the files, you'll have to reinstall.<br>
+    <strong>Step 3:</strong> Install the APK. DO NOT OPEN THE GAME YET. I'm serious, if you open it before moving the files, you'll have to reinstall.<br>
     <strong>Step 4:</strong> Using ZArchiver or any file manager, extract the OBB folder and copy it to <strong>Internal Storage/Android/obb/</strong>.<br>
     <strong>Step 5:</strong> Extract the data folder (usually named "com.dfl.fifa16.mod") and copy it to <strong>Internal Storage/Android/data/</strong>.<br>
-    <strong>Step 6:</strong> Now you can launch the game. First boot takes 2-3 minutes — the mod is loading all those sweet textures.<br>
+    <strong>Step 6:</strong> Now you can launch the game. First boot takes 2-3 minutes, the mod is loading all those sweet textures.<br>
     <strong>Step 7:</strong> Set graphics to your preference and start your career!</p>
-
 
     
     <div class="personal-note">
       <i class="fas fa-lightbulb" style="color: var(--primary);"></i> 
-      <strong>Pro tip from Oli:</strong> If the game crashes on first launch, clear your phone's cache and try again. Also, make sure you have at least 8GB free space — the mod needs room to breathe. And please, use a controller if you have one. It's a completely different experience. I use a PS4 controller via Bluetooth and it works flawlessly.
+      <strong>Pro tip from Oli:</strong> If the game crashes on first launch, clear your phone's cache and try again. Also, make sure you have at least 8GB free space, the mod needs room to breathe. And please, use a controller if you have one. It's a completely different experience. I use a PS4 controller via Bluetooth and it works flawlessly.
     </div>
     
     <h2>Is It Worth Downloading? My Verdict</h2>
-    <p>Look, I've been running this site for a few years now, and I don't recommend anything I don't genuinely enjoy. DFL 25 is the best football mod on Android, period. The DFL team put hundreds of hours into this, and it shows. Is it perfect? No — the installation is a bit involved, and you need a decent phone to run it smoothly. But once it's running? Pure magic.</p>
+    <p>Look, I've been running this site for a few years now, and I don't recommend anything I don't genuinely enjoy. DFL 25 is the best football mod on Android, period. The DFL team put hundreds of hours into this, and it shows. Is it perfect? No, the installation is a bit involved, and you need a decent phone to run it smoothly. But once it's running? Pure magic.</p>
     
-    <p>If you're tired of EA's microtransactions and just want to play proper football on your phone, give this a shot. Start a career with a lower league team, build them up over seasons, and enjoy the Champions League nights. Or just jump into a quick match and batter your friends in local multiplayer. Either way, I promise you'll have fun. And hey, if you get stuck or have questions, hit me up on the contact page — I reply to every message.</p>
+    <p>If you're tired of EA's microtransactions and just want to play proper football on your phone, give this a shot. Start a career with a lower league team, build them up over seasons, and enjoy the Champions League nights. Or just jump into a quick match and batter your friends in local multiplayer. Either way, I promise you'll have fun. And hey, if you get stuck or have questions, hit me up on the contact page. I reply to every message.</p>
     
-    <p>Now go download, install, and score some bangers for me. Dedicate your next 30-yard screamer to OlitechGames. Cheers — Oli.</p>
-
+    <p>Now go download, install, and score some bangers for me. Dedicate your next 30-yard screamer to OlitechGames. Cheers, Oli.</p>
 
   
   
 <!-- DOWNLOAD MODULE -->
-    <div class="download-module" id="downloadModule">
+    <div class="download-module" id="downloadModule" data-game="DFL 25 Mod" data-packaging="10" data-ready="10" data-countdown="10">
       <i class="fas fa-download" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 1rem;"></i>
       <h3>Download DFL 25 Mod (APK + OBB + Data)</h3>
-      <p style="color: var(--text-muted);">Click below to generate your secure download link — I've verified this file personally.</p>
+      <p style="color: var(--text-muted);">Click below to generate your secure download link, I've verified this file personally.</p>
       <button id="startDownloadTrigger" class="trigger-download-btn"><i class="fas fa-lock"></i> GENERATE DOWNLOAD LINK</button>
-      <div id="countdownArea" style="display: none; margin-top: 1.5rem;"></div>
+      <div id="countdownArea" hidden></div>
+      <div class="download-ready" hidden>
+        <div class="final-buttons"><a href="https://olitechgames.com/download/dfl-25-mod-fifa-16-apk-obb-data-dl" class="final-btn" target="_blank"><i class="fab fa-android"></i> Download DFL 25 Mod (APK+OBB+Data)</a></div>
+        <div class="security-badge"><i class="fas fa-shield-alt"></i> 2025 squads • Champions League • Oli's personal recommendation</div>
+      </div>
     </div>
  </div>
 
@@ -487,122 +225,6 @@
   </aside>
 </main>
 
-<style>
-  /* Floating CTA styles */
-:root{
-  --cta-bg: #3b82f6;      /* main pill color (blue) */
-  --cta-accent: #10b981;  /* small accent / glow (green) */
-  --cta-size: 64px;       /* height (and width for circle) */
-  --cta-radius: 34px;     /* pill corner radius */
-  --cta-shadow: 0 8px 20px rgba(16,24,40,0.35);
-  --cta-text: #ffffff;
-}
-
-/* Base reset for anchor button */
-.floating-cta{
-  position: fixed;
-  right: 20px;               /* distance from right edge */
-  bottom: 100px;              /* distance from bottom edge */
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: var(--cta-text);
-  background: linear-gradient(180deg, var(--cta-bg), color-mix(in srgb, var(--cta-bg) 80%, black 10%));
-  height: var(--cta-size);
-  min-width: calc(var(--cta-size) * 1.25); /* pill wider than tall */
-  padding: 0 14px;
-  border-radius: var(--cta-radius);
-  box-shadow: var(--cta-shadow);
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  -webkit-tap-highlight-color: transparent;
-  backdrop-filter: blur(4px);
-  align-self: end;
-  will-change: transform;
-}
-
-/* inner shape keeps icon centered and circular */
-.floating-cta .cta-shape{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(var(--cta-size) - 18px);
-  width: calc(var(--cta-size) - 18px);
-  background: rgba(255,255,255,0.06);
-  border-radius: 999px;
-}
-
-/* SVG icon sizing */
-.floating-cta svg{
-  width: 22px;
-  height: 22px;
-  display: block;
-  color: var(--cta-text);
-}
-
-/* Hover / active / focus effects */
-.floating-cta:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(16,24,40,0.45);
-  filter: saturate(1.05);
-}
-.floating-cta:active{
-  transform: translateY(-2px) scale(.995);
-}
-.floating-cta:focus{
-  outline: none;
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta-accent) 18%, transparent);
-}
-
-/* small pulsing accent behind the button */
-.floating-cta::after{
-  content: "";
-  position: absolute;
-  inset: auto;
-  right: 12px;
-  bottom: 12px;
-  width: calc(var(--cta-size) * 0.9);
-  height: calc(var(--cta-size) * 0.9);
-  border-radius: 999px;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--cta-accent) 60%, transparent) 0%, transparent 40%);
-  opacity: 0.25;
-  filter: blur(6px);
-  pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-  transform: scale(.9);
-}
-
-/* optional "allowed" state (green accent) */
-.floating-cta.allowed{
-  --cta-bg: #06b75a;
-}
-.floating-cta.allowed::after{
-  opacity: .45;
-  transform: scale(1.05);
-}
-
-/* Responsive tweak on very small screens */
-@media (max-width:420px){
-  :root{ --cta-size: 54px; --cta-radius: 28px; }
-  .floating-cta{ right: 12px; bottom: 12px; min-width: calc(var(--cta-size) * 1.1); padding: 0 10px; }
-  .floating-cta::after{ right: 8px; bottom: 8px; }
-
-  .floating-cta{
-              /* distance from right edge */
-  bottom: 100px; 
-  }  
-}
-
-/* If you want the pill narrower (icon only), add this helper class:
-   <a class="floating-cta icon-only"> ... </a> */
-.floating-cta.icon-only{
-  padding: 0;
-  width: var(--cta-size);
-  min-width: var(--cta-size);
-  border-radius: 999px;
-}
-</style>
 <a href="https://smallbruisedfollowing.com/v6xx22uh?key=8c55c793cd96fdec6fb66acba2b00205"
    target="_blank"
    class="floating-cta"
@@ -621,7 +243,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">OLITECH<span style="color:#e85d04;">GAMES</span></div>
+        <div class="footer-logo">OLITECH<span style="color:var(--red);">GAMES</span></div>
         <p class="footer-about-text">Honest game reviews, mods, and downloads from Oli Sa. No fluff, just games I actually play.</p>
         <div class="social-links">
           <a href="https://www.facebook.com/profile.php?id=61550752782084" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -656,51 +278,12 @@
       </div> -->
     </div>
     <div class="copyright">
-      <p>© 2026 OlitechGames — Built by Oli Sa. All trademarks belong to their respective owners.</p>
+      <p>© 2026 OlitechGames. Built by Oli Sa. All trademarks belong to their respective owners.</p>
     </div>
   </div>
 </footer>
 
-<script>
-  // Mobile Menu
-  (function() {
-    const hamburger = document.getElementById('hamburgerBtn');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const closeBtn = document.getElementById('closeMenuBtn');
-    function openMenu() { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeMenu() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
-    if (hamburger) hamburger.addEventListener('click', openMenu);
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeMenu(); });
-  })();
-
-  // Countdown Download Logic
-  const startBtn = document.getElementById('startDownloadTrigger');
-  const countdownArea = document.getElementById('countdownArea');
-  let activeTimeout = null;
-
-  function startSequence() {
-    if (startBtn) startBtn.disabled = true;
-    countdownArea.style.display = 'block';
-    function updateUI(message, progressText = null) {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-cog fa-spin"></i> ${message}</div>${progressText ? `<div class="timer-digits">${progressText}</div>` : ''}</div>`;
-    }
-    function packaging() { updateUI('📦 Packaging DFL 25 Mod files... (secure server)'); activeTimeout = setTimeout(ready, 10000); }
-    function ready() { updateUI('✅ Files are ready — preparing secure download gateway'); activeTimeout = setTimeout(countdown, 10000); }
-    function countdown() { let counter = 10; function tick() { updateUI(`⏳ Your download link will appear in:`, `${counter} seconds`); if (counter === 0) { showFinalLinks(); } else { counter--; activeTimeout = setTimeout(tick, 1000); } } tick(); }
-    function showFinalLinks() {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-check-circle" style="color:#10b981;"></i> Download ready — Oli verified this file</div>
-      <div class="final-buttons">
-        <a href="https://olitechgames.com/download/dfl-25-mod-fifa-16-apk-obb-data-dl" class="final-btn" target="_blank"><i class="fab fa-android"></i> Download DFL 25 Mod (APK+OBB+Data)</a>
-      </div>
-      <div class="security-badge" style="margin-top:1rem;"><i class="fas fa-shield-alt"></i> 2025 squads • Champions League • Oli's personal recommendation</div></div>`;
-      if (startBtn) startBtn.disabled = false;
-    }
-    packaging();
-  }
-  if (startBtn) startBtn.addEventListener('click', startSequence);
-</script>
 <script src="https://smallbruisedfollowing.com/8e/35/ca/8e35ca976372a6a79a33e6fe462c1550.js"></script>
+  <script src="assets/olitech.js" defer></script>
 </body>
 </html>

@@ -39,7 +39,6 @@
   }
   </script>
 
-
   
      
     <!-- Google tag (gtag.js) -->
@@ -54,288 +53,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/olitech.css">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg-body: #f8fafc;
-      --bg-card: #ffffff;
-      --surface-light: #f1f5f9;
-      --primary: #e85d04;
-      --primary-dark: #dc2f02;
-      --primary-soft: #ffedd5;
-      --text-dark: #0f172a;
-      --text-muted: #334155;
-      --border-light: #e2e8f0;
-      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
-      --radius-card: 28px;
-      --font-sans: 'Inter', sans-serif;
-      --font-heading: 'Orbitron', monospace;
-    }
-
-    body { background-color: var(--bg-body); color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
-    .article-container { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
-
-    .site-header {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 1rem 0;
-    }
-    .header-wrapper { display: flex; align-items: center; justify-content: space-between; }
-    .logo a {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .logo span { color: #e85d04; background: none; }
-    .main-nav ul { display: flex; gap: 2rem; list-style: none; }
-    .main-nav a { font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
-    .main-nav a:hover, .main-nav a.active { color: var(--primary); }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      width: 44px;
-      height: 44px;
-      cursor: pointer;
-      position: relative;
-      z-index: 1001;
-    }
-    .hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--text-dark);
-      position: absolute;
-      left: 9px;
-      transition: all 0.25s ease;
-    }
-    .hamburger span:nth-child(1) { top: 14px; }
-    .hamburger span:nth-child(2) { top: 21px; }
-    .hamburger span:nth-child(3) { top: 28px; }
-
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s;
-    }
-    .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
-    .mobile-menu-panel {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 280px;
-      height: 100%;
-      background: white;
-      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
-      padding: 2rem 1.8rem;
-      transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      z-index: 2001;
-    }
-    .mobile-menu-overlay.active .mobile-menu-panel { right: 0; }
-    .mobile-menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border-light);
-    }
-    .close-menu-btn { background: none; border: none; font-size: 2rem; cursor: pointer; color: #475569; }
-    .close-menu-btn:hover { color: var(--primary); }
-    .mobile-nav-list { list-style: none; }
-    .mobile-nav-list li { margin-bottom: 1.2rem; }
-    .mobile-nav-list a { font-size: 1.2rem; font-weight: 500; color: var(--text-dark); display: block; }
-    .mobile-nav-list a:hover { color: var(--primary); }
-
-    .game-hero { margin: 2rem 0 1rem; }
-    .game-badge {
-      display: inline-block;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .game-hero h1 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      line-height: 1.2;
-      margin: 1rem 0 0.5rem;
-    }
-    @media (min-width: 600px) { .game-hero h1 { font-size: 2.3rem; } }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .featured-image {
-      border-radius: 28px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow-md);
-    }
-    .featured-image img { width: 100%; height: auto; display: block; }
-
-    .article-content { font-size: 1.05rem; }
-    .article-content h2 {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      margin: 2.5rem 0 1rem;
-      border-left: 4px solid var(--primary);
-      padding-left: 1rem;
-    }
-    .article-content p { margin-bottom: 1.5rem; }
-    .article-content strong { color: var(--primary-dark); }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 1rem;
-      background: var(--surface-light);
-      border-radius: 28px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .download-module {
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--border-light);
-      padding: 2rem;
-      margin: 3rem 0;
-      text-align: center;
-    }
-    .trigger-download-btn {
-      background: linear-gradient(105deg, var(--primary), var(--primary-dark));
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 60px;
-      cursor: pointer;
-    }
-    .countdown-stage {
-      background: #fef9e8;
-      border-radius: 32px;
-      padding: 1.5rem;
-      margin-top: 1rem;
-    }
-    .status-message { font-weight: 600; margin-bottom: 1rem; }
-    .timer-digits { font-size: 2.2rem; font-family: monospace; font-weight: 800; color: var(--primary-dark); }
-    .final-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-    .final-btn {
-      background: var(--primary);
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
-
-    .related-section { margin: 4rem 0; }
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .related-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-      transition: 0.2s;
-    }
-    .related-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .related-card img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; display: block; }
-    .related-card h4 { padding: 0.8rem 1rem 0.2rem; font-size: 0.9rem; }
-    .related-card .meta { padding: 0 1rem 1rem; color: var(--primary); font-size: 0.75rem; }
-
-    .site-footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border-light);
-      margin-top: 4rem;
-      padding: 3rem 0 2rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer-logo {
-      font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-    .footer-about-text { color: var(--text-muted); margin: 0.5rem 0 1rem; font-size: 0.9rem; }
-    .social-links { display: flex; gap: 1rem; }
-    .social-links a { color: var(--text-muted); font-size: 1.3rem; transition: color 0.2s; }
-    .social-links a:hover { color: var(--primary); }
-    .footer-links h4 { font-size: 1.1rem; margin-bottom: 1rem; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 0.5rem; }
-    .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
-    .footer-links a:hover { color: var(--primary); }
-    .copyright { text-align: center; border-top: 1px solid var(--border-light); padding-top: 2rem; font-size: 0.8rem; color: var(--text-muted); }
-
-    @media (max-width: 700px) {
-      .main-nav { display: none; }
-      .hamburger { display: block; }
-    }
-    .personal-note {
-      background: linear-gradient(135deg, #fff5eb, #ffe8d9);
-      border-radius: 24px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      border-left: 4px solid var(--primary);
-    }
-    ul, .article-content ul { margin: 1rem 0 1.5rem 1.8rem; }
-    .article-content li { margin: 0.4rem 0; }
-    button { background: none; border: none; }
-  </style>
-  
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
      crossorigin="anonymous"></script>  
 </head>
 <body>
-
 
 <header class="site-header">
   <div class="container header-wrapper">
@@ -376,11 +101,23 @@
   <div class="game-hero">
     <div class="game-badge"><i class="fas fa-futbol"></i> Sports • Mod • Offline</div>
     <h1>FIFA 2026 Mod FIFA 14 APK + OBB Data Offline Download for Android</h1>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
+     crossorigin="anonymous"></script>
+<!-- OLITECH -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1091464318795402"
+     data-ad-slot="4213656254"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     
     
     <div class="article-meta">
       <span><i class="fas fa-calendar-alt"></i> Updated: May 2026</span>
-      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:#e85d04;">Oli Sa</a></span>
+      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:var(--red);">Oli Sa</a></span>
     </div>
   </div>
   <div class="featured-image">
@@ -393,7 +130,7 @@
       <strong>Let me tell you about the best FIFA mod I've played in years.</strong> Forget EA FC Mobile with its constant need for an internet connection and microtransactions. The FIFA 2026 Mod for FIFA 14 brings everything that's great about the classic FIFA 14 engine (the last truly great mobile FIFA) and updates it to the 2025/26 season. You get the latest transfers, fresh kits, a PS5-style camera angle, and complete offline play. I've been testing this mod for weeks, and it's genuinely impressive how much love the modders have put into this.
     </div>
 
-    <p>The FIFA 2026 Mod for FIFA 14 is a passion project from the modding community that takes the classic, beloved FIFA 14 engine and injects the 2025/2026 season into it. EA Sports might be fully focused on their FC series now, but any real mobile gamer knows the classic FIFA 14 engine is still the king of offline stability. The modders have outdone themselves with updated graphics, fresh kits, and spot-on rosters. You don't need a constant data connection to play this — it's 100% offline once installed.</p>
+    <p>The FIFA 2026 Mod for FIFA 14 is a passion project from the modding community that takes the classic, beloved FIFA 14 engine and injects the 2025/2026 season into it. EA Sports might be fully focused on their FC series now, but any real mobile gamer knows the classic FIFA 14 engine is still the king of offline stability. The modders have outdone themselves with updated graphics, fresh kits, and spot-on rosters. You don't need a constant data connection to play this, it's 100% offline once installed.</p>
     
     <div class="info-grid">
       <div><strong>⚽ Genre</strong><br>Football Simulation / Mod</div>
@@ -407,7 +144,6 @@
     <h2>What's New in the FIFA 2026 Mod?</h2>
     <p>The modders have packed this update with features that make it feel like a brand new game:</p>
 
-
     <ul>
       <li><strong>2025/26 Transfers:</strong> All the latest summer and winter moves are already baked in. Haaland at Man City, Bellingham at Real Madrid, all the major transfers.</li>
       <li><strong>PS5 Camera Angle:</strong> They've added that wide, broadcast-style angle that feels just like playing on a console. It completely changes the feel of the game.</li>
@@ -415,24 +151,22 @@
       <li><strong>Tournaments:</strong> Manager Mode works flawlessly, complete with the Champions League.</li>
     </ul>
 
-    <h2>The Base Game — Why FIFA 14 Still Holds Up</h2>
-    <p>FIFA 14 on mobile was a turning point. It was the last version before EA started pushing microtransactions heavily. The gameplay is responsive but realistic — you can't just sprint past entire defenses. The career mode has actual depth with youth scouting, player morale, and realistic transfers. This mod takes that masterpiece and updates everything to the 2025/26 season. All the kits are current. The transfers are accurate. The modders have even updated player faces where possible. It's like traveling back in time but with modern squads.</p>
+    <h2>The Base Game: Why FIFA 14 Still Holds Up</h2>
+    <p>FIFA 14 on mobile was a turning point. It was the last version before EA started pushing microtransactions heavily. The gameplay is responsive but realistic, you can't just sprint past entire defenses. The career mode has actual depth with youth scouting, player morale, and realistic transfers. This mod takes that masterpiece and updates everything to the 2025/26 season. All the kits are current. The transfers are accurate. The modders have even updated player faces where possible. It's like traveling back in time but with modern squads.</p>
 
-    <h2>Manager Mode — Build Your Club</h2>
-    <p>The Manager Mode is fully functional and loaded with the 2026 team budgets and player ratings. You can take any team from any league and manage them through multiple seasons. The transfer system is straightforward — offer money, negotiate, sign players. The youth academy actually produces usable talents. Player growth is based on performance and playing time. I've taken Brighton from mid-table to Champions League winners in my current save. The progression feels earned, and with the 2026 updates, every major transfer is reflected accurately.</p>
-
-
+    <h2>Manager Mode: Build Your Club</h2>
+    <p>The Manager Mode is fully functional and loaded with the 2026 team budgets and player ratings. You can take any team from any league and manage them through multiple seasons. The transfer system is straightforward, offer money, negotiate, sign players. The youth academy actually produces usable talents. Player growth is based on performance and playing time. I've taken Brighton from mid-table to Champions League winners in my current save. The progression feels earned, and with the 2026 updates, every major transfer is reflected accurately.</p>
 
     
 
-    <h2>How to Install (Important — Read Carefully)</h2>
+    <h2>How to Install (Important: Read Carefully)</h2>
     <p>This mod requires all three files: APK, Data, and OBB. Here's exactly how to get it running:</p>
     <p><strong>Step 1:</strong> Download all files using the button below. Clear at least 2GB of space before you start.<br>
-    <strong>Step 2:</strong> Download ZArchiver from the Play Store — stock file managers often mess up the extraction.<br>
+    <strong>Step 2:</strong> Download ZArchiver from the Play Store, stock file managers often mess up the extraction.<br>
     <strong>Step 3:</strong> Enable "Install from unknown sources" in Settings > Security.<br>
-    <strong>Step 4:</strong> Extract the OBB folder — find the .7z file, hit "Extract", and send it to <strong>Device Memory > Android > OBB</strong>.<br>
-    <strong>Step 5:</strong> Extract the Data folder — extract it to <strong>Device Memory > Android > Data</strong>.<br>
-    <strong>Step 6:</strong> Install the APK — do NOT open the game before moving the OBB and Data files.<br>
+    <strong>Step 4:</strong> Extract the OBB folder, find the .7z file, hit "Extract", and send it to <strong>Device Memory > Android > OBB</strong>.<br>
+    <strong>Step 5:</strong> Extract the Data folder, extract it to <strong>Device Memory > Android > Data</strong>.<br>
+    <strong>Step 6:</strong> Install the APK, do NOT open the game before moving the OBB and Data files.<br>
     <strong>Step 7:</strong> Clear your recent apps, launch the game, and you're in.</p>
     
     <div class="personal-note">
@@ -440,34 +174,34 @@
       <strong>For Android 13, 14, and 15 Users:</strong> 
       <br>• You may see a "Google Play Protect: Unsafe app blocked" error. Tap "More details" then "Install anyway".
       <br>• If that fails, extract the OBB folder to your Downloads folder first, then use your phone's system Files app to move it to Android/OBB.
-      <br>• Some users report success using a PC — plug your phone in, set to File Transfer, and drag the OBB folder directly into Android/obb using your computer.
+      <br>• Some users report success using a PC, plug your phone in, set to File Transfer, and drag the OBB folder directly into Android/obb using your computer.
     </div>
     
     <h2>Troubleshooting Common Issues</h2>
     <p><strong>"errno=22 : Invalid argument" error:</strong> This happens because Android's "Scoped Storage" blocks direct extraction into the Android/obb folder. Extract the <code>com.ea.game.fifa14_row</code> folder to your Downloads folder first, then cut and paste it into Android/obb. Your phone allows pasting even if it blocks direct extraction.</p>
 
-
     <p><strong>Stuck on black screen?</strong> You put the OBB file in the wrong place. Make sure the extracted folder is exactly inside Internal Storage > Android > OBB.</p>
     <p><strong>Is Manager Mode actually working?</strong> Yes. It's fully unlocked and loaded with the 2026 team budgets and player ratings.</p>
 
-
-
     <h2>Graphics and Performance</h2>
-    <p>For a game based on the FIFA 14 engine, the mod looks surprisingly good. The PS5 camera angle is the real star — it gives you a wider perspective of the pitch and makes the game feel much more modern. The kits are sharp, the player faces have been updated where possible, and the stadiums look authentic. The game runs smoothly even on older devices — that's the advantage of using the lightweight FIFA 14 engine. Even mid-range phones from 2018 can run this at a steady 60fps.</p>
+    <p>For a game based on the FIFA 14 engine, the mod looks surprisingly good. The PS5 camera angle is the real star, it gives you a wider perspective of the pitch and makes the game feel much more modern. The kits are sharp, the player faces have been updated where possible, and the stadiums look authentic. The game runs smoothly even on older devices, that's the advantage of using the lightweight FIFA 14 engine. Even mid-range phones from 2018 can run this at a steady 60fps.</p>
 
     <h2>Why This Mod Is Worth Your Time</h2>
     <p>If you're tired of modern mobile football games demanding constant internet connections and pushing microtransactions, this mod is a breath of fresh air. It's completely offline. The career mode has genuine depth. The updated 2025/26 rosters keep things current. And the PS5 camera angle makes it feel surprisingly modern. The installation is a bit more involved than downloading from the Play Store, but the result is a football game that respects your time, your storage, and your wallet. No ads, no energy systems, no "buy coins" popups. Just pure, offline football.</p>
 
-
   
   
 <!-- DOWNLOAD MODULE -->
-    <div class="download-module" id="downloadModule">
+    <div class="download-module" id="downloadModule" data-game="FIFA 2026 Mod" data-packaging="10" data-ready="10" data-countdown="10">
       <i class="fas fa-download" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 1rem;"></i>
       <h3>Download FIFA 2026 Mod FIFA 14</h3>
-      <p style="color: var(--text-muted);">Click below to get the complete APK + Data + OBB package — fully offline.</p>
+      <p style="color: var(--text-muted);">Click below to get the complete APK + Data + OBB package, fully offline.</p>
       <button id="startDownloadTrigger" class="trigger-download-btn"><i class="fas fa-lock"></i> GENERATE DOWNLOAD LINK</button>
-      <div id="countdownArea" style="display: none; margin-top: 1.5rem;"></div>
+      <div id="countdownArea" hidden></div>
+      <div class="download-ready" hidden>
+        <div class="final-buttons"><a href="https://ziphynet.com/fifa-14-mod-fifa-26" class="final-btn" rel="nofollow" target="_blank"><i class="fab fa-android"></i> Download FIFA 2026 Mod (1.5 GB)</a></div>
+        <div class="security-badge"><i class="fas fa-shield-alt"></i> Updated 2025/26 Transfers • PS5 Camera • Full Offline • Manager Mode</div>
+      </div>
     </div>
   </div>
 
@@ -491,122 +225,6 @@
 </aside>
 </main>
 
-<style>
-  /* Floating CTA styles */
-:root{
-  --cta-bg: #3b82f6;      /* main pill color (blue) */
-  --cta-accent: #10b981;  /* small accent / glow (green) */
-  --cta-size: 64px;       /* height (and width for circle) */
-  --cta-radius: 34px;     /* pill corner radius */
-  --cta-shadow: 0 8px 20px rgba(16,24,40,0.35);
-  --cta-text: #ffffff;
-}
-
-/* Base reset for anchor button */
-.floating-cta{
-  position: fixed;
-  right: 20px;               /* distance from right edge */
-  bottom: 100px;              /* distance from bottom edge */
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: var(--cta-text);
-  background: linear-gradient(180deg, var(--cta-bg), color-mix(in srgb, var(--cta-bg) 80%, black 10%));
-  height: var(--cta-size);
-  min-width: calc(var(--cta-size) * 1.25); /* pill wider than tall */
-  padding: 0 14px;
-  border-radius: var(--cta-radius);
-  box-shadow: var(--cta-shadow);
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  -webkit-tap-highlight-color: transparent;
-  backdrop-filter: blur(4px);
-  align-self: end;
-  will-change: transform;
-}
-
-/* inner shape keeps icon centered and circular */
-.floating-cta .cta-shape{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(var(--cta-size) - 18px);
-  width: calc(var(--cta-size) - 18px);
-  background: rgba(255,255,255,0.06);
-  border-radius: 999px;
-}
-
-/* SVG icon sizing */
-.floating-cta svg{
-  width: 22px;
-  height: 22px;
-  display: block;
-  color: var(--cta-text);
-}
-
-/* Hover / active / focus effects */
-.floating-cta:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(16,24,40,0.45);
-  filter: saturate(1.05);
-}
-.floating-cta:active{
-  transform: translateY(-2px) scale(.995);
-}
-.floating-cta:focus{
-  outline: none;
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta-accent) 18%, transparent);
-}
-
-/* small pulsing accent behind the button */
-.floating-cta::after{
-  content: "";
-  position: absolute;
-  inset: auto;
-  right: 12px;
-  bottom: 12px;
-  width: calc(var(--cta-size) * 0.9);
-  height: calc(var(--cta-size) * 0.9);
-  border-radius: 999px;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--cta-accent) 60%, transparent) 0%, transparent 40%);
-  opacity: 0.25;
-  filter: blur(6px);
-  pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-  transform: scale(.9);
-}
-
-/* optional "allowed" state (green accent) */
-.floating-cta.allowed{
-  --cta-bg: #06b75a;
-}
-.floating-cta.allowed::after{
-  opacity: .45;
-  transform: scale(1.05);
-}
-
-/* Responsive tweak on very small screens */
-@media (max-width:420px){
-  :root{ --cta-size: 54px; --cta-radius: 28px; }
-  .floating-cta{ right: 12px; bottom: 12px; min-width: calc(var(--cta-size) * 1.1); padding: 0 10px; }
-  .floating-cta::after{ right: 8px; bottom: 8px; }
-
-  .floating-cta{
-              /* distance from right edge */
-  bottom: 100px; 
-  }  
-}
-
-/* If you want the pill narrower (icon only), add this helper class:
-   <a class="floating-cta icon-only"> ... </a> */
-.floating-cta.icon-only{
-  padding: 0;
-  width: var(--cta-size);
-  min-width: var(--cta-size);
-  border-radius: 999px;
-}
-</style>
 <a href="https://smallbruisedfollowing.com/v6xx22uh?key=8c55c793cd96fdec6fb66acba2b00205"
    target="_blank"
    class="floating-cta"
@@ -625,7 +243,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">OLITECH<span style="color:#e85d04;">GAMES</span></div>
+        <div class="footer-logo">OLITECH<span style="color:var(--red);">GAMES</span></div>
         <p class="footer-about-text">Honest game reviews, APK downloads, and football gaming content. No fluff, just games worth playing.</p>
         <div class="social-links">
           <a href="https://www.facebook.com/profile.php?id=61550752782084" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -660,51 +278,12 @@
       </div> -->
     </div>
     <div class="copyright">
-      <p>© 2026 OlitechGames — FIFA is a trademark of Electronic Arts Inc. This mod is fan-made.</p>
+      <p>© 2026 OlitechGames. FIFA is a trademark of Electronic Arts Inc. This mod is fan-made.</p>
     </div>
   </div>
 </footer>
 
-<script>
-  // Mobile Menu
-  (function() {
-    const hamburger = document.getElementById('hamburgerBtn');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const closeBtn = document.getElementById('closeMenuBtn');
-    function openMenu() { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeMenu() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
-    if (hamburger) hamburger.addEventListener('click', openMenu);
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeMenu(); });
-  })();
-
-  // Countdown Download Logic
-  const startBtn = document.getElementById('startDownloadTrigger');
-  const countdownArea = document.getElementById('countdownArea');
-  let activeTimeout = null;
-
-  function startSequence() {
-    if (startBtn) startBtn.disabled = true;
-    countdownArea.style.display = 'block';
-    function updateUI(message, progressText = null) {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-cog fa-spin"></i> ${message}</div>${progressText ? `<div class="timer-digits">${progressText}</div>` : ''}</div>`;
-    }
-    function packaging() { updateUI('📦 Packaging FIFA 2026 Mod files... (secure server)'); activeTimeout = setTimeout(ready, 10000); }
-    function ready() { updateUI('✅ Files are ready — preparing secure download gateway'); activeTimeout = setTimeout(countdown, 10000); }
-    function countdown() { let counter = 10; function tick() { updateUI(`⏳ Your download link will appear in:`, `${counter} seconds`); if (counter === 0) { showFinalLinks(); } else { counter--; activeTimeout = setTimeout(tick, 1000); } } tick(); }
-    function showFinalLinks() {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-check-circle" style="color:#10b981;"></i> Download ready — fully tested</div>
-      <div class="final-buttons">
-        <a href="https://ziphynet.com/fifa-14-mod-fifa-26" class="final-btn" rel="nofollow" target="_blank"><i class="fab fa-android"></i> Download FIFA 2026 Mod (1.5 GB)</a>
-      </div>
-      <div class="security-badge" style="margin-top:1rem;"><i class="fas fa-shield-alt"></i> Updated 2025/26 Transfers • PS5 Camera • Full Offline • Manager Mode</div></div>`;
-      if (startBtn) startBtn.disabled = false;
-    }
-    packaging();
-  }
-  if (startBtn) startBtn.addEventListener('click', startSequence);
-</script>
 <script src="https://smallbruisedfollowing.com/8e/35/ca/8e35ca976372a6a79a33e6fe462c1550.js"></script>
+  <script src="assets/olitech.js" defer></script>
 </body>
 </html>

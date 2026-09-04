@@ -53,286 +53,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/olitech.css">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg-body: #f8fafc;
-      --bg-card: #ffffff;
-      --surface-light: #f1f5f9;
-      --primary: #e85d04;
-      --primary-dark: #dc2f02;
-      --primary-soft: #ffedd5;
-      --text-dark: #0f172a;
-      --text-muted: #334155;
-      --border-light: #e2e8f0;
-      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
-      --radius-card: 28px;
-      --font-sans: 'Inter', sans-serif;
-      --font-heading: 'Orbitron', monospace;
-    }
-
-    body { background-color: var(--bg-body); color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
-    .article-container { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
-
-    .site-header {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 1rem 0;
-    }
-    .header-wrapper { display: flex; align-items: center; justify-content: space-between; }
-    .logo a {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .logo span { color: #e85d04; background: none; }
-    .main-nav ul { display: flex; gap: 2rem; list-style: none; }
-    .main-nav a { font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
-    .main-nav a:hover, .main-nav a.active { color: var(--primary); }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      width: 44px;
-      height: 44px;
-      cursor: pointer;
-      position: relative;
-      z-index: 1001;
-    }
-    .hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--text-dark);
-      position: absolute;
-      left: 9px;
-      transition: all 0.25s ease;
-    }
-    .hamburger span:nth-child(1) { top: 14px; }
-    .hamburger span:nth-child(2) { top: 21px; }
-    .hamburger span:nth-child(3) { top: 28px; }
-
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s;
-    }
-    .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
-    .mobile-menu-panel {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 280px;
-      height: 100%;
-      background: white;
-      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
-      padding: 2rem 1.8rem;
-      transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      z-index: 2001;
-    }
-    .mobile-menu-overlay.active .mobile-menu-panel { right: 0; }
-    .mobile-menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border-light);
-    }
-    .close-menu-btn { background: none; border: none; font-size: 2rem; cursor: pointer; color: #475569; }
-    .close-menu-btn:hover { color: var(--primary); }
-    .mobile-nav-list { list-style: none; }
-    .mobile-nav-list li { margin-bottom: 1.2rem; }
-    .mobile-nav-list a { font-size: 1.2rem; font-weight: 500; color: var(--text-dark); display: block; }
-    .mobile-nav-list a:hover { color: var(--primary); }
-
-    .game-hero { margin: 2rem 0 1rem; }
-    .game-badge {
-      display: inline-block;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .game-hero h1 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      line-height: 1.2;
-      margin: 1rem 0 0.5rem;
-    }
-    @media (min-width: 600px) { .game-hero h1 { font-size: 2.5rem; } }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .featured-image {
-      border-radius: 28px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow-md);
-    }
-    .featured-image img { width: 100%; height: auto; display: block; }
-
-    .article-content { font-size: 1.05rem; }
-    .article-content h2 {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      margin: 2.5rem 0 1rem;
-      border-left: 4px solid var(--primary);
-      padding-left: 1rem;
-    }
-    .article-content p { margin-bottom: 1.5rem; }
-    .article-content strong { color: var(--primary-dark); }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 1rem;
-      background: var(--surface-light);
-      border-radius: 28px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .download-module {
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--border-light);
-      padding: 2rem;
-      margin: 3rem 0;
-      text-align: center;
-    }
-    .trigger-download-btn {
-      background: linear-gradient(105deg, var(--primary), var(--primary-dark));
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 60px;
-      cursor: pointer;
-    }
-    .countdown-stage {
-      background: #fef9e8;
-      border-radius: 32px;
-      padding: 1.5rem;
-      margin-top: 1rem;
-    }
-    .status-message { font-weight: 600; margin-bottom: 1rem; }
-    .timer-digits { font-size: 2.2rem; font-family: monospace; font-weight: 800; color: var(--primary-dark); }
-    .final-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-    .final-btn {
-      background: var(--primary);
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
-
-    .related-section { margin: 4rem 0; }
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .related-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-      transition: 0.2s;
-    }
-    .related-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .related-card img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; display: block; }
-    .related-card h4 { padding: 0.8rem 1rem 0.2rem; font-size: 0.9rem; }
-    .related-card .meta { padding: 0 1rem 1rem; color: var(--primary); font-size: 0.75rem; }
-
-    .site-footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border-light);
-      margin-top: 4rem;
-      padding: 3rem 0 2rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer-logo {
-      font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-    .footer-about-text { color: var(--text-muted); margin: 0.5rem 0 1rem; font-size: 0.9rem; }
-    .social-links { display: flex; gap: 1rem; }
-    .social-links a { color: var(--text-muted); font-size: 1.3rem; transition: color 0.2s; }
-    .social-links a:hover { color: var(--primary); }
-    .footer-links h4 { font-size: 1.1rem; margin-bottom: 1rem; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 0.5rem; }
-    .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
-    .footer-links a:hover { color: var(--primary); }
-    .copyright { text-align: center; border-top: 1px solid var(--border-light); padding-top: 2rem; font-size: 0.8rem; color: var(--text-muted); }
-
-    @media (max-width: 700px) {
-      .main-nav { display: none; }
-      .hamburger { display: block; }
-    }
-    .personal-note {
-      background: linear-gradient(135deg, #fff5eb, #ffe8d9);
-      border-radius: 24px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      border-left: 4px solid var(--primary);
-    }
-    .button { background: none; border: none; }
-  </style>
-  
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
      crossorigin="anonymous"></script>  
 </head>
 <body>
-
 
 <header class="site-header">
   <div class="container header-wrapper">
@@ -373,11 +101,23 @@
   <div class="game-hero">
     <div class="game-badge"><i class="fas fa-bicycle"></i> Racing • Sports • PPSSPP</div>
     <h1>Downhill Domination PPSSPP ISO Zip File Download</h1>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
+     crossorigin="anonymous"></script>
+<!-- OLITECH -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1091464318795402"
+     data-ad-slot="4213656254"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     
     
     <div class="article-meta">
       <span><i class="fas fa-calendar-alt"></i> Updated: April 2026</span>
-      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:#e85d04;">Oli Sa</a></span>
+      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:var(--red);">Oli Sa</a></span>
     </div>
   </div>
   <div class="featured-image">
@@ -387,10 +127,10 @@
   <div class="article-content">
     <div class="personal-note">
       <i class="fas fa-comment-dots" style="color: var(--primary); font-size: 1.3rem; margin-right: 0.5rem;"></i> 
-      <strong>Hey everyone, Oli here.</strong> Remember that feeling when you first played a downhill mountain bike game and thought, "Why doesn't every racing game have punching?" Yeah, me too. Downhill Domination is that game — it's fast, it's brutal, and it's still one of the best arcade racers on PPSSPP. Let me tell you why I've had this ISO on every phone I've owned for the past five years.
+      <strong>Hey everyone, Oli here.</strong> Remember that feeling when you first played a downhill mountain bike game and thought, "Why doesn't every racing game have punching?" Yeah, me too. Downhill Domination is that game, it's fast, it's brutal, and it's still one of the best arcade racers on PPSSPP. Let me tell you why I've had this ISO on every phone I've owned for the past five years.
     </div>
 
-    <p>Look, I've played a lot of racing games on mobile. Asphalt? Too flashy. Real Racing? Too serious. But Downhill Domination hits that perfect sweet spot between arcade fun and genuine competition. You're flying down mountains at breakneck speeds, pulling off insane tricks, and — here's the best part — physically punching other racers off their bikes. Yes, you read that right. You can just reach over and shove someone into a tree. It's glorious.</p>
+    <p>Look, I've played a lot of racing games on mobile. Asphalt? Too flashy. Real Racing? Too serious. But Downhill Domination hits that perfect sweet spot between arcade fun and genuine competition. You're flying down mountains at breakneck speeds, pulling off insane tricks, and, here's the best part, physically punching other racers off their bikes. Yes, you read that right. You can just reach over and shove someone into a tree. It's glorious.</p>
     
     <div class="info-grid">
       <div><strong>🚵 Genre</strong><br>Racing / Sports</div>
@@ -404,17 +144,14 @@
     <h2>Why I Still Play This Game in 2026</h2>
     <p>I discovered Downhill Domination back in college on my friend's modded PSP. We'd spend hours in the dorm room, taking turns on the couch, shoving each other's riders off cliffs, and yelling at the screen. The game has this perfect risk-reward loop: you can take the safe line and finish decently, or you can hit that insane shortcut over a ravine, land perfectly, and leave everyone in the dust. But one wrong move? You're tumbling down the mountain while the AI laughs at you.</p>
 
-
     
-    <p>The variety keeps things fresh. You've got rocky canyons, dense forests, urban downhill courses with traffic, and even night races where visibility is a real challenge. Each track has multiple paths, hidden shortcuts, and secret areas that reward exploration. I've been playing this game for years and I'm still finding new lines. The "Domination" part of the name comes from the combat system — you can kick, punch, and even throw bottles at other racers. It's ridiculous. It's unfair. It's so much fun.</p>
+    <p>The variety keeps things fresh. You've got rocky canyons, dense forests, urban downhill courses with traffic, and even night races where visibility is a real challenge. Each track has multiple paths, hidden shortcuts, and secret areas that reward exploration. I've been playing this game for years and I'm still finding new lines. The "Domination" part of the name comes from the combat system, you can kick, punch, and even throw bottles at other racers. It's ridiculous. It's unfair. It's so much fun.</p>
 
-    <h2>The Trick System — Style Meets Speed</h2>
-    <p>Unlike most racing games where tricks are just for show, Downhill Domination ties them directly to your performance. Pull off a massive superman or no-hander, and you get a speed boost for landing cleanly. Chain tricks together, and you build up your "domination" meter. Fill it completely, and you enter a temporary god mode where you're invincible and faster than everyone. The timing takes practice — I've crashed more times than I can count trying to land a 720 spin over a gap. But when you nail it? Pure satisfaction. The controls on PPSSPP feel responsive, especially if you map the buttons to your liking. I recommend using a controller if you have one — it's a whole different experience.</p>
+    <h2>The Trick System: Style Meets Speed</h2>
+    <p>Unlike most racing games where tricks are just for show, Downhill Domination ties them directly to your performance. Pull off a massive superman or no-hander, and you get a speed boost for landing cleanly. Chain tricks together, and you build up your "domination" meter. Fill it completely, and you enter a temporary god mode where you're invincible and faster than everyone. The timing takes practice, I've crashed more times than I can count trying to land a 720 spin over a gap. But when you nail it? Pure satisfaction. The controls on PPSSPP feel responsive, especially if you map the buttons to your liking. I recommend using a controller if you have one, it's a whole different experience.</p>
 
     <h2>Career Mode and Progression</h2>
-    <p>The career mode is surprisingly deep. You start as a nobody rider with a basic bike, entering local competitions. Win races, earn money, and unlock better gear — lighter frames, grippier tires, upgraded suspension. There are four different rider types to choose from: Downhill (all-around), Freeride (trick-focused), Dual Slalom (speed-focused), and one more I'll let you discover. Each has unique strengths. I usually go with Freeride because I love pulling off stupid tricks mid-race, even if it costs me a few seconds. The game also features real-world bike brands like Cannondale, Giant, and Specialized — the gear nerd in me appreciates that detail.</p>
-
-
+    <p>The career mode is surprisingly deep. You start as a nobody rider with a basic bike, entering local competitions. Win races, earn money, and unlock better gear, lighter frames, grippier tires, upgraded suspension. There are four different rider types to choose from: Downhill (all-around), Freeride (trick-focused), Dual Slalom (speed-focused), and one more I'll let you discover. Each has unique strengths. I usually go with Freeride because I love pulling off stupid tricks mid-race, even if it costs me a few seconds. The game also features real-world bike brands like Cannondale, Giant, and Specialized, the gear nerd in me appreciates that detail.</p>
 
     
 
@@ -423,7 +160,6 @@
     <p><strong>Graphics:</strong> Set Rendering Resolution to 2x or 3x PSP (depending on your phone). Enable "Buffered Rendering" and "Hardware Transform". Disable "Postprocessing Shader" for better performance.<br>
     <strong>Performance:</strong> Enable "Frame Skipping" at 1 if you experience lag. Set "Alternative Speed" to Unlimited for faster loading.<br>
     <strong>Controls:</strong> Map the shoulder buttons to gas and brake. I put gas on R1, brake on L1, and tricks on the face buttons. The game was designed for physical buttons, so a controller is highly recommended.</p>
-
 
     
     <div class="personal-note">
@@ -444,24 +180,26 @@
     <strong>Step 5:</strong> Tap the game to launch it.<br>
     <strong>Step 6:</strong> Adjust controls to your preference and start dominating those mountains!</p>
 
-    <h2>Multiplayer — The Real Fun Begins</h2>
-    <p>The PPSSPP emulator supports local ad-hoc multiplayer, which means you can race against friends on the same Wi-Fi network. My buddies and I have tournaments every couple of weeks. The trash talk gets intense when someone gets shoved off a cliff at the finish line. The game supports up to 4 players, and let me tell you, watching four bikes barrel down a narrow mountain path while everyone's trying to punch each other is absolute chaos. It's the best kind of chaos. There's also a time trial mode if you just want to perfect your lines alone — I've spent hours shaving milliseconds off my records.</p>
-
+    <h2>Multiplayer: The Real Fun Begins</h2>
+    <p>The PPSSPP emulator supports local ad-hoc multiplayer, which means you can race against friends on the same Wi-Fi network. My buddies and I have tournaments every couple of weeks. The trash talk gets intense when someone gets shoved off a cliff at the finish line. The game supports up to 4 players, and let me tell you, watching four bikes barrel down a narrow mountain path while everyone's trying to punch each other is absolute chaos. It's the best kind of chaos. There's also a time trial mode if you just want to perfect your lines alone, I've spent hours shaving milliseconds off my records.</p>
 
     
-    <p>For those wondering about the soundtrack — it's pure early 2000s punk rock. I'm talking NOFX, Pennywise, and other bands that probably still play at small venues near you. It fits the game's vibe perfectly. You'll be tapping your foot while launching yourself off a cliff.</p>
+    <p>For those wondering about the soundtrack, it's pure early 2000s punk rock. I'm talking NOFX, Pennywise, and other bands that probably still play at small venues near you. It fits the game's vibe perfectly. You'll be tapping your foot while launching yourself off a cliff.</p>
     
-    <p>So yeah, that's Downhill Domination. It's not the most realistic mountain bike sim, and the graphics definitely show their age, but the core gameplay loop is still incredibly fun. It's the kind of game that reminds you why arcade racers used to be king. No microtransactions, no battle passes, no "wait three hours for your energy to refill." Just pure, fast, chaotic racing. Download it, give it a shot, and let me know what you think. And if you figure out a better line down the Iceland track than me, I want proof. Cheers — Oli.</p>
-
+    <p>So yeah, that's Downhill Domination. It's not the most realistic mountain bike sim, and the graphics definitely show their age, but the core gameplay loop is still incredibly fun. It's the kind of game that reminds you why arcade racers used to be king. No microtransactions, no battle passes, no "wait three hours for your energy to refill." Just pure, fast, chaotic racing. Download it, give it a shot, and let me know what you think. And if you figure out a better line down the Iceland track than me, I want proof. Cheers, Oli.</p>
 
     
 <!-- DOWNLOAD MODULE -->
-    <div class="download-module" id="downloadModule">
+    <div class="download-module" id="downloadModule" data-game="" data-packaging="10" data-ready="10" data-countdown="10">
       <i class="fas fa-download" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 1rem;"></i>
       <h3>Download Downhill Domination PPSSPP ISO</h3>
-      <p style="color: var(--text-muted);">Click below to get the ISO file — works perfectly with the latest PPSSPP emulator.</p>
+      <p style="color: var(--text-muted);">Click below to get the ISO file, works perfectly with the latest PPSSPP emulator.</p>
       <button id="startDownloadTrigger" class="trigger-download-btn"><i class="fas fa-lock"></i> GENERATE DOWNLOAD LINK</button>
-      <div id="countdownArea" style="display: none; margin-top: 1.5rem;"></div>
+      <div id="countdownArea" hidden></div>
+      <div class="download-ready" hidden>
+        <div class="final-buttons"><a href="https://olitechgames.com/download/downhill-domination-dl" class="final-btn" target="_blank"><i class="fab fa-android"></i> Download Downhill Domination ISO</a></div>
+        <div class="security-badge"><i class="fas fa-shield-alt"></i> Full game • Works with PPSSPP • Oli's personal recommendation</div>
+      </div>
     </div>
   </div>
 
@@ -481,122 +219,6 @@
   </aside>
 </main>
 
-<style>
-  /* Floating CTA styles */
-:root{
-  --cta-bg: #3b82f6;      /* main pill color (blue) */
-  --cta-accent: #10b981;  /* small accent / glow (green) */
-  --cta-size: 64px;       /* height (and width for circle) */
-  --cta-radius: 34px;     /* pill corner radius */
-  --cta-shadow: 0 8px 20px rgba(16,24,40,0.35);
-  --cta-text: #ffffff;
-}
-
-/* Base reset for anchor button */
-.floating-cta{
-  position: fixed;
-  right: 20px;               /* distance from right edge */
-  bottom: 100px;              /* distance from bottom edge */
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: var(--cta-text);
-  background: linear-gradient(180deg, var(--cta-bg), color-mix(in srgb, var(--cta-bg) 80%, black 10%));
-  height: var(--cta-size);
-  min-width: calc(var(--cta-size) * 1.25); /* pill wider than tall */
-  padding: 0 14px;
-  border-radius: var(--cta-radius);
-  box-shadow: var(--cta-shadow);
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  -webkit-tap-highlight-color: transparent;
-  backdrop-filter: blur(4px);
-  align-self: end;
-  will-change: transform;
-}
-
-/* inner shape keeps icon centered and circular */
-.floating-cta .cta-shape{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(var(--cta-size) - 18px);
-  width: calc(var(--cta-size) - 18px);
-  background: rgba(255,255,255,0.06);
-  border-radius: 999px;
-}
-
-/* SVG icon sizing */
-.floating-cta svg{
-  width: 22px;
-  height: 22px;
-  display: block;
-  color: var(--cta-text);
-}
-
-/* Hover / active / focus effects */
-.floating-cta:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(16,24,40,0.45);
-  filter: saturate(1.05);
-}
-.floating-cta:active{
-  transform: translateY(-2px) scale(.995);
-}
-.floating-cta:focus{
-  outline: none;
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta-accent) 18%, transparent);
-}
-
-/* small pulsing accent behind the button */
-.floating-cta::after{
-  content: "";
-  position: absolute;
-  inset: auto;
-  right: 12px;
-  bottom: 12px;
-  width: calc(var(--cta-size) * 0.9);
-  height: calc(var(--cta-size) * 0.9);
-  border-radius: 999px;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--cta-accent) 60%, transparent) 0%, transparent 40%);
-  opacity: 0.25;
-  filter: blur(6px);
-  pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-  transform: scale(.9);
-}
-
-/* optional "allowed" state (green accent) */
-.floating-cta.allowed{
-  --cta-bg: #06b75a;
-}
-.floating-cta.allowed::after{
-  opacity: .45;
-  transform: scale(1.05);
-}
-
-/* Responsive tweak on very small screens */
-@media (max-width:420px){
-  :root{ --cta-size: 54px; --cta-radius: 28px; }
-  .floating-cta{ right: 12px; bottom: 12px; min-width: calc(var(--cta-size) * 1.1); padding: 0 10px; }
-  .floating-cta::after{ right: 8px; bottom: 8px; }
-
-  .floating-cta{
-              /* distance from right edge */
-  bottom: 100px; 
-  }  
-}
-
-/* If you want the pill narrower (icon only), add this helper class:
-   <a class="floating-cta icon-only"> ... </a> */
-.floating-cta.icon-only{
-  padding: 0;
-  width: var(--cta-size);
-  min-width: var(--cta-size);
-  border-radius: 999px;
-}
-</style>
 <a href="https://smallbruisedfollowing.com/v6xx22uh?key=8c55c793cd96fdec6fb66acba2b00205"
    target="_blank"
    class="floating-cta"
@@ -615,7 +237,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">OLITECH<span style="color:#e85d04;">GAMES</span></div>
+        <div class="footer-logo">OLITECH<span style="color:var(--red);">GAMES</span></div>
         <p class="footer-about-text">Honest game reviews, PPSSPP ISOs, and downloads from Oli Sa. No fluff, just games I actually play.</p>
         <div class="social-links">
           <a href="https://www.facebook.com/profile.php?id=61550752782084" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -650,51 +272,12 @@
       </div> -->
     </div>
     <div class="copyright">
-      <p>© 2026 OlitechGames — Built by Oli Sa. All trademarks belong to their respective owners. Game for emulation only.</p>
+      <p>© 2026 OlitechGames. Built by Oli Sa. All trademarks belong to their respective owners. Game for emulation only.</p>
     </div>
   </div>
 </footer>
 
-<script>
-  // Mobile Menu
-  (function() {
-    const hamburger = document.getElementById('hamburgerBtn');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const closeBtn = document.getElementById('closeMenuBtn');
-    function openMenu() { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeMenu() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
-    if (hamburger) hamburger.addEventListener('click', openMenu);
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeMenu(); });
-  })();
-
-  // Countdown Download Logic
-  const startBtn = document.getElementById('startDownloadTrigger');
-  const countdownArea = document.getElementById('countdownArea');
-  let activeTimeout = null;
-
-  function startSequence() {
-    if (startBtn) startBtn.disabled = true;
-    countdownArea.style.display = 'block';
-    function updateUI(message, progressText = null) {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-cog fa-spin"></i> ${message}</div>${progressText ? `<div class="timer-digits">${progressText}</div>` : ''}</div>`;
-    }
-    function packaging() { updateUI('📦 Packaging Downhill Domination ISO... (secure server)'); activeTimeout = setTimeout(ready, 10000); }
-    function ready() { updateUI('✅ File is ready — preparing secure download gateway'); activeTimeout = setTimeout(countdown, 10000); }
-    function countdown() { let counter = 10; function tick() { updateUI(`⏳ Your download link will appear in:`, `${counter} seconds`); if (counter === 0) { showFinalLinks(); } else { counter--; activeTimeout = setTimeout(tick, 1000); } } tick(); }
-    function showFinalLinks() {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-check-circle" style="color:#10b981;"></i> Download ready — Oli verified this file</div>
-      <div class="final-buttons">
-        <a href="https://olitechgames.com/download/downhill-domination-dl" class="final-btn" target="_blank"><i class="fab fa-android"></i> Download Downhill Domination ISO</a>
-      </div>
-      <div class="security-badge" style="margin-top:1rem;"><i class="fas fa-shield-alt"></i> Full game • Works with PPSSPP • Oli's personal recommendation</div></div>`;
-      if (startBtn) startBtn.disabled = false;
-    }
-    packaging();
-  }
-  if (startBtn) startBtn.addEventListener('click', startSequence);
-</script>
 <script src="https://smallbruisedfollowing.com/8e/35/ca/8e35ca976372a6a79a33e6fe462c1550.js"></script>
+  <script src="assets/olitech.js" defer></script>
 </body>
 </html>

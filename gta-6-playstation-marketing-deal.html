@@ -35,97 +35,19 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QG264CHGHW');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/olitech.css">
   <link rel="icon" type="image/x-icon" href="https://olitechgames.com/favicon.ico">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg-body:#f8fafc;--bg-card:#ffffff;--surface-light:#f1f5f9;--primary:#e85d04;--primary-dark:#dc2f02;--primary-soft:#ffedd5;--text-dark:#0f172a;--text-muted:#334155;--border-light:#e2e8f0;--shadow-sm:0 10px 25px -5px rgba(0,0,0,0.05);--shadow-md:0 20px 25px -12px rgba(0,0,0,0.08);--radius-card:28px;--font-sans:'Inter',sans-serif;--font-heading:'Orbitron',monospace}
-    body{background-color:var(--bg-body);color:var(--text-dark);font-family:var(--font-sans);line-height:1.6}
-    a{text-decoration:none;color:inherit}
-    .container{max-width:1280px;margin:0 auto;padding:0 1.5rem}
-    .article-container{max-width:880px;margin:0 auto;padding:0 1.5rem}
-    .site-header{background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);position:sticky;top:0;z-index:1000;padding:1rem 0}
-    .header-wrapper{display:flex;align-items:center;justify-content:space-between}
-    .logo a{font-family:var(--font-heading);font-size:1.8rem;font-weight:700;background:linear-gradient(135deg,#e85d04,#b91c1c);background-clip:text;-webkit-background-clip:text;color:transparent}
-    .main-nav ul{display:flex;gap:2rem;list-style:none}
-    .main-nav a{font-weight:500;color:var(--text-muted);transition:color 0.2s}
-    .main-nav a:hover,.main-nav a.active{color:var(--primary)}
-    .hamburger{display:none;background:none;border:none;width:44px;height:44px;cursor:pointer;position:relative;z-index:1001}
-    .hamburger span{display:block;width:26px;height:2px;background:var(--text-dark);position:absolute;left:9px;transition:all 0.25s ease}
-    .hamburger span:nth-child(1){top:14px}
-    .hamburger span:nth-child(2){top:21px}
-    .hamburger span:nth-child(3){top:28px}
-    .mobile-menu-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);z-index:2000;opacity:0;visibility:hidden;transition:opacity 0.3s ease,visibility 0.3s}
-    .mobile-menu-overlay.active{opacity:1;visibility:visible}
-    .mobile-menu-panel{position:fixed;top:0;right:-300px;width:280px;height:100%;background:white;box-shadow:-5px 0 30px rgba(0,0,0,0.15);padding:2rem 1.8rem;transition:right 0.3s cubic-bezier(0.2,0.9,0.4,1.1);z-index:2001}
-    .mobile-menu-overlay.active .mobile-menu-panel{right:0}
-    .mobile-menu-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;margin-bottom:1.5rem;border-bottom:1px solid var(--border-light)}
-    .close-menu-btn{background:none;border:none;font-size:2rem;cursor:pointer;color:#475569}
-    .close-menu-btn:hover{color:var(--primary)}
-    .mobile-nav-list{list-style:none}
-    .mobile-nav-list li{margin-bottom:1.2rem}
-    .mobile-nav-list a{font-size:1.2rem;font-weight:500;color:var(--text-dark);display:block}
-    .mobile-nav-list a:hover{color:var(--primary)}
-    .news-hero{margin:2rem 0 1rem}
-    .news-badge{display:inline-block;background:var(--primary-soft);color:var(--primary-dark);padding:0.2rem 1rem;border-radius:40px;font-size:0.8rem;font-weight:600}
-    .news-hero h1{font-family:var(--font-heading);font-size:2rem;line-height:1.2;margin:1rem 0 0.5rem}
-    @media(min-width:600px){.news-hero h1{font-size:2.5rem}}
-    .article-meta{display:flex;gap:1.5rem;color:var(--text-muted);font-size:0.9rem;border-bottom:1px solid var(--border-light);padding-bottom:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
-    .featured-image{border-radius:28px;overflow:hidden;margin-bottom:2rem;box-shadow:var(--shadow-md)}
-    .featured-image img{width:100%;height:auto;display:block}
-    .article-content{font-size:1.05rem}
-    .article-content h2{font-family:var(--font-heading);font-size:1.8rem;margin:2rem 0 1rem;border-left:4px solid var(--primary);padding-left:1rem}
-    .article-content h3{font-size:1.3rem;margin:1.5rem 0 0.5rem;color:var(--primary-dark)}
-    .article-content p{margin-bottom:1.2rem;line-height:1.7}
-    .article-content strong{color:var(--primary-dark)}
-    .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;background:var(--surface-light);border-radius:28px;padding:1.5rem;margin:2rem 0}
-    .info-item{text-align:center}
-    .info-label{font-weight:600;color:var(--primary)}
-    .feature-block{background:var(--bg-card);border-radius:20px;border:1px solid var(--border-light);overflow:hidden;margin:2rem 0}
-    .feature-header{background:var(--surface-light);padding:1rem 1.5rem;border-bottom:1px solid var(--border-light)}
-    .feature-header h3{margin:0;color:var(--primary)}
-    .feature-content{padding:1.5rem}
-    .quote-box{background:#1e293b;color:#e2e8f0;border-radius:24px;padding:1.5rem;margin:2rem 0;border-left:4px solid var(--primary);font-style:italic}
-    .related-section{margin:4rem 0}
-    .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
-    .related-card{background:white;border-radius:20px;overflow:hidden;border:1px solid var(--border-light);transition:0.2s}
-    .related-card:hover{transform:translateY(-5px);border-color:var(--primary)}
-    .related-card img{width:100%;height:140px;object-fit:cover;display:block}
-    .related-card-content{padding:1rem}
-    .related-card h4{font-size:1rem;margin-bottom:0.3rem}
-    .related-card .meta{color:var(--primary);font-size:0.75rem}
-    .site-footer{background:#ffffff;border-top:1px solid var(--border-light);margin-top:4rem;padding:3rem 0 2rem}
-    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;margin-bottom:2rem}
-    .footer-logo{font-family:var(--font-heading);font-size:1.6rem;font-weight:700;background:linear-gradient(135deg,#e85d04,#b91c1c);background-clip:text;-webkit-background-clip:text;color:transparent;display:inline-block}
-    .footer-about-text{color:var(--text-muted);margin:0.5rem 0 1rem;font-size:0.9rem}
-    .social-links{display:flex;gap:1rem}
-    .social-links a{color:var(--text-muted);font-size:1.3rem;transition:color 0.2s}
-    .social-links a:hover{color:var(--primary)}
-    .footer-links h4{font-size:1.1rem;margin-bottom:1rem}
-    .footer-links ul{list-style:none}
-    .footer-links li{margin-bottom:0.5rem}
-    .footer-links a{color:var(--text-muted);font-size:0.9rem}
-    .footer-links a:hover{color:var(--primary)}
-    .copyright{text-align:center;border-top:1px solid var(--border-light);padding-top:2rem;font-size:0.8rem;color:var(--text-muted)}
-    @media(max-width:700px){.main-nav{display:none}.hamburger{display:block}}
-    .tag-list{display:flex;flex-wrap:wrap;gap:0.6rem;margin:1.5rem 0}
-    .tag{background:var(--primary-soft);color:var(--primary-dark);padding:0.3rem 0.9rem;border-radius:40px;font-size:0.8rem;font-weight:600}
-    .update-timeline{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
-    .update-item{display:flex;gap:1rem;padding:0.8rem;border-bottom:1px solid var(--border-light)}
-    .update-version{font-weight:700;color:var(--primary);min-width:120px}
-    .update-desc{color:var(--text-muted)}
-  </style>
-  
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
      crossorigin="anonymous"></script>  
 </head>
 <body>
 
-
 <header class="site-header">
   <div class="container header-wrapper">
-    <div class="logo"><a href="https://olitechgames.com/">OLITECH<span style="color:#e85d04">GAMES</span></a></div>
+    <div class="logo"><a href="https://olitechgames.com/">OLITECH<span style="color:var(--red)">GAMES</span></a></div>
     <nav class="main-nav">
       <ul>
         <li><a href="https://olitechgames.com/">Home</a></li>
@@ -143,7 +65,7 @@
 <div class="mobile-menu-overlay" id="mobileMenuOverlay">
   <div class="mobile-menu-panel">
     <div class="mobile-menu-header">
-      <div class="logo"><a href="#">OLITECH<span style="color:#e85d04">GAMES</span></a></div>
+      <div class="logo"><a href="#">OLITECH<span style="color:var(--red)">GAMES</span></a></div>
       <button class="close-menu-btn" id="closeMenuBtn">✕</button>
     </div>
     <ul class="mobile-nav-list">
@@ -162,10 +84,22 @@
   <div class="news-hero">
     <div class="news-badge"><i class="fas fa-fire"></i> Breaking News</div>
     <h1>GTA 6 PlayStation Marketing Deal Confirmed: What Xbox Players Need to Know</h1>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
+     crossorigin="anonymous"></script>
+<!-- OLITECH -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1091464318795402"
+     data-ad-slot="4213656254"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     
     <div class="article-meta">
       <span><i class="fas fa-calendar-alt"></i> Published: May 7, 2026</span>
-      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:#e85d04">Oli Sa</a></span>
+      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:var(--red)">Oli Sa</a></span>
       <span><i class="fas fa-clock"></i> 8 min read</span>
     </div>
   </div>
@@ -178,14 +112,12 @@
 
     <div class="quote-box">
       <i class="fas fa-quote-left" style="color:var(--primary);margin-right:0.5rem"></i>
-      "Historically Rockstar's gone to console first." — Strauss Zelnick, CEO of Take-Two Interactive
+      "Historically Rockstar's gone to console first.", Strauss Zelnick, CEO of Take-Two Interactive
     </div>
 
-    <p>It's official. <strong>GTA 6 has a PlayStation marketing deal with Sony</strong>, and Take-Two Interactive CEO Strauss Zelnick confirmed it in a Bloomberg interview this week. For millions of fans waiting on the biggest game launch of 2026, this raises real questions — especially for Xbox players who want to know exactly what they'll be missing out on.</p>
+    <p>It's official. <strong>GTA 6 has a PlayStation marketing deal with Sony</strong>, and Take-Two Interactive CEO Strauss Zelnick confirmed it in a Bloomberg interview this week. For millions of fans waiting on the biggest game launch of 2026, this raises real questions, especially for Xbox players who want to know exactly what they'll be missing out on.</p>
 
-    <p>Grand Theft Auto VI is set to launch on <strong>November 19, 2026</strong> on PlayStation 5 and Xbox Series X|S. The game will not launch on PC at release, with a PC version expected to follow at a later date — consistent with Rockstar's past release strategy for GTA V and Red Dead Redemption 2.</p>
-
-
+    <p>Grand Theft Auto VI is set to launch on <strong>November 19, 2026</strong> on PlayStation 5 and Xbox Series X|S. The game will not launch on PC at release, with a PC version expected to follow at a later date, consistent with Rockstar's past release strategy for GTA V and Red Dead Redemption 2.</p>
 
     <div class="info-grid">
       <div class="info-item"><span class="info-label">📅 Release Date</span><br>November 19, 2026</div>
@@ -196,8 +128,6 @@
 
     <h2>What the Marketing Deal Actually Means</h2>
     <p>A marketing partnership between a publisher and a platform holder is common in the industry. It means Sony has paid Rockstar and Take-Two to feature the PlayStation brand prominently in all GTA 6 trailers, ads, and promotional materials. You will see "Play it first on PlayStation 5" or similar branding attached to every major GTA 6 advertisement going forward.</p>
-
-
 
     <p>Zelnick was clear, however, that <strong>this deal does NOT affect the game's release strategy</strong>. GTA 6 is still launching on Xbox Series X|S on the same day as PS5. There is no timed exclusivity, no delayed Xbox launch, and no console-exclusive story content confirmed at this point.</p>
 
@@ -215,13 +145,9 @@
     </div>
 
     <h2>Will Xbox Players Miss Out on Content?</h2>
-    <p>This is the big question, and the honest answer right now is: <strong>possibly, but not confirmed</strong>. Sony's marketing deal gives them leverage to negotiate timed exclusive bonuses, cosmetic packs, or early access to certain GTA Online content. This is a standard part of these deals in the modern gaming industry — similar to what happened with Call of Duty on PlayStation before Microsoft's Activision acquisition.</p>
-
-
+    <p>This is the big question, and the honest answer right now is: <strong>possibly, but not confirmed</strong>. Sony's marketing deal gives them leverage to negotiate timed exclusive bonuses, cosmetic packs, or early access to certain GTA Online content. This is a standard part of these deals in the modern gaming industry, similar to what happened with Call of Duty on PlayStation before Microsoft's Activision acquisition.</p>
 
     <p>Industry journalist Jason Schreier described the situation plainly: GTA 6 will feel like "almost a PlayStation exclusive" in terms of cultural positioning, because the overwhelming majority of GTA's fanbase lives on PlayStation. Analysts estimate Sony's platform will account for well over 60–70% of day-one sales.</p>
-
-
 
     <div class="feature-block">
       <div class="feature-header"><h3>📊 Xbox vs PlayStation: GTA 6 Sales Outlook</h3></div>
@@ -230,7 +156,7 @@
           <div class="update-item"><span class="update-version">Day-One Sales</span><span class="update-desc">Analysts predict 25 million+ copies on launch day across both platforms combined</span></div>
           <div class="update-item"><span class="update-version">PS5 Share</span><span class="update-desc">Estimated 65–70% of console sales based on GTA franchise historical data</span></div>
           <div class="update-item"><span class="update-version">Xbox Share</span><span class="update-desc">Estimated 30–35%, still potentially 7–9 million copies on day one</span></div>
-          <div class="update-item"><span class="update-version">PC Launch</span><span class="update-desc">Delayed — Rockstar traditionally waits 12–18 months after console launch</span></div>
+          <div class="update-item"><span class="update-version">PC Launch</span><span class="update-desc">Delayed. Rockstar traditionally waits 12–18 months after console launch</span></div>
         </div>
       </div>
     </div>
@@ -240,11 +166,9 @@
 
     <p>As of now, the date stands. Competing publishers have already adjusted their own release calendars to avoid launching near GTA 6, treating it like a cultural event that will dominate the industry for weeks. Some analysts have called it <strong>the most anticipated entertainment release in history</strong>, not just gaming.</p>
 
-
-
     <div class="quote-box">
       <i class="fas fa-microphone-alt" style="margin-right:0.5rem"></i>
-      <strong>Bottom Line:</strong> GTA 6 is confirmed for both PS5 and Xbox Series X|S on November 19, 2026. The PlayStation marketing deal means Sony branding will be everywhere, and PlayStation players may receive some exclusive bonuses — but Xbox players are NOT being locked out of the game itself. Mark your calendars.
+      <strong>Bottom Line:</strong> GTA 6 is confirmed for both PS5 and Xbox Series X|S on November 19, 2026. The PlayStation marketing deal means Sony branding will be everywhere, and PlayStation players may receive some exclusive bonuses, but Xbox players are NOT being locked out of the game itself. Mark your calendars.
     </div>
 
     <div class="tag-list">
@@ -297,7 +221,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">OLITECH<span style="color:#e85d04">GAMES</span></div>
+        <div class="footer-logo">OLITECH<span style="color:var(--red)">GAMES</span></div>
         <p class="footer-about-text">Your trusted source for honest game reviews, breaking news, and industry updates.</p>
         <div class="social-links">
           <a href="https://www.facebook.com/profile.php?id=61550752782084" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -324,22 +248,10 @@
         </ul>
       </div>
     </div>
-    <div class="copyright"><p>© 2026 OlitechGames — All trademarks belong to their respective owners. Grand Theft Auto is a trademark of Take-Two Interactive Software, Inc.</p></div>
+    <div class="copyright"><p>© 2026 OlitechGames. All trademarks belong to their respective owners. Grand Theft Auto is a trademark of Take-Two Interactive Software, Inc.</p></div>
   </div>
 </footer>
 
-<script>
-(function(){
-  const hamburger=document.getElementById('hamburgerBtn');
-  const overlay=document.getElementById('mobileMenuOverlay');
-  const closeBtn=document.getElementById('closeMenuBtn');
-  function openMenu(){overlay.classList.add('active');document.body.style.overflow='hidden'}
-  function closeMenu(){overlay.classList.remove('active');document.body.style.overflow=''}
-  if(hamburger)hamburger.addEventListener('click',openMenu);
-  if(closeBtn)closeBtn.addEventListener('click',closeMenu);
-  overlay.addEventListener('click',(e)=>{if(e.target===overlay)closeMenu()});
-  document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&overlay.classList.contains('active'))closeMenu()});
-})();
-</script>
+  <script src="assets/olitech.js" defer></script>
 </body>
 </html>

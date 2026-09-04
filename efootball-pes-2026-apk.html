@@ -39,7 +39,6 @@
   }
   </script>
 
-
   
      
     <!-- Google tag (gtag.js) -->
@@ -54,288 +53,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/olitech.css">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg-body: #f8fafc;
-      --bg-card: #ffffff;
-      --surface-light: #f1f5f9;
-      --primary: #e85d04;
-      --primary-dark: #dc2f02;
-      --primary-soft: #ffedd5;
-      --text-dark: #0f172a;
-      --text-muted: #334155;
-      --border-light: #e2e8f0;
-      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-      --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
-      --radius-card: 28px;
-      --font-sans: 'Inter', sans-serif;
-      --font-heading: 'Orbitron', monospace;
-    }
-
-    body { background-color: var(--bg-body); color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
-    .article-container { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
-
-    .site-header {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 1rem 0;
-    }
-    .header-wrapper { display: flex; align-items: center; justify-content: space-between; }
-    .logo a {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .logo span { color: #e85d04; background: none; }
-    .main-nav ul { display: flex; gap: 2rem; list-style: none; }
-    .main-nav a { font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
-    .main-nav a:hover, .main-nav a.active { color: var(--primary); }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      width: 44px;
-      height: 44px;
-      cursor: pointer;
-      position: relative;
-      z-index: 1001;
-    }
-    .hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--text-dark);
-      position: absolute;
-      left: 9px;
-      transition: all 0.25s ease;
-    }
-    .hamburger span:nth-child(1) { top: 14px; }
-    .hamburger span:nth-child(2) { top: 21px; }
-    .hamburger span:nth-child(3) { top: 28px; }
-
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s;
-    }
-    .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
-    .mobile-menu-panel {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 280px;
-      height: 100%;
-      background: white;
-      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
-      padding: 2rem 1.8rem;
-      transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      z-index: 2001;
-    }
-    .mobile-menu-overlay.active .mobile-menu-panel { right: 0; }
-    .mobile-menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border-light);
-    }
-    .close-menu-btn { background: none; border: none; font-size: 2rem; cursor: pointer; color: #475569; }
-    .close-menu-btn:hover { color: var(--primary); }
-    .mobile-nav-list { list-style: none; }
-    .mobile-nav-list li { margin-bottom: 1.2rem; }
-    .mobile-nav-list a { font-size: 1.2rem; font-weight: 500; color: var(--text-dark); display: block; }
-    .mobile-nav-list a:hover { color: var(--primary); }
-
-    .game-hero { margin: 2rem 0 1rem; }
-    .game-badge {
-      display: inline-block;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .game-hero h1 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      line-height: 1.2;
-      margin: 1rem 0 0.5rem;
-    }
-    @media (min-width: 600px) { .game-hero h1 { font-size: 2.3rem; } }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .featured-image {
-      border-radius: 28px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow-md);
-    }
-    .featured-image img { width: 100%; height: auto; display: block; }
-
-    .article-content { font-size: 1.05rem; }
-    .article-content h2 {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      margin: 2.5rem 0 1rem;
-      border-left: 4px solid var(--primary);
-      padding-left: 1rem;
-    }
-    .article-content p { margin-bottom: 1.5rem; }
-    .article-content strong { color: var(--primary-dark); }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 1rem;
-      background: var(--surface-light);
-      border-radius: 28px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-
-    .download-module {
-      background: var(--bg-card);
-      border-radius: var(--radius-card);
-      border: 1px solid var(--border-light);
-      padding: 2rem;
-      margin: 3rem 0;
-      text-align: center;
-    }
-    .trigger-download-btn {
-      background: linear-gradient(105deg, var(--primary), var(--primary-dark));
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 60px;
-      cursor: pointer;
-    }
-    .countdown-stage {
-      background: #fef9e8;
-      border-radius: 32px;
-      padding: 1.5rem;
-      margin-top: 1rem;
-    }
-    .status-message { font-weight: 600; margin-bottom: 1rem; }
-    .timer-digits { font-size: 2.2rem; font-family: monospace; font-weight: 800; color: var(--primary-dark); }
-    .final-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-    .final-btn {
-      background: var(--primary);
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-    }
-
-    .related-section { margin: 4rem 0; }
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .related-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-      transition: 0.2s;
-    }
-    .related-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .related-card img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; display: block; }
-    .related-card h4 { padding: 0.8rem 1rem 0.2rem; font-size: 0.9rem; }
-    .related-card .meta { padding: 0 1rem 1rem; color: var(--primary); font-size: 0.75rem; }
-
-    .site-footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border-light);
-      margin-top: 4rem;
-      padding: 3rem 0 2rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer-logo {
-      font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-    .footer-about-text { color: var(--text-muted); margin: 0.5rem 0 1rem; font-size: 0.9rem; }
-    .social-links { display: flex; gap: 1rem; }
-    .social-links a { color: var(--text-muted); font-size: 1.3rem; transition: color 0.2s; }
-    .social-links a:hover { color: var(--primary); }
-    .footer-links h4 { font-size: 1.1rem; margin-bottom: 1rem; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 0.5rem; }
-    .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
-    .footer-links a:hover { color: var(--primary); }
-    .copyright { text-align: center; border-top: 1px solid var(--border-light); padding-top: 2rem; font-size: 0.8rem; color: var(--text-muted); }
-
-    @media (max-width: 700px) {
-      .main-nav { display: none; }
-      .hamburger { display: block; }
-    }
-    .personal-note {
-      background: linear-gradient(135deg, #fff5eb, #ffe8d9);
-      border-radius: 24px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      border-left: 4px solid var(--primary);
-    }
-    ul, .article-content ul { margin: 1rem 0 1.5rem 1.8rem; }
-    .article-content li { margin: 0.4rem 0; }
-    button { background: none; border: none; }
-  </style>
-  
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
      crossorigin="anonymous"></script>  
 </head>
 <body>
-
 
 <header class="site-header">
   <div class="container header-wrapper">
@@ -376,11 +101,23 @@
   <div class="game-hero">
     <div class="game-badge"><i class="fas fa-futbol"></i> Sports • Simulation • Official Konami</div>
     <h1>eFootball PES 2026 APK + OBB v10.4.0 Download for Android (Official Update)</h1>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
+     crossorigin="anonymous"></script>
+<!-- OLITECH -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1091464318795402"
+     data-ad-slot="4213656254"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     
     
     <div class="article-meta">
       <span><i class="fas fa-calendar-alt"></i> Updated: April 2026</span>
-      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:#e85d04;">Oli Sa</a></span>
+      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:var(--red);">Oli Sa</a></span>
     </div>
   </div>
   <div class="featured-image">
@@ -390,10 +127,10 @@
   <div class="article-content">
     <div class="personal-note">
       <i class="fas fa-comment-dots" style="color: var(--primary); font-size: 1.3rem; margin-right: 0.5rem;"></i> 
-      <strong>Let's be real — eFootball has come a long way since its rocky launch.</strong> The 2026 season update (v10.4.0) is the most polished version yet. Konami has been quietly refining the gameplay, adding licenses, and improving the overall experience. If you're tired of EA's Ultimate Team grind and want something that focuses more on pure football simulation, this is worth your time. I've been playing the latest update, and here's everything you need to know.
+      <strong>Let's be real, eFootball has come a long way since its rocky launch.</strong> The 2026 season update (v10.4.0) is the most polished version yet. Konami has been quietly refining the gameplay, adding licenses, and improving the overall experience. If you're tired of EA's Ultimate Team grind and want something that focuses more on pure football simulation, this is worth your time. I've been playing the latest update, and here's everything you need to know.
     </div>
 
-    <p>eFootball PES 2026 is Konami's free-to-play football simulation platform. Unlike traditional yearly releases, eFootball is a live service game that gets constant updates. The 10.4.0 update, released in April 2026, continues this trend with new licensed content, gameplay tweaks, and bug fixes. The game is built on their proprietary engine and features console-quality graphics, realistic player animations, and deep tactical options. It's completely free to download — you only pay for optional in-game content.</p>
+    <p>eFootball PES 2026 is Konami's free-to-play football simulation platform. Unlike traditional yearly releases, eFootball is a live service game that gets constant updates. The 10.4.0 update, released in April 2026, continues this trend with new licensed content, gameplay tweaks, and bug fixes. The game is built on their proprietary engine and features console-quality graphics, realistic player animations, and deep tactical options. It's completely free to download, you only pay for optional in-game content.</p>
     
     <div class="info-grid">
       <div><strong>⚽ Genre</strong><br>Football Simulation</div>
@@ -407,7 +144,6 @@
     <h2>What's New in Version 10.4.0</h2>
     <p>The April 2026 update brings several important changes:</p>
 
-
     <ul>
       <li><strong>New League Addition:</strong> The game now includes Malaysia's Liga Super with official data, expanding the licensed league roster.</li>
       <li><strong>License Updates:</strong> Several licenses have been updated to reflect the current season's partnerships.</li>
@@ -417,12 +153,10 @@
     </ul>
     <p>The game also requires approximately 2.9 GB of free storage space for installation.</p>
 
-    <h2>Dream Team Mode — Build Your Ultimate Squad</h2>
-    <p>The core mode of eFootball is Dream Team. You collect player cards, build your squad, and compete online against other players. What sets it apart from EA's Ultimate Team is the progression system — your players develop over time based on your coaching decisions. You can sign legendary players like classic icons and build hybrid teams across eras. The mode also features players from various leagues, including the newly added Liga Super Malaysia. The Dream Team (formerly MyClub) mode lets you sign managers, develop tactics, and compete in weekly events and challenges.</p>
+    <h2>Dream Team Mode: Build Your Ultimate Squad</h2>
+    <p>The core mode of eFootball is Dream Team. You collect player cards, build your squad, and compete online against other players. What sets it apart from EA's Ultimate Team is the progression system, your players develop over time based on your coaching decisions. You can sign legendary players like classic icons and build hybrid teams across eras. The mode also features players from various leagues, including the newly added Liga Super Malaysia. The Dream Team (formerly MyClub) mode lets you sign managers, develop tactics, and compete in weekly events and challenges.</p>
 
-
-
-    <h2>Gameplay — The Closest Thing to Real Football on Mobile</h2>
+    <h2>Gameplay: The Closest Thing to Real Football on Mobile</h2>
     <p>eFootball's gameplay is famously simulation-heavy. Passes have weight and inertia. Player positioning matters. Team chemistry and tactical familiarity affect performance. If you're used to arcade-style football games, there's a learning curve. But once it clicks, it's the most rewarding mobile football experience available. The 10.4.0 update continues refining the gameplay based on player feedback. Konami has been signing real-world managers as ambassadors, including José Mourinho and Rúben Amorim, who bring unique team playstyles to the game. The game also features match customization and Game Plan optimization.</p>
 
     
@@ -430,10 +164,9 @@
     <h2>Installation Guide</h2>
     <p>Here's exactly how to get eFootball PES 2026 running on your Android device:</p>
 
-
     <p><strong>Step 1:</strong> Download the APK and OBB files using the button below.<br>
     <strong>Step 2:</strong> Enable "Install from unknown sources" in Settings > Security.<br>
-    <strong>Step 3:</strong> Install the APK — do NOT open the game yet!<br>
+    <strong>Step 3:</strong> Install the APK, do NOT open the game yet!<br>
     <strong>Step 4:</strong> Extract the OBB folder using ZArchiver or any file manager.<br>
     <strong>Step 5:</strong> Copy the extracted OBB folder (named <code>jp.konami.pesam</code>) to <strong>Internal Storage/Android/obb/</strong>.<br>
     <strong>Step 6:</strong> Launch the game. It will verify the files and download additional data.<br>
@@ -445,7 +178,7 @@
       <strong>Pro Tips From the Pitch:</strong> 
       <br>• Play the training modes first. The controls have significant depth.
       <br>• Don't ignore team chemistry. Players perform better with high familiarity.
-      <br>• The game uses a stamina system — rotate your squad to avoid fatigue.
+      <br>• The game uses a stamina system, rotate your squad to avoid fatigue.
       <br>• Cross-platform play means you can face console players. Be prepared.
       <br>• Check the News section in-game for update details and event schedules.
     </div>
@@ -453,24 +186,25 @@
     <h2>Graphics and Performance</h2>
     <p>eFootball's graphics are among the best on mobile. Player models are detailed, stadiums are atmospheric, and lighting effects are impressive. The game requires Android 7.0 or higher and an arm64-v8a CPU architecture. The base APK is about 330 MB, but the full installation with OBB and data reaches around 2.9 GB. On flagship devices, the game runs at a smooth 60 FPS with high detail settings. On mid-range phones, you may need to lower the graphics quality for optimal performance.</p>
 
-
-
-    <h2>Licenses — More Licensed Content Each Update</h2>
-    <p>Konami has been steadily adding licenses to eFootball. The game now features the Malaysia Super League, along with existing licenses for major leagues and competitions. The game also has exclusive partnerships with clubs like Bayern Munich, Manchester United, AC Milan, and more. However, some leagues and teams are still unlicensed — you'll see "Man Red" instead of Manchester United, for example. The modding community has created patches to fix these names and add authentic kits, but the core game remains officially licensed for many top clubs.</p>
+    <h2>Licenses: More Licensed Content Each Update</h2>
+    <p>Konami has been steadily adding licenses to eFootball. The game now features the Malaysia Super League, along with existing licenses for major leagues and competitions. The game also has exclusive partnerships with clubs like Bayern Munich, Manchester United, AC Milan, and more. However, some leagues and teams are still unlicensed, you'll see "Man Red" instead of Manchester United, for example. The modding community has created patches to fix these names and add authentic kits, but the core game remains officially licensed for many top clubs.</p>
 
     <h2>Is eFootball Better Than EA FC Mobile?</h2>
-    <p>This is a personal preference question. EA FC Mobile is more accessible, faster-paced, and has better marketing. eFootball is more simulation-focused, slower, and rewards tactical thinking. If you want quick matches and flashy skill moves, play EA FC. If you want realistic football where build-up play matters and every pass counts, eFootball is the better choice. The mobile version has improved significantly since launch and is now a legitimate alternative. The best part? It's completely free to play — no upfront cost, no hidden paywalls for the core experience. You can enjoy full matches, Dream Team building, and online competition without spending a cent. If you value realism and tactical depth, give eFootball a shot. It's only getting better.</p>
-
+    <p>This is a personal preference question. EA FC Mobile is more accessible, faster-paced, and has better marketing. eFootball is more simulation-focused, slower, and rewards tactical thinking. If you want quick matches and flashy skill moves, play EA FC. If you want realistic football where build-up play matters and every pass counts, eFootball is the better choice. The mobile version has improved significantly since launch and is now a legitimate alternative. The best part? It's completely free to play, no upfront cost, no hidden paywalls for the core experience. You can enjoy full matches, Dream Team building, and online competition without spending a cent. If you value realism and tactical depth, give eFootball a shot. It's only getting better.</p>
 
   
   
 <!-- DOWNLOAD MODULE -->
-    <div class="download-module" id="downloadModule">
+    <div class="download-module" id="downloadModule" data-game="eFootball PES 2026" data-packaging="10" data-ready="10" data-countdown="10">
       <i class="fas fa-download" style="font-size: 2.2rem; color: var(--primary); margin-bottom: 1rem;"></i>
       <h3>Download eFootball PES 2026 v10.4.0 APK + OBB</h3>
-      <p style="color: var(--text-muted);">Get the official latest update — fully tested and verified.</p>
+      <p style="color: var(--text-muted);">Get the official latest update, fully tested and verified.</p>
       <button id="startDownloadTrigger" class="trigger-download-btn"><i class="fas fa-lock"></i> GENERATE DOWNLOAD LINK</button>
-      <div id="countdownArea" style="display: none; margin-top: 1.5rem;"></div>
+      <div id="countdownArea" hidden></div>
+      <div class="download-ready" hidden>
+        <div class="final-buttons"><a href="https://www.mediafire.com/file/uyyk6dx4f7d0crh/eFootball-Mobile-2026_10.4.1-RisTechy.com.apk/file" class="final-btn" target="_blank"><i class="fab fa-android"></i> Download eFootball PES 2026 (330 MB)</a></div>
+        <div class="security-badge"><i class="fas fa-shield-alt"></i> Dream Team • Realistic Gameplay • v10.4.0 • Official Konami Update</div>
+      </div>
     </div>
   </div>
 
@@ -494,122 +228,6 @@
 </aside>
 </main>
 
-<style>
-  /* Floating CTA styles */
-:root{
-  --cta-bg: #3b82f6;      /* main pill color (blue) */
-  --cta-accent: #10b981;  /* small accent / glow (green) */
-  --cta-size: 64px;       /* height (and width for circle) */
-  --cta-radius: 34px;     /* pill corner radius */
-  --cta-shadow: 0 8px 20px rgba(16,24,40,0.35);
-  --cta-text: #ffffff;
-}
-
-/* Base reset for anchor button */
-.floating-cta{
-  position: fixed;
-  right: 20px;               /* distance from right edge */
-  bottom: 100px;              /* distance from bottom edge */
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: var(--cta-text);
-  background: linear-gradient(180deg, var(--cta-bg), color-mix(in srgb, var(--cta-bg) 80%, black 10%));
-  height: var(--cta-size);
-  min-width: calc(var(--cta-size) * 1.25); /* pill wider than tall */
-  padding: 0 14px;
-  border-radius: var(--cta-radius);
-  box-shadow: var(--cta-shadow);
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  -webkit-tap-highlight-color: transparent;
-  backdrop-filter: blur(4px);
-  align-self: end;
-  will-change: transform;
-}
-
-/* inner shape keeps icon centered and circular */
-.floating-cta .cta-shape{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(var(--cta-size) - 18px);
-  width: calc(var(--cta-size) - 18px);
-  background: rgba(255,255,255,0.06);
-  border-radius: 999px;
-}
-
-/* SVG icon sizing */
-.floating-cta svg{
-  width: 22px;
-  height: 22px;
-  display: block;
-  color: var(--cta-text);
-}
-
-/* Hover / active / focus effects */
-.floating-cta:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(16,24,40,0.45);
-  filter: saturate(1.05);
-}
-.floating-cta:active{
-  transform: translateY(-2px) scale(.995);
-}
-.floating-cta:focus{
-  outline: none;
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta-accent) 18%, transparent);
-}
-
-/* small pulsing accent behind the button */
-.floating-cta::after{
-  content: "";
-  position: absolute;
-  inset: auto;
-  right: 12px;
-  bottom: 12px;
-  width: calc(var(--cta-size) * 0.9);
-  height: calc(var(--cta-size) * 0.9);
-  border-radius: 999px;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--cta-accent) 60%, transparent) 0%, transparent 40%);
-  opacity: 0.25;
-  filter: blur(6px);
-  pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-  transform: scale(.9);
-}
-
-/* optional "allowed" state (green accent) */
-.floating-cta.allowed{
-  --cta-bg: #06b75a;
-}
-.floating-cta.allowed::after{
-  opacity: .45;
-  transform: scale(1.05);
-}
-
-/* Responsive tweak on very small screens */
-@media (max-width:420px){
-  :root{ --cta-size: 54px; --cta-radius: 28px; }
-  .floating-cta{ right: 12px; bottom: 12px; min-width: calc(var(--cta-size) * 1.1); padding: 0 10px; }
-  .floating-cta::after{ right: 8px; bottom: 8px; }
-
-  .floating-cta{
-              /* distance from right edge */
-  bottom: 100px; 
-  }  
-}
-
-/* If you want the pill narrower (icon only), add this helper class:
-   <a class="floating-cta icon-only"> ... </a> */
-.floating-cta.icon-only{
-  padding: 0;
-  width: var(--cta-size);
-  min-width: var(--cta-size);
-  border-radius: 999px;
-}
-</style>
 <a href="https://smallbruisedfollowing.com/v6xx22uh?key=8c55c793cd96fdec6fb66acba2b00205"
    target="_blank"
    class="floating-cta"
@@ -628,7 +246,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">OLITECH<span style="color:#e85d04;">GAMES</span></div>
+        <div class="footer-logo">OLITECH<span style="color:var(--red);">GAMES</span></div>
         <p class="footer-about-text">Honest game reviews, APK downloads, and football simulation content. No fluff, just games worth playing.</p>
         <div class="social-links">
           <a href="https://www.facebook.com/profile.php?id=61550752782084" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -663,51 +281,12 @@
       </div> -->
     </div>
     <div class="copyright">
-      <p>© 2026 OlitechGames — eFootball™ is a trademark of KONAMI Digital Entertainment.</p>
+      <p>© 2026 OlitechGames. eFootball™ is a trademark of KONAMI Digital Entertainment.</p>
     </div>
   </div>
 </footer>
 
-<script>
-  // Mobile Menu
-  (function() {
-    const hamburger = document.getElementById('hamburgerBtn');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const closeBtn = document.getElementById('closeMenuBtn');
-    function openMenu() { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeMenu() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
-    if (hamburger) hamburger.addEventListener('click', openMenu);
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeMenu(); });
-  })();
-
-  // Countdown Download Logic
-  const startBtn = document.getElementById('startDownloadTrigger');
-  const countdownArea = document.getElementById('countdownArea');
-  let activeTimeout = null;
-
-  function startSequence() {
-    if (startBtn) startBtn.disabled = true;
-    countdownArea.style.display = 'block';
-    function updateUI(message, progressText = null) {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-cog fa-spin"></i> ${message}</div>${progressText ? `<div class="timer-digits">${progressText}</div>` : ''}</div>`;
-    }
-    function packaging() { updateUI('📦 Packaging eFootball PES 2026 files... (secure server)'); activeTimeout = setTimeout(ready, 10000); }
-    function ready() { updateUI('✅ Files are ready — preparing secure download gateway'); activeTimeout = setTimeout(countdown, 10000); }
-    function countdown() { let counter = 10; function tick() { updateUI(`⏳ Your download link will appear in:`, `${counter} seconds`); if (counter === 0) { showFinalLinks(); } else { counter--; activeTimeout = setTimeout(tick, 1000); } } tick(); }
-    function showFinalLinks() {
-      countdownArea.innerHTML = `<div class="countdown-stage"><div class="status-message"><i class="fas fa-check-circle" style="color:#10b981;"></i> Download ready — fully tested</div>
-      <div class="final-buttons">
-        <a href="https://www.mediafire.com/file/uyyk6dx4f7d0crh/eFootball-Mobile-2026_10.4.1-RisTechy.com.apk/file" class="final-btn" target="_blank"><i class="fab fa-android"></i> Download eFootball PES 2026 (330 MB)</a>
-      </div>
-      <div class="security-badge" style="margin-top:1rem;"><i class="fas fa-shield-alt"></i> Dream Team • Realistic Gameplay • v10.4.0 • Official Konami Update</div></div>`;
-      if (startBtn) startBtn.disabled = false;
-    }
-    packaging();
-  }
-  if (startBtn) startBtn.addEventListener('click', startSequence);
-</script>
 <script src="https://smallbruisedfollowing.com/8e/35/ca/8e35ca976372a6a79a33e6fe462c1550.js"></script>
+  <script src="assets/olitech.js" defer></script>
 </body>
 </html>
