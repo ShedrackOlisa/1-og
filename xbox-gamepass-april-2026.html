@@ -54,311 +54,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/olitech.css">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --bg-body: #f8fafc;
-      --bg-card: #ffffff;
-      --surface-light: #f1f5f9;
-      --primary: #e85d04;
-      --primary-dark: #dc2f02;
-      --primary-soft: #ffedd5;
-      --text-dark: #0f172a;
-      --text-muted: #334155;
-      --border-light: #e2e8f0;
-      --shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.05);
-      --shadow-md: 0 20px 25px -12px rgba(0,0,0,0.08);
-      --radius-card: 28px;
-      --font-sans: 'Inter', sans-serif;
-      --font-heading: 'Orbitron', monospace;
-    }
-
-    body { background-color: var(--bg-body); color: var(--text-dark); font-family: var(--font-sans); line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
-    .article-container { max-width: 880px; margin: 0 auto; padding: 0 1.5rem; }
-
-    .site-header {
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 1rem 0;
-    }
-    .header-wrapper { display: flex; align-items: center; justify-content: space-between; }
-    .logo a {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .logo span { color: #e85d04; background: none; }
-    .main-nav ul { display: flex; gap: 2rem; list-style: none; }
-    .main-nav a { font-weight: 500; color: var(--text-muted); transition: color 0.2s; }
-    .main-nav a:hover, .main-nav a.active { color: var(--primary); }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      width: 44px;
-      height: 44px;
-      cursor: pointer;
-      position: relative;
-      z-index: 1001;
-    }
-    .hamburger span {
-      display: block;
-      width: 26px;
-      height: 2px;
-      background: var(--text-dark);
-      position: absolute;
-      left: 9px;
-      transition: all 0.25s ease;
-    }
-    .hamburger span:nth-child(1) { top: 14px; }
-    .hamburger span:nth-child(2) { top: 21px; }
-    .hamburger span:nth-child(3) { top: 28px; }
-
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s;
-    }
-    .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
-    .mobile-menu-panel {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 280px;
-      height: 100%;
-      background: white;
-      box-shadow: -5px 0 30px rgba(0,0,0,0.15);
-      padding: 2rem 1.8rem;
-      transition: right 0.3s cubic-bezier(0.2,0.9,0.4,1.1);
-      z-index: 2001;
-    }
-    .mobile-menu-overlay.active .mobile-menu-panel { right: 0; }
-    .mobile-menu-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border-light);
-    }
-    .close-menu-btn { background: none; border: none; font-size: 2rem; cursor: pointer; color: #475569; }
-    .close-menu-btn:hover { color: var(--primary); }
-    .mobile-nav-list { list-style: none; }
-    .mobile-nav-list li { margin-bottom: 1.2rem; }
-    .mobile-nav-list a { font-size: 1.2rem; font-weight: 500; color: var(--text-dark); display: block; }
-    .mobile-nav-list a:hover { color: var(--primary); }
-
-    .news-hero { margin: 2rem 0 1rem; }
-    .news-badge {
-      display: inline-block;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .news-hero h1 {
-      font-family: var(--font-heading);
-      font-size: 2rem;
-      line-height: 1.2;
-      margin: 1rem 0 0.5rem;
-    }
-    @media (min-width: 600px) { .news-hero h1 { font-size: 2.5rem; } }
-    .article-meta {
-      display: flex;
-      gap: 1.5rem;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border-light);
-      padding-bottom: 1rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .featured-image {
-      border-radius: 28px;
-      overflow: hidden;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow-md);
-    }
-    .featured-image img { width: 100%; height: auto; display: block; }
-
-    .article-content { font-size: 1.05rem; }
-    .article-content h2 {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      margin: 2rem 0 1rem;
-      border-left: 4px solid var(--primary);
-      padding-left: 1rem;
-    }
-    .article-content h3 {
-      font-size: 1.3rem;
-      margin: 1.5rem 0 0.5rem;
-      color: var(--primary-dark);
-    }
-    .article-content p { margin-bottom: 1.2rem; line-height: 1.7; }
-    .article-content strong { color: var(--primary-dark); }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-      background: var(--surface-light);
-      border-radius: 28px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-    .info-item { text-align: center; }
-    .info-label { font-weight: 600; color: var(--primary); }
-
-    .game-table {
-      overflow-x: auto;
-      margin: 2rem 0;
-    }
-    .game-table table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--bg-card);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-    .game-table th, .game-table td {
-      padding: 0.8rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border-light);
-    }
-    .game-table th { background: var(--surface-light); font-weight: 600; color: var(--primary); }
-    .game-table tr:hover { background: var(--surface-light); }
-
-    .tag-dayone {
-      background: #2e7d32;
-      color: white;
-      padding: 0.2rem 0.5rem;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      display: inline-block;
-    }
-    .tag-premium {
-      background: #e85d04;
-      color: white;
-      padding: 0.2rem 0.5rem;
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      display: inline-block;
-    }
-
-    .departure-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 0.8rem;
-      margin: 1rem 0;
-    }
-    .departure-item {
-      background: var(--surface-light);
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-    }
-
-    .quote-box {
-      background: #1e293b;
-      color: #e2e8f0;
-      border-radius: 24px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      border-left: 4px solid var(--primary);
-      font-style: italic;
-    }
-
-    .related-section { margin: 4rem 0; }
-    .related-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .related-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-      transition: 0.2s;
-    }
-    .related-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-    .related-card img { width: 100%; height: 140px; object-fit: cover; display: block; }
-    .related-card-content { padding: 1rem; }
-    .related-card h4 { font-size: 1rem; margin-bottom: 0.3rem; }
-    .related-card .meta { color: var(--primary); font-size: 0.75rem; }
-
-    .site-footer {
-      background: #ffffff;
-      border-top: 1px solid var(--border-light);
-      margin-top: 4rem;
-      padding: 3rem 0 2rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer-logo {
-      font-family: var(--font-heading);
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #e85d04, #b91c1c);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      display: inline-block;
-    }
-    .footer-about-text { color: var(--text-muted); margin: 0.5rem 0 1rem; font-size: 0.9rem; }
-    .social-links { display: flex; gap: 1rem; }
-    .social-links a { color: var(--text-muted); font-size: 1.3rem; transition: color 0.2s; }
-    .social-links a:hover { color: var(--primary); }
-    .footer-links h4 { font-size: 1.1rem; margin-bottom: 1rem; }
-    .footer-links ul { list-style: none; }
-    .footer-links li { margin-bottom: 0.5rem; }
-    .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
-    .footer-links a:hover { color: var(--primary); }
-    .copyright { text-align: center; border-top: 1px solid var(--border-light); padding-top: 2rem; font-size: 0.8rem; color: var(--text-muted); }
-
-    @media (max-width: 700px) {
-      .main-nav { display: none; }
-      .hamburger { display: block; }
-    }
-  </style>
-  
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
      crossorigin="anonymous"></script>  
 </head>
 <body>
-
 
 <header class="site-header">
   <div class="container header-wrapper">
@@ -399,11 +102,23 @@
   <div class="news-hero">
     <div class="news-badge"><i class="fas fa-gamepad"></i> Game Pass Update</div>
     <h1>Xbox Game Pass April 2026 Games List: Full Lineup & Surprise Additions</h1>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
+     crossorigin="anonymous"></script>
+<!-- OLITECH -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1091464318795402"
+     data-ad-slot="4213656254"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     
     
     <div class="article-meta">
       <span><i class="fas fa-calendar-alt"></i> Published: April 29, 2026</span>
-      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:#e85d04;">Oli Sa</a></span>
+      <span><i class="fas fa-user"></i> by <a href="https://olitechgames.com/author/oli-sa" style="color:var(--red);">Oli Sa</a></span>
       <span><i class="fas fa-clock"></i> 12 min read</span>
     </div>
   </div>
@@ -414,10 +129,9 @@
   <div class="article-content">
     <div class="quote-box">
       <i class="fas fa-quote-left" style="color: var(--primary); margin-right: 0.5rem;"></i> 
-      "April is turning out to be a strong month for Xbox Game Pass users." — Notebookcheck
-    </div>
+      "April is turning out to be a strong month for Xbox Game Pass users." (Notebookcheck)</div>
 
-    <p>Microsoft has loaded Xbox Game Pass with one of its busiest months of the year. April 2026 brings a massive wave of new titles, including long-awaited sequels, major remasters, sports updates, and a surprising number of smaller indie releases. With over 40 games added throughout the month—including day-one launches like <strong>Hades II</strong>, <strong>Replaced</strong>, and <strong>Trepang2</strong>—this might be the most stacked Game Pass update since the service began.</p>
+    <p>Microsoft has loaded Xbox Game Pass with one of its busiest months of the year. April 2026 brings a massive wave of new titles, including long-awaited sequels, major remasters, sports updates, and a surprising number of smaller indie releases. With over 40 games added throughout the month, including day-one launches like <strong>Hades II</strong>, <strong>Replaced</strong>, and <strong>Trepang2</strong> this might be the most stacked Game Pass update since the service began.</p>
 
     <div class="info-grid">
       <div class="info-item"><span class="info-label">📅 Month</span><br>April 2026</div>
@@ -428,8 +142,6 @@
 
     <h2>Full April 2026 Game Pass Lineup</h2>
     <p>Microsoft's April rollout is split into two waves. The first wave (April 1-15) focused on headliners like <strong>Hades II</strong> and <strong>Oblivion Remastered</strong>, while the second wave (April 16-30) brings the rest of the heavy hitters . Here's the complete schedule of everything arriving this month :</p>
-
-
 
     <div class="game-table">
       <table>
@@ -466,35 +178,32 @@
 
     <div class="quote-box">
       <i class="fas fa-calendar-alt" style="margin-right: 0.5rem;"></i> 
-      <strong>Coming in Early May:</strong> <strong>Final Fantasy V</strong> arrives May 5 across cloud, Xbox Series X|S, and PC — the beloved RPG classic joins Game Pass with its timeless job system and strategic combat .
+      <strong>Coming in Early May:</strong> <strong>Final Fantasy V</strong> arrives May 5 across cloud, Xbox Series X|S, and PC, the beloved RPG classic joins Game Pass with its timeless job system and strategic combat .
     </div>
 
     <h2>Headliners You Don't Want to Miss</h2>
     
-    <h3>Hades II — April 14 (Day One)</h3>
+    <h3>Hades II: April 14 (Day One)</h3>
     <p>The long-awaited sequel to Supergiant Games' award-winning roguelike finally makes its console debut, launching directly into Game Pass on day one. Building on the original's formula with new gods, weapons, and a larger map, Hades II is arguably the biggest title of the month. The game follows Melinoë, the immortal Princess of the Underworld, as she battles the Titan of Time .</p>
 
-    <h3>The Elder Scrolls IV: Oblivion Remastered — April 16</h3>
+    <h3>The Elder Scrolls IV: Oblivion Remastered, April 16</h3>
     <p>Bethesda's 2006 classic returns with modernized visuals, updated gameplay systems, and all its expansions. The remaster brings quality-of-life improvements to the beloved RPG, while maintaining the charm of the original. If you've never explored Cyrodiil, this is the perfect time to start .</p>
 
-
-
-    <h3>Trepang2 — April 29</h3>
+    <h3>Trepang2: April 29</h3>
     <p>This high-intensity FPS is being compared to classic FEAR for its slow-motion mechanics, brutal combat, and fast movement. It's a gory, action-packed shooter set in the near future that rewards aggressive play .</p>
 
-    <h3>Call of Duty: Modern Warfare (2019) — April 17</h3>
+    <h3>Call of Duty: Modern Warfare (2019), April 17</h3>
     <p>The 2019 reboot of Modern Warfare joins Game Pass with its full campaign, multiplayer, and co-op Special Ops modes. It's the game that revitalized Call of Duty's campaign storytelling and introduced the Gunsmith system .</p>
 
     <h2>Day-One Surprises & Indie Highlights</h2>
     <p>Beyond the headliners, April brings a strong selection of day-one indie titles :</p>
 
-
     <ul style="padding-left: 1.5rem; margin-bottom: 1rem;">
-      <li><strong>Replaced (April 14)</strong> — A 2.5D cyberpunk platformer with pixel-art visuals and a deep narrative.</li>
-      <li><strong>Vampire Crawlers (April 21)</strong> — A fast-paced rogue-lite card game inspired by Vampire Survivors.</li>
-      <li><strong>Kiln (April 23)</strong> — A weird and wonderful multiplayer brawler where you craft pottery and smash opponents with it.</li>
-      <li><strong>Little Rocket Lab (April 21)</strong> — A cozy machine-building RPG about helping a community build a rocket.</li>
-      <li><strong>Sopa: Tale of the Stolen Potato (April 21)</strong> — A magical narrative adventure set in a South American-inspired world.</li>
+      <li><strong>Replaced (April 14)</strong> A 2.5D cyberpunk platformer with pixel-art visuals and a deep narrative.</li>
+      <li><strong>Vampire Crawlers (April 21)</strong> A fast-paced rogue-lite card game inspired by Vampire Survivors.</li>
+      <li><strong>Kiln (April 23)</strong> A weird and wonderful multiplayer brawler where you craft pottery and smash opponents with it.</li>
+      <li><strong>Little Rocket Lab (April 21)</strong> A cozy machine-building RPG about helping a community build a rocket.</li>
+      <li><strong>Sopa: Tale of the Stolen Potato (April 21)</strong> A magical narrative adventure set in a South American-inspired world.</li>
     </ul>
 
     <h2>Games Leaving Game Pass: April 30 & April 15 Deadlines</h2>
@@ -513,7 +222,7 @@
       <span class="departure-item">Revenge of the Savage Planet</span>
     </div>
 
-    <h3>Already Left — April 15, 2026</h3>
+    <h3>Already Left: April 15, 2026</h3>
     <div class="departure-list">
       <span class="departure-item">Grand Theft Auto V</span>
       <span class="departure-item">Ashen</span>
@@ -530,16 +239,14 @@
     <h2>Game Updates & Live Service Content</h2>
     <p>Two notable updates arrived in April as well :</p>
 
-
     <ul style="padding-left: 1.5rem; margin-bottom: 1rem;">
-      <li><strong>Dome Keeper — Multiplayer Update (April 13)</strong>: The popular mining roguelike now supports co-op.</li>
-      <li><strong>Call of Duty: Black Ops 7 — Season 03 (April)</strong>: New maps, modes, weapons, and the Avalon map rotation in Warzone.</li>
+      <li><strong>Dome Keeper, Multiplayer Update (April 13)</strong>: The popular mining roguelike now supports co-op.</li>
+      <li><strong>Call of Duty: Black Ops 7, Season 03 (April)</strong>: New maps, modes, weapons, and the Avalon map rotation in Warzone.</li>
     </ul>
 
     <h2>Final Verdict: April 2026 Might Be the Best Month Yet</h2>
     <p>Between the console debut of <strong>Hades II</strong>, the remaster of <strong>Oblivion</strong>, the brutal shooter <strong>Trepang2</strong>, and a slew of promising indie day-one launches, Xbox Game Pass has delivered arguably its strongest month of 2026. The variety is impressive: roguelikes, RPGs, strategy games, cozy sims, and intense shooters all have a place.</p>
     <p>If you haven't played <strong>Citizen Sleeper</strong> or <strong>Dragon Ball Xenoverse 2</strong> yet, you have until April 30 to finish them. And if you missed <strong>GTA V</strong> when it left on April 15... well, that one might sting a bit. Overall, this is a month that fully justifies the subscription cost .</p>
-
 
   </div>
 
@@ -586,122 +293,6 @@
   </aside>
 </main>
 
-<style>
-  /* Floating CTA styles */
-:root{
-  --cta-bg: #3b82f6;      /* main pill color (blue) */
-  --cta-accent: #10b981;  /* small accent / glow (green) */
-  --cta-size: 64px;       /* height (and width for circle) */
-  --cta-radius: 34px;     /* pill corner radius */
-  --cta-shadow: 0 8px 20px rgba(16,24,40,0.35);
-  --cta-text: #ffffff;
-}
-
-/* Base reset for anchor button */
-.floating-cta{
-  position: fixed;
-  right: 20px;               /* distance from right edge */
-  bottom: 100px;              /* distance from bottom edge */
-  z-index: 9999;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: var(--cta-text);
-  background: linear-gradient(180deg, var(--cta-bg), color-mix(in srgb, var(--cta-bg) 80%, black 10%));
-  height: var(--cta-size);
-  min-width: calc(var(--cta-size) * 1.25); /* pill wider than tall */
-  padding: 0 14px;
-  border-radius: var(--cta-radius);
-  box-shadow: var(--cta-shadow);
-  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  -webkit-tap-highlight-color: transparent;
-  backdrop-filter: blur(4px);
-  align-self: end;
-  will-change: transform;
-}
-
-/* inner shape keeps icon centered and circular */
-.floating-cta .cta-shape{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(var(--cta-size) - 18px);
-  width: calc(var(--cta-size) - 18px);
-  background: rgba(255,255,255,0.06);
-  border-radius: 999px;
-}
-
-/* SVG icon sizing */
-.floating-cta svg{
-  width: 22px;
-  height: 22px;
-  display: block;
-  color: var(--cta-text);
-}
-
-/* Hover / active / focus effects */
-.floating-cta:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(16,24,40,0.45);
-  filter: saturate(1.05);
-}
-.floating-cta:active{
-  transform: translateY(-2px) scale(.995);
-}
-.floating-cta:focus{
-  outline: none;
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--cta-accent) 18%, transparent);
-}
-
-/* small pulsing accent behind the button */
-.floating-cta::after{
-  content: "";
-  position: absolute;
-  inset: auto;
-  right: 12px;
-  bottom: 12px;
-  width: calc(var(--cta-size) * 0.9);
-  height: calc(var(--cta-size) * 0.9);
-  border-radius: 999px;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--cta-accent) 60%, transparent) 0%, transparent 40%);
-  opacity: 0.25;
-  filter: blur(6px);
-  pointer-events: none;
-  transition: opacity .25s ease, transform .25s ease;
-  transform: scale(.9);
-}
-
-/* optional "allowed" state (green accent) */
-.floating-cta.allowed{
-  --cta-bg: #06b75a;
-}
-.floating-cta.allowed::after{
-  opacity: .45;
-  transform: scale(1.05);
-}
-
-/* Responsive tweak on very small screens */
-@media (max-width:420px){
-  :root{ --cta-size: 54px; --cta-radius: 28px; }
-  .floating-cta{ right: 12px; bottom: 12px; min-width: calc(var(--cta-size) * 1.1); padding: 0 10px; }
-  .floating-cta::after{ right: 8px; bottom: 8px; }
-
-  .floating-cta{
-              /* distance from right edge */
-  bottom: 100px; 
-  }  
-}
-
-/* If you want the pill narrower (icon only), add this helper class:
-   <a class="floating-cta icon-only"> ... </a> */
-.floating-cta.icon-only{
-  padding: 0;
-  width: var(--cta-size);
-  min-width: var(--cta-size);
-  border-radius: 999px;
-}
-</style>
 <a href="https://smallbruisedfollowing.com/v6xx22uh?key=8c55c793cd96fdec6fb66acba2b00205"
    target="_blank"
    class="floating-cta"
@@ -720,7 +311,7 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-logo">OLITECH<span style="color:#e85d04;">GAMES</span></div>
+        <div class="footer-logo">OLITECH<span style="color:var(--red);">GAMES</span></div>
         <p class="footer-about-text">Your trusted source for honest game reviews, breaking news, and industry updates.</p>
         <div class="social-links">
           <a href="https://www.facebook.com/profile.php?id=61550752782084" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -755,25 +346,12 @@
       </div> -->
     </div>
     <div class="copyright">
-      <p>© 2026 OlitechGames — All trademarks belong to their respective owners. Xbox Game Pass is a trademark of Microsoft Corporation.</p>
+      <p>© 2026 OlitechGames. All trademarks belong to their respective owners. Xbox Game Pass is a trademark of Microsoft Corporation.</p>
     </div>
   </div>
 </footer>
 
-<script>
-  // Mobile Menu
-  (function() {
-    const hamburger = document.getElementById('hamburgerBtn');
-    const overlay = document.getElementById('mobileMenuOverlay');
-    const closeBtn = document.getElementById('closeMenuBtn');
-    function openMenu() { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    function closeMenu() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
-    if (hamburger) hamburger.addEventListener('click', openMenu);
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('active')) closeMenu(); });
-  })();
-</script>
 <script src="https://smallbruisedfollowing.com/8e/35/ca/8e35ca976372a6a79a33e6fe462c1550.js"></script>
+  <script src="assets/olitech.js" defer></script>
 </body>
 </html>
