@@ -726,3 +726,21 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);letter-spacing:-.02em;line-hei
       max-width: 100%; /* Even smaller image on very small screens */
     }
   }
+
+  #gameButton{
+  position:fixed;left:16px;bottom:24px;z-index:300;
+  background:#D6382A;
+  border-radius:999px;box-shadow:var(--shadow);transition:var(--transition);
+  border: #12141A solid 2px;
+}
+#gameButton a{
+  display:flex;align-items:center;gap:.5rem;padding:.65rem 1.125rem;
+  font-size:.875rem;font-weight:600;color:var(--text);
+  color: #fff;
+}
+#gameButton i{color:var(--accent)}
+#gameButton:hover{border-color:var(--accent);transform:translateY(-2px)}
+
+@media (max-width:640px){
+#gameButton a{padding:.55rem .875rem;font-size:.8125rem}
+}
