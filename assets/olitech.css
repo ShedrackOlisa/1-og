@@ -466,6 +466,32 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);letter-spacing:-.02em;line-hei
   font-family:var(--font-display);font-weight:900;font-size:40px;
   letter-spacing:-.04em;color:var(--red);font-variant-numeric:tabular-nums;
 }
+/* Subscribe gate. Built at runtime by initDownload(); see DOWNLOAD_CONFIG
+   at the top of olitech.js for the wording and the channel URL. */
+.subscribe-gate{
+  border:1px solid var(--rule);background:var(--card);
+  padding:24px 22px;margin-top:20px;
+}
+.subscribe-gate h4{
+  font-family:var(--font-display);font-size:19px;font-weight:800;
+  margin-bottom:10px;
+}
+.subscribe-gate h4 i{color:#FF0000;margin-right:8px;}
+.subscribe-gate p{
+  font-size:15px;line-height:1.55;color:var(--ink-mid);
+  margin:0 auto 18px;max-width:46ch;
+}
+.subscribe-btn{
+  font-family:var(--font-display);font-size:15px;font-weight:700;
+  background:#FF0000;color:#fff;border:2px solid #FF0000;
+  padding:14px 24px;display:inline-flex;align-items:center;gap:10px;
+  cursor:pointer;
+}
+.subscribe-btn:hover{
+  background:var(--ink);border-color:var(--ink);color:#fff;text-decoration:none;
+}
+.trigger-download-btn[hidden]{display:none;}
+
 .final-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:16px;}
 .final-btn{
   font-family:var(--font-display);font-size:15px;font-weight:700;
@@ -743,4 +769,135 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);letter-spacing:-.02em;line-hei
 
 @media (max-width:640px){
 #gameButton a{padding:.55rem .875rem;font-size:.8125rem}
+}
+
+/* 12 ------------------------------------------------- game ad popup --- */
+/* Interstitial built at runtime by initGameAd() in olitech.js.
+   No page markup exists for this: every class below is created by the
+   script, so the look is changed here and the wording, links, timing and
+   creative list are changed in AD_CONFIG at the top of olitech.js.
+   Sizes and colours are pulled out as variables so a restyle is a
+   one-line edit.                                                        */
+:root{
+  --ad-radius:18px;          /* card corner rounding                     */
+  --ad-width:420px;          /* card width on desktop                    */
+  --ad-ratio:4/3;            /* media box shape, e.g. 16/9, 4/3, 1/1     */
+  --ad-accent:var(--red);    /* headline + primary button colour         */
+}
+
+.olitech-ad-overlay{
+  position:fixed;inset:0;z-index:100000;
+  display:flex;align-items:center;justify-content:center;
+  padding:18px;
+  background:rgba(18,20,26,.55);
+  opacity:0;visibility:hidden;
+  transition:opacity .28s ease,visibility .28s ease;
+  /* Hidden state must stay in the layout rather than display:none, so the
+     browser still downloads the creative during the pre-roll wait.       */
+}
+.olitech-ad-overlay.is-open{opacity:1;visibility:visible;}
+
+.olitech-ad-card{
+  position:relative;
+  width:100%;max-width:var(--ad-width);
+  max-height:calc(100vh - 36px);
+  max-height:calc(100dvh - 36px);
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  background:var(--white);
+  border-radius:var(--ad-radius);
+  box-shadow:0 24px 60px rgba(0,0,0,.3);
+  padding:22px 22px 24px;
+  transform:translateY(16px) scale(.97);
+  transition:transform .3s cubic-bezier(.2,.8,.3,1);
+}
+.olitech-ad-overlay.is-open .olitech-ad-card{transform:none;}
+
+.olitech-ad-label{
+  font-family:var(--font-display);font-size:.625rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+  opacity:.75;
+}
+
+.olitech-ad-close{
+  position:absolute;top:10px;right:10px;
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;line-height:1;color:var(--ink);
+  background:none;cursor:pointer;
+  transition:background .18s ease;
+}
+.olitech-ad-close:hover{background:var(--card);}
+
+.olitech-ad-media{
+  margin:14px 0 4px;
+  aspect-ratio:var(--ad-ratio);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;border-radius:10px;
+  background:var(--card);
+}
+.olitech-ad-media img,
+.olitech-ad-media video{
+  width:100%;height:100%;object-fit:contain;display:block;background:var(--card);
+}
+
+.olitech-ad-headline{
+  margin-top:18px;text-align:center;
+  font-family:var(--font-display);font-size:1.5rem;font-weight:800;
+  line-height:1.2;letter-spacing:-.02em;color:var(--ad-accent);
+}
+.olitech-ad-text{
+  margin-top:12px;text-align:center;
+  font-size:1rem;line-height:1.55;color:var(--ink-mid);
+}
+
+.olitech-ad-actions{
+  display:flex;flex-direction:column;gap:10px;
+  margin-top:22px;
+}
+/* Play and Download share one row and split it evenly. Long captions wrap
+   to a second line rather than stacking, so the pair stays side by side
+   even on the narrowest phones. align-items:stretch keeps them level. */
+.olitech-ad-row{
+  display:flex;gap:10px;align-items:stretch;
+}
+.olitech-ad-row .olitech-ad-btn{
+  flex:1 1 0;min-width:0;
+  padding:14px 10px;font-size:.9375rem;line-height:1.25;
+}
+.olitech-ad-btn{
+  display:flex;align-items:center;justify-content:center;
+  width:100%;padding:15px 20px;
+  border-radius:999px;border:2px solid var(--ad-accent);
+  font-family:var(--font-display);font-size:1rem;font-weight:700;
+  text-align:center;text-decoration:none;cursor:pointer;
+  transition:opacity .18s ease,background .18s ease,color .18s ease;
+}
+.olitech-ad-btn:hover{text-decoration:none;}
+.olitech-ad-btn--play{background:var(--ad-accent);color:#fff;}
+.olitech-ad-btn--play:hover{opacity:.88;color:#fff;}
+.olitech-ad-btn--download{background:var(--white);color:var(--ad-accent);}
+.olitech-ad-btn--download:hover{background:var(--ad-accent);color:#fff;}
+/* Cancel sits on its own row below the pair, played down so the two red
+   buttons stay the obvious action. */
+.olitech-ad-btn--cancel{
+  background:none;border-color:var(--rule);color:var(--ink-soft);
+  font-size:.9375rem;padding:13px 20px;
+}
+.olitech-ad-btn--cancel:hover{background:var(--card);color:var(--ink);}
+
+/* Page behind the popup must not scroll while it is open. */
+body.olitech-ad-open{overflow:hidden;}
+
+@media (max-width:420px){
+  .olitech-ad-card{padding:20px 16px 20px;}
+  .olitech-ad-headline{font-size:1.3rem;}
+  .olitech-ad-text{font-size:.9375rem;}
+  .olitech-ad-row{gap:8px;}
+  .olitech-ad-row .olitech-ad-btn{padding:13px 6px;font-size:.875rem;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .olitech-ad-overlay,
+  .olitech-ad-card{transition:none;}
+  .olitech-ad-card{transform:none;}
 }
