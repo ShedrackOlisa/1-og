@@ -251,6 +251,34 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);letter-spacing:-.02em;line-hei
 .related-card h4{padding:14px 16px 4px;font-size:15px;font-weight:700;line-height:1.25;}
 .related-card .meta{padding:0 16px 16px;font-family:var(--font-display);font-size:12.5px;color:var(--ink-soft);}
 
+/* Related cards exist in two markup shapes across the site. Most pages put
+   the h4 and .meta straight inside .related-card, which is what the two
+   rules above are written for. The news and review pages wrap them in a
+   .related-card-content div instead, and there those paddings land on top
+   of the wrapper's own: the headline gets a column about 30px narrower
+   than it should have, so at phone width an ordinary article title wraps
+   five or six lines and the card turns into mostly whitespace.
+
+   Reset the inner padding in that shape, cap the headline at three lines
+   so one long title cannot stretch its whole grid row, and pin .meta to
+   the bottom so cards sitting side by side line up. The result matches the
+   density of the .game-card grid. */
+.related-card{display:flex;flex-direction:column;}
+.related-card-content{
+  padding:14px 16px 16px;
+  display:flex;flex-direction:column;flex:1 1 auto;
+}
+.related-card-content h4{padding:0;}
+.related-card-content .meta{padding:10px 0 0;margin-top:auto;}
+.related-card h4{
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;
+  overflow:hidden;
+}
+@media (max-width:760px){
+  .related-card h4{font-size:14px;line-height:1.3;}
+  .related-card-content{padding:12px 13px 13px;}
+}
+
 .post-card h3,.game-card h3,.rom-content h3,.game-info h3{
   font-size:17px;font-weight:700;line-height:1.25;margin:8px 0;
 }

@@ -25,6 +25,20 @@
     /* Seconds to wait after the page is ready before the popup appears. */
     delaySeconds: 8,
 
+    /* ---- where the popup must NOT appear -----------------------------
+       Any page carrying an AdSense unit is skipped automatically while
+       skipWhenAdSense stays true, so new articles need no entry below.
+       It looks for an actual <ins class="adsbygoogle"> on the page, not
+       the loader script, so switching Auto Ads on site-wide later will
+       not silently kill the popup everywhere.
+
+       skipOnPaths is the manual list, for pages with no AdSense unit
+       that should still stay clean. Each entry is matched anywhere in
+       the page address, so the file slug on its own is enough:
+         skipOnPaths: ['privacy-and-policy', 'contact']                 */
+    skipWhenAdSense: true,
+    skipOnPaths: [],
+
     /* Both buttons point here. */
     playUrl: 'https://play.google.com/store/apps/details?id=com.ziphynet.app',
     downloadUrl: 'https://play.google.com/store/apps/details?id=com.ziphynet.app',
@@ -427,9 +441,24 @@
     return img;
   }
 
+  /* True when this page is one the popup must leave alone. Checked before
+     anything is built, so an excluded page does not even download a
+     creative. See skipWhenAdSense / skipOnPaths in AD_CONFIG. */
+  function adSkipsThisPage() {
+    var here = (location.pathname + location.search).toLowerCase();
+    var list = AD_CONFIG.skipOnPaths || [];
+    for (var i = 0; i < list.length; i++) {
+      var slug = String(list[i]).toLowerCase().replace(/^[\/\s]+/, '');
+      if (slug && here.indexOf(slug) !== -1) return true;
+    }
+    if (AD_CONFIG.skipWhenAdSense && document.querySelector('ins.adsbygoogle')) return true;
+    return false;
+  }
+
   function initGameAd() {
     if (!AD_CONFIG.enabled) return;
     if (!AD_CONFIG.creatives || !AD_CONFIG.creatives.length) return;
+    if (adSkipsThisPage()) return;
     if (adAlreadySeen()) return;
 
     var creative = AD_CONFIG.creatives[Math.floor(Math.random() * AD_CONFIG.creatives.length)];
