@@ -504,14 +504,14 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);letter-spacing:-.02em;line-hei
   font-family:var(--font-display);font-size:19px;font-weight:800;
   margin-bottom:10px;
 }
-.subscribe-gate h4 i{color:#FF0000;margin-right:8px;}
+.subscribe-gate h4 i{color:blue;margin-right:8px;}
 .subscribe-gate p{
   font-size:15px;line-height:1.55;color:var(--ink-mid);
   margin:0 auto 18px;max-width:46ch;
 }
 .subscribe-btn{
   font-family:var(--font-display);font-size:15px;font-weight:700;
-  background:#FF0000;color:#fff;border:2px solid #FF0000;
+  background:blue;color:#fff;border:2px solid blue;
   padding:14px 24px;display:inline-flex;align-items:center;gap:10px;
   cursor:pointer;
 }

@@ -93,30 +93,21 @@
      ====================================================================== */
   var DOWNLOAD_CONFIG = {
 
-    /* Channel link. sub_confirmation=1 pops the subscribe dialog open. */
-    youtubeUrl: 'https://www.youtube.com/@ziphynet?sub_confirmation=1',
+  /* Facebook page link. */
+  facebookUrl: 'https://www.facebook.com/profile.php?id=61594118177533',
+  facebookId: '61594118177533',
 
-    /* Seconds to wait after the subscribe button is clicked. */
-    countdownSeconds: 15,
+  countdownSeconds: 15,
+  returnFallbackSeconds: 20,
+  rememberSubscribe: false,
 
-    /* Safety net. If the ad tab never opened (popup blocker) the page never
-       goes hidden, so nothing would bring the reader back. After this many
-       seconds we show the subscribe step anyway rather than dead-ending. */
-    returnFallbackSeconds: 20,
-
-    /* Set true to ask only once per visit: after a reader has clicked
-       subscribe on any page, other download pages skip straight to the
-       link. False asks again on every download page.                      */
-    rememberSubscribe: false,
-
-    /* Wording. */
-    waitingText: 'Finish the step in the new tab, then come back here to continue.',
-    subscribeHeading: 'One last step',
-    subscribeText: 'Subscribe to our YouTube channel to unlock this download. Tap the button, subscribe, then come back to this page.',
-    subscribeLabel: 'SUBSCRIBE ON YOUTUBE',
-    countdownText: 'Thanks! Your download link appears in',
-    readyText: 'Download ready. File tested and verified'
-  };
+  waitingText: 'Finish the step in the new tab, then come back here to continue.',
+  subscribeHeading: 'One last step',
+  subscribeText: 'Follow our Facebook page to unlock this download. Tap the button, follow the page, then come back to this page.',
+  subscribeLabel: 'FOLLOW ON FACEBOOK',
+  countdownText: 'Thanks! Your download link appears in',
+  readyText: 'Download ready. File tested and verified'
+};
   /* ==================== end of the block you edit ======================= */
 
   /* ---------------------------------------------------------- skip link --- */
@@ -281,31 +272,52 @@
 
     /* ----- step 3: the subscribe gate ----- */
     function showSubscribe() {
-      btn.hidden = true;
-      area.hidden = false;
-      area.innerHTML =
-        '<div class="subscribe-gate">' +
-        '<h4><i class="fab fa-youtube"></i> ' + D.subscribeHeading + '</h4>' +
-        '<p>' + D.subscribeText + '</p>' +
-        '</div>';
+  btn.hidden = true;
+  area.hidden = false;
+  area.innerHTML =
+    '<div class="subscribe-gate">' +
+    '<h4><i class="fab fa-facebook"></i> ' + D.subscribeHeading + '</h4>' +
+    '<p>' + D.subscribeText + '</p>' +
+    '</div>';
 
-      var a = document.createElement('a');
-      a.className = 'subscribe-btn';
-      a.href = D.youtubeUrl;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.innerHTML = '<i class="fab fa-youtube"></i> ' + D.subscribeLabel;
-      /* The click opens YouTube by itself; we only start the clock. */
-      a.addEventListener('click', function () {
-        try { sessionStorage.setItem(SUB_KEY, '1'); } catch (e) {}
-        state.step = 'count';
-        state.subAt = Date.now();
-        saveState();
-        startCount();
-      });
-      area.querySelector('.subscribe-gate').appendChild(a);
-      a.focus();
+  var a = document.createElement('a');
+  a.className = 'subscribe-btn';
+  a.href = D.facebookUrl;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.innerHTML = '<i class="fab fa-facebook"></i> ' + D.subscribeLabel;
+
+  a.addEventListener('click', function (e) {
+    var ua = navigator.userAgent || '';
+    var isAndroid = /Android/i.test(ua);
+    var isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+    /* Force the Facebook app where we can. Desktop just follows the normal link. */
+    if (isAndroid) {
+      e.preventDefault();
+      window.location.href =
+        'intent://profile/' + D.facebookId +
+        '#Intent;scheme=fb;package=com.facebook.katana;' +
+        'S.browser_fallback_url=' + encodeURIComponent(D.facebookUrl) + ';end';
+    } else if (isIOS) {
+      e.preventDefault();
+      window.location.href = 'fb://profile/' + D.facebookId;
+      /* If the app is not installed the page stays visible, so fall back to the web link. */
+      setTimeout(function () {
+        if (!document.hidden) window.location.href = D.facebookUrl;
+      }, 1200);
     }
+
+    try { sessionStorage.setItem(SUB_KEY, '1'); } catch (err) {}
+    state.step = 'count';
+    state.subAt = Date.now();
+    saveState();
+    startCount();
+  });
+
+  area.querySelector('.subscribe-gate').appendChild(a);
+  a.focus();
+}
 
     /* ----- step 4: countdown, then the real link ----- */
     function startCount() {
