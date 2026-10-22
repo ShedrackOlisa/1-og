@@ -20,7 +20,7 @@
   var AD_CONFIG = {
 
     /* Master switch. Set to false to turn the popup off site-wide. */
-    enabled: true,
+    enabled: false,
 
     /* Seconds to wait after the page is ready before the popup appears. */
     delaySeconds: 8,
@@ -624,5 +624,88 @@
     document.addEventListener('DOMContentLoaded', boot);
   } else {
     boot();
+  }
+})();
+
+/* ===== 300x250 Random Ad Banner =====
+   1) Add/edit your ads in the ADS list below.
+   2) Put <div class="sa-ad-slot"></div> in your HTML wherever the ad should show.
+   Each page load picks a random ad. Several slots on one page will show different ads. */
+(function () {
+  var ADS = [
+    {
+      img: "https://olitechgames.com/src/study-abroad-ad.jpg",
+      url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAEScAHrOzAVfz6Za3tBaP8CgX8aSCKXhIJODz65pP17bjmRQdCD80T8lO4JZJTN5YTPg_QEIurQsdbUCvigd81FlVZQ0ZrfU6u5ZSkpI-5f5DRr1uuMzRkpSit1uoJF6BB_4hSRSfexxLrH3-Bijo3Rf1o&ved=2ahUKEwj8hdbxrcyXAxV3QUEAHQMYM78QFnoECDUQAQ&uoh=2&usg=AOvVaw1XvYLz-gl98qiRaN8EWJnh",
+      alt: "Study abroad for free - discover scholarships, tuition-free universities and global opportunities"
+    }
+    // Add more ads by copying the block above, adding a comma after the previous "}":
+    // , { img: "https://olitechgames.com/src/another-ad.jpg", url: "https://example.com/page", alt: "Describe the ad" }
+  ];
+
+  var css =
+    ".sa-ad-wrap{width:300px;max-width:100%;margin:16px auto;line-height:0}" +
+    ".sa-ad{position:relative;display:block;width:300px;height:250px;max-width:100%;overflow:hidden;border:1px solid #d9d9d9;border-radius:4px;background:#0a2a6e;box-shadow:0 1px 4px rgba(0,0,0,.15);text-decoration:none;-webkit-tap-highlight-color:transparent}" +
+    ".sa-ad img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}" +
+    ".sa-ad:hover img{transform:scale(1.04)}" +
+    ".sa-ad-tag{position:absolute;top:0;right:0;z-index:2;background:rgba(255,255,255,.92);color:#555;font:700 9px/1 Arial,Helvetica,sans-serif;letter-spacing:.5px;text-transform:uppercase;padding:3px 5px;border-bottom-left-radius:4px}" +
+    ".sa-ad-cta{position:absolute;left:14px;bottom:34px;width:127px;height:23px;border-radius:12px;z-index:1;pointer-events:none;animation:saPulse 2.2s ease-in-out infinite}" +
+    "@keyframes saPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,221,0,.65)}50%{box-shadow:0 0 0 7px rgba(255,221,0,0)}}" +
+    "@media (prefers-reduced-motion:reduce){.sa-ad-cta{animation:none}.sa-ad img{transition:none}}";
+
+  function init() {
+    var slots = document.querySelectorAll(".sa-ad-slot");
+    if (!slots.length || !ADS.length) return;
+
+    if (!document.getElementById("sa-ad-css")) {
+      var style = document.createElement("style");
+      style.id = "sa-ad-css";
+      style.textContent = css;
+      document.head.appendChild(style);
+    }
+
+    // Shuffle a copy so slots on the same page get different ads (repeats only if slots > ads)
+    var pool = ADS.slice().sort(function () { return Math.random() - 0.5; });
+
+    Array.prototype.forEach.call(slots, function (slot, i) {
+      var ad = pool[i % pool.length];
+
+      var wrap = document.createElement("div");
+      wrap.className = "sa-ad-wrap";
+
+      var a = document.createElement("a");
+      a.className = "sa-ad";
+      a.href = ad.url;
+      a.target = "_blank";
+      a.rel = "noopener sponsored nofollow";
+      a.setAttribute("aria-label", "Advertisement: " + (ad.alt || ""));
+
+      var tag = document.createElement("span");
+      tag.className = "sa-ad-tag";
+      tag.textContent = "Ad";
+
+      var cta = document.createElement("span");
+      cta.className = "sa-ad-cta";
+
+      var img = document.createElement("img");
+      img.width = 300;
+      img.height = 250;
+      img.alt = ad.alt || "Advertisement";
+      img.loading = "lazy";
+      img.onerror = function () { slot.style.display = "none"; }; // hide if image fails
+      img.src = ad.img;
+
+      a.appendChild(tag);
+      a.appendChild(cta);
+      a.appendChild(img);
+      wrap.appendChild(a);
+      slot.innerHTML = "";
+      slot.appendChild(wrap);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
   }
 })();
