@@ -637,6 +637,16 @@
       img: "https://olitechgames.com/src/study-abroad-ad.jpg",
       url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAEScAHrOzAVfz6Za3tBaP8CgX8aSCKXhIJODz65pP17bjmRQdCD80T8lO4JZJTN5YTPg_QEIurQsdbUCvigd81FlVZQ0ZrfU6u5ZSkpI-5f5DRr1uuMzRkpSit1uoJF6BB_4hSRSfexxLrH3-Bijo3Rf1o&ved=2ahUKEwj8hdbxrcyXAxV3QUEAHQMYM78QFnoECDUQAQ&uoh=2&usg=AOvVaw1XvYLz-gl98qiRaN8EWJnh",
       alt: "Study abroad for free - discover scholarships, tuition-free universities and global opportunities"
+    },
+    {
+      img: "https://olitechgames.com/src/gta-5-ppsspp-ad.jpg",
+      url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESbAHrOzAV392j0GHHJkvipnzHb5Mkc5KdRVDpR56FK34j--jC5ot1OtJirRTKNtbnPbbF-fYrs3RdV521Tbp7yFA46odPDloBgwismoj0R_yVBh0IaMe_A3_GMlVrFqa5soSFz0skc_xsGBZflg&ved=2ahUKEwjIub7Wp9CXAxUKdUEAHVoJCfoQFnoECEQQAQ&uoh=2&usg=AOvVaw0uRg8kJN9A67xehg0HBSwB",
+      alt: "GTA 5 PPSSPP - Play the ultimate open-world game on your mobile device"
+    },
+    {
+      img: "https://olitechgames.com/src/win-100-000-dollar-ad.jpg",
+      url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESbAHrOzAV392j0GHHJkvipnzHb5Mkc5KdRVDpR56FK34j--jC5ot1OtJirRTKNtbnPbbF-fYrs3RdV521Tbp7yFA46odPDloBgwismoj0R_yVBh0IaMe_A3_GMlVrFqa5soSFz0skc_xsGBZflg&ved=2ahUKEwjIub7Wp9CXAxUKdUEAHVoJCfoQFnoECEQQAQ&uoh=2&usg=AOvVaw0uRg8kJN9A67xehg0HBSwB",
+      alt: "Win $100,000 - Enter our daily giveaway now!"
     }
     // Add more ads by copying the block above, adding a comma after the previous "}":
     // , { img: "https://olitechgames.com/src/another-ad.jpg", url: "https://example.com/page", alt: "Describe the ad" }
