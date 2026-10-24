@@ -20,7 +20,7 @@
   var AD_CONFIG = {
 
     /* Master switch. Set to false to turn the popup off site-wide. */
-    enabled: false,
+    enabled: true,
 
     /* Seconds to wait after the page is ready before the popup appears. */
     delaySeconds: 8,
@@ -45,7 +45,7 @@
 
     /* Button captions. Play and Download sit side by side on one row,
        Cancel sits on its own row underneath them. */
-    playLabel: 'Play Game',
+    playLabel: 'Get the App',
     downloadLabel: 'Download Game',
     cancelLabel: 'Cancel',
 
@@ -67,19 +67,8 @@
        mobile browsers allow. A poster makes the first frame appear
        instantly, so add one where you can.                               */
     creatives: [
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/f07bcb9f-0ad3-478c-a1f8-864363769d31.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/f6e53b5b-9404-4abf-b9e0-e5895d8f18ea.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/510b2277-4cfa-43b8-a58c-2848cc48b357.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/767873da-0d58-45ec-b08a-7a578fe41755.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/2efe389d-43dc-4156-b5e9-29ed771c2177.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/e04ff926-40e0-4044-aa80-637d136abf13.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/8d0376e8-9939-4b59-b38e-4694d0e3303e.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/c69ef6eb-570d-43ee-a499-5ee5dc51a1af.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/65214fd7-7f1e-4b6d-9bf5-baaa33036109.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/8b24abee-8617-47bd-a035-9bc4d53b746e.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/e94788fa-85bd-4b33-8c28-e59137b69ac0.jpg', alt: 'ZiphyNet game' },
-      { type: 'image', src: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/e377e5f6-7090-427b-a8f3-e0f1df5d1341.jpg', alt: 'ZiphyNet game' },
-      { type: 'video', src: 'https://example.com/ads/ziphy-1.mp4',  poster: 'https://gamehub-backend.shotavixofficial.workers.dev/api/r2/gamehub/8b24abee-8617-47bd-a035-9bc4d53b746e.jpg' }
+      { type: 'image', src: 'https://olitechgames.com/src/ziphynet-app-ad.jpg', alt: 'ZiphyNet game' },
+      { type: 'video', src: 'https://example.com/ads/ziphy-1.mp4',  poster: 'https://olitechgames.com/src/ziphynet-app-ad.jpg' }
     ]
   };
   /* ==================== end of the block you edit ======================= */
@@ -494,9 +483,15 @@
     closeBtn.setAttribute('aria-label', 'Close ad');
     closeBtn.innerHTML = '&times;';
 
-    var media = document.createElement('div');
-    media.className = 'olitech-ad-media';
-    media.appendChild(buildCreative(creative));
+    var media = document.createElement('a');
+media.className = 'olitech-ad-media';
+media.href = 'https://play.google.com/store/apps/details?id=com.ziphynet.app';
+media.target = '_blank';
+media.rel = 'noopener sponsored';
+media.setAttribute('aria-label', 'Get ZiphyNet on Google Play');
+/* Close behind the new tab so the reader is not stuck on return. */
+media.addEventListener('click', function () { setTimeout(close, 60); });
+media.appendChild(buildCreative(creative));
 
     var headline = document.createElement('h2');
     headline.className = 'olitech-ad-headline';
@@ -535,12 +530,19 @@
     actions.appendChild(row);
     actions.appendChild(cancelBtn);
 
-    card.appendChild(label);
-    card.appendChild(closeBtn);
-    card.appendChild(media);
-    card.appendChild(headline);
-    card.appendChild(text);
-    card.appendChild(actions);
+    /* Bottom-sheet layout: title and close button share a header row. */
+var head = document.createElement('div');
+head.className = 'olitech-ad-head';
+var titleWrap = document.createElement('div');
+titleWrap.appendChild(label);
+titleWrap.appendChild(headline);
+head.appendChild(titleWrap);
+head.appendChild(closeBtn);
+
+card.appendChild(head);
+card.appendChild(media);
+card.appendChild(text);
+card.appendChild(actions);
     overlay.appendChild(card);
     document.body.appendChild(overlay);
 
@@ -706,6 +708,88 @@
 
       a.appendChild(tag);
       a.appendChild(cta);
+      a.appendChild(img);
+      wrap.appendChild(a);
+      slot.innerHTML = "";
+      slot.appendChild(wrap);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+
+/* ===== ZiphyNet "Featured" ad - place under your <h1> =====
+   1) Put <div class="zn-ad-slot"></div> right under your <h1>.
+   2) Set the image and link below.
+   Responsive: fills the width on phones, max 420px on desktop. */
+(function () {
+  var AD = {
+    img: "https://olitechgames.com/src/ziphynet-app-ad.jpg", // upload ziphynet-app-ad.jpg here
+    url: "https://play.google.com/store/apps/details?id=com.ziphynet.app", // your Google Play link
+    alt: "Download the ZiphyNet app on Google Play - games, communities and friends"
+  };
+
+  var css =
+    ".zn-ad-wrap{width:100%;max-width:420px;margin:14px auto 18px;line-height:0}" +
+    ".zn-ad{position:relative;display:block;width:100%;aspect-ratio:1374/1145;overflow:hidden;border-radius:10px;background:#120508;border:1px solid rgba(255,59,59,.55);box-shadow:0 0 14px rgba(255,40,40,.35),0 2px 8px rgba(0,0,0,.35);text-decoration:none;-webkit-tap-highlight-color:transparent;transition:transform .2s ease,box-shadow .2s ease}" +
+    ".zn-ad:hover{transform:translateY(-2px);box-shadow:0 0 22px rgba(255,40,40,.55),0 6px 14px rgba(0,0,0,.4)}" +
+    ".zn-ad img{display:block;width:100%;height:100%;object-fit:cover}" +
+    ".zn-ad-tag{position:absolute;top:0;left:0;z-index:3;background:rgba(0,0,0,.65);color:#fff;font:700 10px/1 Arial,Helvetica,sans-serif;letter-spacing:.6px;text-transform:uppercase;padding:4px 7px;border-bottom-right-radius:8px}" +
+    /* pulse around the Google Play button (positions are % so it scales with the banner) */
+    ".zn-ad-cta{position:absolute;left:63.4%;top:54.4%;width:34.2%;height:14.6%;border-radius:12px;z-index:2;pointer-events:none;animation:znPulse 2s ease-in-out infinite}" +
+    "@keyframes znPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,60,60,.7)}50%{box-shadow:0 0 0 9px rgba(255,60,60,0)}}" +
+    /* light sweep */
+    ".zn-ad-shine{position:absolute;top:0;left:-60%;width:40%;height:100%;z-index:2;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-20deg);animation:znShine 5s ease-in-out infinite}" +
+    "@keyframes znShine{0%,60%{left:-60%}100%{left:130%}}" +
+    "@media (prefers-reduced-motion:reduce){.zn-ad-cta,.zn-ad-shine{animation:none}.zn-ad{transition:none}}";
+
+  function init() {
+    var slots = document.querySelectorAll(".zn-ad-slot");
+    if (!slots.length) return;
+
+    if (!document.getElementById("zn-ad-css")) {
+      var style = document.createElement("style");
+      style.id = "zn-ad-css";
+      style.textContent = css;
+      document.head.appendChild(style);
+    }
+
+    Array.prototype.forEach.call(slots, function (slot) {
+      var wrap = document.createElement("div");
+      wrap.className = "zn-ad-wrap";
+
+      var a = document.createElement("a");
+      a.className = "zn-ad";
+      a.href = AD.url;
+      a.target = "_blank";
+      a.rel = "noopener sponsored";
+      a.setAttribute("aria-label", "Advertisement: " + AD.alt);
+
+      var tag = document.createElement("span");
+      tag.className = "zn-ad-tag";
+      tag.textContent = "Ad";
+
+      var cta = document.createElement("span");
+      cta.className = "zn-ad-cta";
+
+      var shine = document.createElement("span");
+      shine.className = "zn-ad-shine";
+
+      var img = document.createElement("img");
+      img.width = 900;
+      img.height = 750;
+      img.alt = AD.alt;
+      img.onerror = function () { slot.style.display = "none"; };
+      img.src = AD.img;
+
+      a.appendChild(tag);
+      a.appendChild(cta);
+      a.appendChild(shine);
       a.appendChild(img);
       wrap.appendChild(a);
       slot.innerHTML = "";
