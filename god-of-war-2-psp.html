@@ -204,48 +204,39 @@
   <a id="goToDownloadBtn" class="trigger-download-btn" style="text-decoration:none; display:none;" href="download/god-of-war-2-psp.html"><i class="fas fa-download"></i> GO TO DOWNLOAD PAGE</a>
 </div>
     <script>
-  (function () {
-    var STORAGE_KEY = 'ddomRevealClickedAt:' + location.pathname;
-    var COOLDOWN_MS = 1 * 60 * 1000;
-    var revealBtn = document.getElementById('revealDownloadBtn');
-    var goBtn = document.getElementById('goToDownloadBtn');
-    var resetTimer = null;
+      (function () {
+        var STORAGE_KEY = 'ddomRevealClickedAt:' + location.pathname;
+        var COOLDOWN_MS = 1 * 60 * 1000;
+        var revealBtn = document.getElementById('revealDownloadBtn');
+        var goBtn = document.getElementById('goToDownloadBtn');
 
-    function reset() {
-      localStorage.removeItem(STORAGE_KEY);
-      revealBtn.style.display = '';
-      goBtn.style.display = 'none';
-    }
+        function reset() {
+          localStorage.removeItem(STORAGE_KEY);
+          revealBtn.style.display = '';
+          goBtn.style.display = 'none';
+        }
 
-    function hideForCooldown(remainingMs) {
-      revealBtn.style.display = 'none';
-      goBtn.style.display = '';
-      clearTimeout(resetTimer);
-      resetTimer = setTimeout(reset, remainingMs);
-    }
+        function hideForCooldown(remainingMs) {
+          revealBtn.style.display = 'none';
+          goBtn.style.display = '';
+          setTimeout(reset, remainingMs);
+        }
 
-    var clickedAt = parseInt(localStorage.getItem(STORAGE_KEY), 10);
-    var elapsed = clickedAt ? Date.now() - clickedAt : COOLDOWN_MS;
+        var clickedAt = parseInt(localStorage.getItem(STORAGE_KEY), 10);
+        var elapsed = clickedAt ? Date.now() - clickedAt : COOLDOWN_MS;
 
-    if (elapsed < COOLDOWN_MS) {
-      hideForCooldown(COOLDOWN_MS - elapsed);
-    } else {
-      reset();
-    }
+        if (elapsed < COOLDOWN_MS) {
+          hideForCooldown(COOLDOWN_MS - elapsed);
+        } else {
+          reset();
+        }
 
-    revealBtn.addEventListener('click', function () {
-      localStorage.setItem(STORAGE_KEY, Date.now());
-      hideForCooldown(COOLDOWN_MS);
-
-      // The link itself opens the ad in a new tab (target="_blank").
-      // A moment later, send THIS tab to the download page, so the visitor
-      // lands there when they come back from the ad.
-      setTimeout(function () {
-        window.location.href = goBtn.href;
-      }, 400);
-    });
-  })();
-</script>
+        revealBtn.addEventListener('click', function () {
+          localStorage.setItem(STORAGE_KEY, Date.now());
+          hideForCooldown(COOLDOWN_MS);
+        });
+      })();
+    </script>
 </div>
 
   
