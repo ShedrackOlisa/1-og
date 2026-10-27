@@ -635,7 +635,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);letter-spacing:-.02em;line-hei
 @media (max-width:480px){
   .footer-grid{grid-template-columns:1fr;}
   .info-grid{grid-template-columns:1fr;}
-  .floating-cta{right:14px;bottom:120px;width:50px;height:50px;}
+  .floating-cta{right:14px;bottom:130px;width:50px;height:50px;}
 }
 
 /* 11 -------------------------------------------------- late additions --- */
@@ -782,7 +782,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-display);letter-spacing:-.02em;line-hei
   }
 
   #gameButton{
-  position:fixed;left:16px;bottom:120px;z-index:300;
+  position:fixed;left:16px;bottom:130px;z-index:300;
   background:#D6382A;
   border-radius:999px;box-shadow:var(--shadow);transition:var(--transition);
   border: #12141A solid 2px;
