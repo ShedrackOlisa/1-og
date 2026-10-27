@@ -724,7 +724,20 @@ card.appendChild(actions);
 
 
 /* ===== ZiphyNet "Featured" ad - place under your <h1> =====
-   1) Put <div class="zn-ad-slot"></div> right under your <h1>.
+   1) Put <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1091464318795402"
+     crossorigin="anonymous"></script>
+    <div data-geo-ads>
+<!-- AD CODE -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1091464318795402"
+     data-ad-slot="9535249597"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div> right under your <h1>.
    2) Set the image and link below.
    Responsive: fills the width on phones, max 420px on desktop. */
 (function () {
