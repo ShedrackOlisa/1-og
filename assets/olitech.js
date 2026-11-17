@@ -632,26 +632,49 @@ card.appendChild(actions);
 /* ===== 300x250 Random Ad Banner =====
    1) Add/edit your ads in the ADS list below.
    2) Put <div class="sa-ad-slot"></div> in your HTML wherever the ad should show.
-   Each page load picks a random ad. Several slots on one page will show different ads. */
+   Each page load picks a random ad. Several slots on one page will show different ads.
+
+   Per ad:  img, url, alt  (required)
+            cta  = { l, t, w, h }  position of the button in the image, in % (for the pulse effect)
+            glow = pulse colour, e.g. "rgba(255,221,0,.7)"  */
 (function () {
   var ADS = [
+    // {
+    //   img: "https://olitechgames.com/src/study-abroad-ad.jpg",
+    //   url: "https://YOUR-WEBSITE-LINK.com",
+    //   alt: "Study abroad for free - discover scholarships, tuition-free universities and global opportunities",
+    //   cta: { l: 4.8, t: 77.4, w: 42.2, h: 9.1 },
+    //   glow: "rgba(255,221,0,.7)"
+    // },
     {
-      img: "https://olitechgames.com/src/study-abroad-ad.jpg",
-      url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAEScAHrOzAVfz6Za3tBaP8CgX8aSCKXhIJODz65pP17bjmRQdCD80T8lO4JZJTN5YTPg_QEIurQsdbUCvigd81FlVZQ0ZrfU6u5ZSkpI-5f5DRr1uuMzRkpSit1uoJF6BB_4hSRSfexxLrH3-Bijo3Rf1o&ved=2ahUKEwj8hdbxrcyXAxV3QUEAHQMYM78QFnoECDUQAQ&uoh=2&usg=AOvVaw1XvYLz-gl98qiRaN8EWJnh",
-      alt: "Study abroad for free - discover scholarships, tuition-free universities and global opportunities"
+      img: "https://olitechgames.com/src/samsung-s26-ultra-ad.jpg",
+      url: "https://phonecodex.com/RD/samsung-s26-ultra-ad",
+      alt: "Win a free Samsung Galaxy S26 Ultra for gaming - claim your gift",
+      cta: { l: 55, t: 78.6, w: 44, h: 14.9 },
+      glow: "rgba(255,70,70,.75)"
     },
     {
-      img: "https://olitechgames.com/src/gta-5-ppsspp-ad.jpg",
-      url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESbAHrOzAV392j0GHHJkvipnzHb5Mkc5KdRVDpR56FK34j--jC5ot1OtJirRTKNtbnPbbF-fYrs3RdV521Tbp7yFA46odPDloBgwismoj0R_yVBh0IaMe_A3_GMlVrFqa5soSFz0skc_xsGBZflg&ved=2ahUKEwjIub7Wp9CXAxUKdUEAHVoJCfoQFnoECEQQAQ&uoh=2&usg=AOvVaw0uRg8kJN9A67xehg0HBSwB",
-      alt: "GTA 5 PPSSPP - Play the ultimate open-world game on your mobile device"
+      img: "https://olitechgames.com/src/infinix-gt50-pro-ad.jpg",
+      url: "https://phonecodex.com/RD/infinix-gt50-pro-ad",
+      alt: "Win a gaming phone - Infinix GT50 Pro 5G",
+      cta: { l: 52.3, t: 83.4, w: 46, h: 13.1 },
+      glow: "rgba(255,70,70,.75)"
     },
     {
-      img: "https://olitechgames.com/src/win-100-000-dollar-ad.jpg",
-      url: "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=CAESbAHrOzAV392j0GHHJkvipnzHb5Mkc5KdRVDpR56FK34j--jC5ot1OtJirRTKNtbnPbbF-fYrs3RdV521Tbp7yFA46odPDloBgwismoj0R_yVBh0IaMe_A3_GMlVrFqa5soSFz0skc_xsGBZflg&ved=2ahUKEwjIub7Wp9CXAxUKdUEAHVoJCfoQFnoECEQQAQ&uoh=2&usg=AOvVaw0uRg8kJN9A67xehg0HBSwB",
-      alt: "Win $100,000 - Enter our daily giveaway now!"
+      img: "https://olitechgames.com/src/iphone-18-pro-max-ad.jpg",
+      url: "https://phonecodex.com/RD/iphone-18-pro-max-ad",
+      alt: "Win a free iPhone 18 Pro Max for gaming - claim your gift",
+      cta: { l: 54.2, t: 83, w: 44.8, h: 13.5 },
+      glow: "rgba(255,70,70,.75)"
+    },
+    {
+      img: "https://olitechgames.com/src/redmagic-12-pro-ad.jpg",
+      url: "https://phonecodex.com/RD/redmagic-12-pro-ad",
+      alt: "Win gaming with the Red Magic 12 Pro - enter now",
+      cta: { l: 54.2, t: 82.5, w: 44, h: 13.1 },
+      glow: "rgba(255,221,0,.8)"
     }
-    // Add more ads by copying the block above, adding a comma after the previous "}":
-    // , { img: "https://olitechgames.com/src/another-ad.jpg", url: "https://example.com/page", alt: "Describe the ad" }
+    // Add more ads by copying a block above, adding a comma after the previous "}"
   ];
 
   var css =
@@ -660,8 +683,8 @@ card.appendChild(actions);
     ".sa-ad img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}" +
     ".sa-ad:hover img{transform:scale(1.04)}" +
     ".sa-ad-tag{position:absolute;top:0;right:0;z-index:2;background:rgba(255,255,255,.92);color:#555;font:700 9px/1 Arial,Helvetica,sans-serif;letter-spacing:.5px;text-transform:uppercase;padding:3px 5px;border-bottom-left-radius:4px}" +
-    ".sa-ad-cta{position:absolute;left:14px;bottom:34px;width:127px;height:23px;border-radius:12px;z-index:1;pointer-events:none;animation:saPulse 2.2s ease-in-out infinite}" +
-    "@keyframes saPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,221,0,.65)}50%{box-shadow:0 0 0 7px rgba(255,221,0,0)}}" +
+    ".sa-ad-cta{position:absolute;border-radius:999px;z-index:1;pointer-events:none;animation:saPulse 2.2s ease-in-out infinite}" +
+    "@keyframes saPulse{0%,100%{box-shadow:0 0 0 0 var(--g,rgba(255,221,0,.7))}50%{box-shadow:0 0 0 7px transparent}}" +
     "@media (prefers-reduced-motion:reduce){.sa-ad-cta{animation:none}.sa-ad img{transition:none}}";
 
   function init() {
@@ -695,8 +718,18 @@ card.appendChild(actions);
       tag.className = "sa-ad-tag";
       tag.textContent = "Ad";
 
-      var cta = document.createElement("span");
-      cta.className = "sa-ad-cta";
+      a.appendChild(tag);
+
+      if (ad.cta) {
+        var cta = document.createElement("span");
+        cta.className = "sa-ad-cta";
+        cta.style.left = ad.cta.l + "%";
+        cta.style.top = ad.cta.t + "%";
+        cta.style.width = ad.cta.w + "%";
+        cta.style.height = ad.cta.h + "%";
+        if (ad.glow) cta.style.setProperty("--g", ad.glow);
+        a.appendChild(cta);
+      }
 
       var img = document.createElement("img");
       img.width = 300;
@@ -706,8 +739,6 @@ card.appendChild(actions);
       img.onerror = function () { slot.style.display = "none"; }; // hide if image fails
       img.src = ad.img;
 
-      a.appendChild(tag);
-      a.appendChild(cta);
       a.appendChild(img);
       wrap.appendChild(a);
       slot.innerHTML = "";
@@ -724,7 +755,7 @@ card.appendChild(actions);
 
 
 /* ===== ZiphyNet "Featured" ad - place under your <h1> =====
-   1) Put    <div class="zn-ad-slot"></div> right under your <h1>.
+   1) Put    <div class="sa-ad-slot"></div> right under your <h1>.
    2) Set the image and link below.
    Responsive: fills the width on phones, max 420px on desktop. */
 (function () {
